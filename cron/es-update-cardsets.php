@@ -45,7 +45,7 @@ function import_card_sets()
 
     foreach ($sets as $model) {
         $set = $model->toArray();
-        $stmt = $pdo->prepare("SELECT * FROM card_sets WHERE id = :id");
+        $stmt = $pdo->prepare("SELECT * FROM es_card_sets WHERE id = :id");
         $stmt->execute(['id' => $set['id']]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
@@ -56,7 +56,7 @@ function import_card_sets()
                                    WHERE id = :id");
         } else {
             // Insert new record
-            $stmt = $pdo->prepare("INSERT INTO card_sets (id, name, series, printed_total, total, unlimited_legality, standard_legality, expanded_legality, 
+            $stmt = $pdo->prepare("INSERT INTO es_card_sets (id, name, series, printed_total, total, unlimited_legality, standard_legality, expanded_legality, 
                                    ptcgo_code, release_date, updated_at, symbol_url, logo_url) 
                                    VALUES (:id, :name, :series, :printed_total, :total, :unlimited, :standard, :expanded, 
                                    :ptcgo_code, :release_date, :updated_at, :symbol_url, :logo_url)");
