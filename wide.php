@@ -24,7 +24,7 @@
             </ul>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-wide">
         <div class="panel panel-full">
             <h1>Welcome to my website</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend enim vitae augue faucibus, vel

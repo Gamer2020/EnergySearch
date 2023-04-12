@@ -24,9 +24,8 @@ header {
     top: 0;
     z-index: 999;
     max-width: 1160px;
-    /* added max-width */
     margin: 0 auto;
-    /* added margin auto */
+    border-radius: 10px 10px 10px 10px;
 }
 
 /* logo styling */
@@ -83,10 +82,17 @@ nav ul ul li a {
 .container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1160px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    /* added padding */
+}
+
+.container-wide {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* panel styling */
@@ -95,6 +101,7 @@ nav ul ul li a {
     background-color: #111;
     padding: 20px;
     margin-right: 20px;
+    border-radius: 10px 10px 10px 10px;
 }
 
 .panel h1 {
@@ -134,9 +141,8 @@ footer {
     padding: 20px;
     text-align: center;
     max-width: 1160px;
-    /* added max-width */
     margin: 0 auto;
-    /* added margin auto */
+    border-radius: 10px 10px 10px 10px;
 }
 
 footer p {
@@ -151,6 +157,7 @@ body.dark-mode {
 
 .dark-mode header {
     background-color: #000;
+    border-radius: 10px 10px 10px 10px;
 }
 
 .dark-mode nav ul li a {
@@ -167,6 +174,10 @@ body.dark-mode {
 
 .dark-mode footer {
     background-color: #000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .dark-mode footer p {
