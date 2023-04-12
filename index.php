@@ -18,12 +18,10 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Cards</a></li>
                 <li><a href="#">Decks</a></li>
-                <li><a href="#">Info</a>
-                    <ul>
-                        <li><a href="#">Credits</a></li>
-                        <li><a href="#">Terms and Services</a></li>
-                        <li><a href="#">About</a></li>
-                    </ul>
+                <li><a href="#">Credits</a></li>
+                <li><a href="#">Terms and Services</a></li>
+                <li><a href="#">About</a></li>
+
                 </li>
             </ul>
         </nav>
