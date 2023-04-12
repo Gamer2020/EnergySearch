@@ -7,6 +7,4 @@ define('db_user','root');
 define('db_pass','');
 // database name
 define('db_name','energysearch');
-// database charset - change this only if utf8 is unsupported by your language
-define('db_charset','utf8');
 ?>
