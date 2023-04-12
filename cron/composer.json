@@ -1,0 +1,5 @@
+{
+    "require": {
+        "pokemon-tcg/pokemon-tcg-sdk-php": "^2.1"
+    }
+}

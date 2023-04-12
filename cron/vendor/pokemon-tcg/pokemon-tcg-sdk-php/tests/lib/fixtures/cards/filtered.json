@@ -1,0 +1,480 @@
+{
+  "data": [
+    {
+      "id": "xy6-1",
+      "name": "Exeggcute",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "40",
+      "types": [
+        "Grass"
+      ],
+      "evolvesTo": [
+        "Exeggutor"
+      ],
+      "attacks": [
+        {
+          "name": "Loathe",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Flip a coin. If heads, switch this Pokémon with 1 of your Benched Pokémon."
+        },
+        {
+          "name": "Ram",
+          "cost": [
+            "Grass"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "10",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "xy6",
+        "name": "Roaring Skies",
+        "series": "XY",
+        "printedTotal": 108,
+        "total": 110,
+        "legalities": {
+          "unlimited": "Legal",
+          "expanded": "Legal"
+        },
+        "ptcgoCode": "ROS",
+        "releaseDate": "2015/05/06",
+        "updatedAt": "2020/08/14 09:35:00",
+        "images": {
+          "symbol": "https://images.pokemontcg.io/xy6/symbol.png",
+          "logo": "https://images.pokemontcg.io/xy6/logo.png"
+        }
+      },
+      "number": "1",
+      "artist": "Tomokazu Komiya",
+      "rarity": "Common",
+      "flavorText": "Even though it appears to be eggs of some sort, it was discovered to be a life-form more like plant seeds.",
+      "nationalPokedexNumbers": [
+        102
+      ],
+      "legalities": {
+        "unlimited": "Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://images.pokemontcg.io/xy6/1.png",
+        "large": "https://images.pokemontcg.io/xy6/1_hires.png"
+      },
+      "tcgplayer": {
+        "url": "https://prices.pokemontcg.io/tcgplayer/xy6-1",
+        "updatedAt": "2021/03/12",
+        "prices": {
+          "normal": {
+            "low": 0.05,
+            "mid": 0.2,
+            "high": 1.2,
+            "market": 0.12,
+            "directLow": 0.07
+          },
+          "reverseHolofoil": {
+            "low": 0.07,
+            "mid": 0.32,
+            "high": 1.95,
+            "market": 0.22,
+            "directLow": 0.07
+          }
+        }
+      },
+      "cardmarket": {
+        "url": "https://prices.pokemontcg.io/cardmarket/xy6-1",
+        "updatedAt": "2021/08/06",
+        "prices": {
+          "averageSellPrice": 0.05,
+          "lowPrice": 0.02,
+          "trendPrice": 0.05,
+          "germanProLow": null,
+          "suggestedPrice": null,
+          "reverseHoloSell": 0.18,
+          "reverseHoloLow": 0.05,
+          "reverseHoloTrend": 0.12,
+          "lowPriceExPlus": 0.02,
+          "avg1": 0.02,
+          "avg7": 0.05,
+          "avg30": 0.07,
+          "reverseHoloAvg1": 0.15,
+          "reverseHoloAvg7": 0.13,
+          "reverseHoloAvg30": 0.21
+        }
+      }
+    },
+    {
+      "id": "xy6-3",
+      "name": "Wurmple",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "60",
+      "types": [
+        "Grass"
+      ],
+      "evolvesTo": [
+        "Silcoon",
+        "Cascoon"
+      ],
+      "attacks": [
+        {
+          "name": "Flock",
+          "cost": [
+            "Grass"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "",
+          "text": "Search your deck for Wurmple and put it onto your Bench. Shuffle your deck afterward."
+        },
+        {
+          "name": "Tackle",
+          "cost": [
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 2,
+          "damage": "20",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "xy6",
+        "name": "Roaring Skies",
+        "series": "XY",
+        "printedTotal": 108,
+        "total": 110,
+        "legalities": {
+          "unlimited": "Legal",
+          "expanded": "Legal"
+        },
+        "ptcgoCode": "ROS",
+        "releaseDate": "2015/05/06",
+        "updatedAt": "2020/08/14 09:35:00",
+        "images": {
+          "symbol": "https://images.pokemontcg.io/xy6/symbol.png",
+          "logo": "https://images.pokemontcg.io/xy6/logo.png"
+        }
+      },
+      "number": "3",
+      "artist": "Naoyo Kimura",
+      "rarity": "Common",
+      "flavorText": "It lives among the tall grass and in forests. It repels attacks by raising up the spikes on its rear.",
+      "nationalPokedexNumbers": [
+        265
+      ],
+      "legalities": {
+        "unlimited": "Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://images.pokemontcg.io/xy6/3.png",
+        "large": "https://images.pokemontcg.io/xy6/3_hires.png"
+      },
+      "tcgplayer": {
+        "url": "https://prices.pokemontcg.io/tcgplayer/xy6-3",
+        "updatedAt": "2021/03/12",
+        "prices": {
+          "normal": {
+            "low": 0.04,
+            "mid": 0.2,
+            "high": 0.99,
+            "market": 0.07,
+            "directLow": null
+          },
+          "reverseHolofoil": {
+            "low": 0.09,
+            "mid": 0.3,
+            "high": 1.95,
+            "market": 0.23,
+            "directLow": 0.15
+          }
+        }
+      },
+      "cardmarket": {
+        "url": "https://prices.pokemontcg.io/cardmarket/xy6-3",
+        "updatedAt": "2021/08/06",
+        "prices": {
+          "averageSellPrice": 0.05,
+          "lowPrice": 0.02,
+          "trendPrice": 0.07,
+          "germanProLow": null,
+          "suggestedPrice": null,
+          "reverseHoloSell": 0.25,
+          "reverseHoloLow": 0.05,
+          "reverseHoloTrend": 0.24,
+          "lowPriceExPlus": 0.02,
+          "avg1": 0.02,
+          "avg7": 0.05,
+          "avg30": 0.06,
+          "reverseHoloAvg1": 0.25,
+          "reverseHoloAvg7": 0.25,
+          "reverseHoloAvg30": 0.19
+        }
+      }
+    },
+    {
+      "id": "xy6-9",
+      "name": "Nincada",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "40",
+      "types": [
+        "Grass"
+      ],
+      "evolvesTo": [
+        "Ninjask"
+      ],
+      "attacks": [
+        {
+          "name": "Slight Intrusion",
+          "cost": [
+            "Colorless"
+          ],
+          "convertedEnergyCost": 1,
+          "damage": "20",
+          "text": "This Pokémon does 10 damage to itself."
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless"
+      ],
+      "convertedRetreatCost": 1,
+      "set": {
+        "id": "xy6",
+        "name": "Roaring Skies",
+        "series": "XY",
+        "printedTotal": 108,
+        "total": 110,
+        "legalities": {
+          "unlimited": "Legal",
+          "expanded": "Legal"
+        },
+        "ptcgoCode": "ROS",
+        "releaseDate": "2015/05/06",
+        "updatedAt": "2020/08/14 09:35:00",
+        "images": {
+          "symbol": "https://images.pokemontcg.io/xy6/symbol.png",
+          "logo": "https://images.pokemontcg.io/xy6/logo.png"
+        }
+      },
+      "number": "9",
+      "artist": "Kyoko Umemoto",
+      "rarity": "Common",
+      "flavorText": "It can sometimes live underground for more than 10 years. It absorbs nutrients from the roots of trees.",
+      "nationalPokedexNumbers": [
+        290
+      ],
+      "legalities": {
+        "unlimited": "Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://images.pokemontcg.io/xy6/9.png",
+        "large": "https://images.pokemontcg.io/xy6/9_hires.png"
+      },
+      "tcgplayer": {
+        "url": "https://prices.pokemontcg.io/tcgplayer/xy6-9",
+        "updatedAt": "2021/03/12",
+        "prices": {
+          "normal": {
+            "low": 0.02,
+            "mid": 0.2,
+            "high": 0.99,
+            "market": 0.08,
+            "directLow": 0.06
+          },
+          "reverseHolofoil": {
+            "low": 0.09,
+            "mid": 0.3,
+            "high": 1.95,
+            "market": 0.24,
+            "directLow": 0.09
+          }
+        }
+      },
+      "cardmarket": {
+        "url": "https://prices.pokemontcg.io/cardmarket/xy6-9",
+        "updatedAt": "2021/08/06",
+        "prices": {
+          "averageSellPrice": 0.04,
+          "lowPrice": 0.02,
+          "trendPrice": 0.05,
+          "germanProLow": null,
+          "suggestedPrice": null,
+          "reverseHoloSell": 0.3,
+          "reverseHoloLow": 0.02,
+          "reverseHoloTrend": 0.24,
+          "lowPriceExPlus": 0.02,
+          "avg1": 0.06,
+          "avg7": 0.04,
+          "avg30": 0.05,
+          "reverseHoloAvg1": 0.3,
+          "reverseHoloAvg7": 0.23,
+          "reverseHoloAvg30": 0.2
+        }
+      }
+    },
+    {
+      "id": "xy6-12",
+      "name": "Tropius",
+      "supertype": "Pokémon",
+      "subtypes": [
+        "Basic"
+      ],
+      "hp": "110",
+      "types": [
+        "Grass"
+      ],
+      "attacks": [
+        {
+          "name": "Stomp",
+          "cost": [
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 3,
+          "damage": "50+",
+          "text": "Flip a coin. If heads, this attack does 20 more damage."
+        },
+        {
+          "name": "Solar Beam",
+          "cost": [
+            "Grass",
+            "Colorless",
+            "Colorless",
+            "Colorless"
+          ],
+          "convertedEnergyCost": 4,
+          "damage": "80",
+          "text": ""
+        }
+      ],
+      "weaknesses": [
+        {
+          "type": "Fire",
+          "value": "×2"
+        }
+      ],
+      "retreatCost": [
+        "Colorless",
+        "Colorless"
+      ],
+      "convertedRetreatCost": 2,
+      "set": {
+        "id": "xy6",
+        "name": "Roaring Skies",
+        "series": "XY",
+        "printedTotal": 108,
+        "total": 110,
+        "legalities": {
+          "unlimited": "Legal",
+          "expanded": "Legal"
+        },
+        "ptcgoCode": "ROS",
+        "releaseDate": "2015/05/06",
+        "updatedAt": "2020/08/14 09:35:00",
+        "images": {
+          "symbol": "https://images.pokemontcg.io/xy6/symbol.png",
+          "logo": "https://images.pokemontcg.io/xy6/logo.png"
+        }
+      },
+      "number": "12",
+      "artist": "Kyoko Umemoto",
+      "rarity": "Uncommon",
+      "flavorText": "The bunch of fruit around its neck ripens twice a year and is delicious. It's a highly favored tropical snack.",
+      "nationalPokedexNumbers": [
+        357
+      ],
+      "legalities": {
+        "unlimited": "Legal",
+        "expanded": "Legal"
+      },
+      "images": {
+        "small": "https://images.pokemontcg.io/xy6/12.png",
+        "large": "https://images.pokemontcg.io/xy6/12_hires.png"
+      },
+      "tcgplayer": {
+        "url": "https://prices.pokemontcg.io/tcgplayer/xy6-12",
+        "updatedAt": "2021/03/12",
+        "prices": {
+          "normal": {
+            "low": 0.05,
+            "mid": 0.25,
+            "high": 0.99,
+            "market": 0.09,
+            "directLow": 0.06
+          },
+          "reverseHolofoil": {
+            "low": 0.14,
+            "mid": 0.32,
+            "high": 1.95,
+            "market": 0.21,
+            "directLow": 0.21
+          }
+        }
+      },
+      "cardmarket": {
+        "url": "https://prices.pokemontcg.io/cardmarket/xy6-12",
+        "updatedAt": "2021/08/06",
+        "prices": {
+          "averageSellPrice": 0.18,
+          "lowPrice": 0.02,
+          "trendPrice": 0.2,
+          "germanProLow": null,
+          "suggestedPrice": null,
+          "reverseHoloSell": 0.21,
+          "reverseHoloLow": 0.1,
+          "reverseHoloTrend": 0.22,
+          "lowPriceExPlus": 0.02,
+          "avg1": 0.25,
+          "avg7": 0.18,
+          "avg30": 0.1,
+          "reverseHoloAvg1": 0.25,
+          "reverseHoloAvg7": 0.2,
+          "reverseHoloAvg30": 0.2
+        }
+      }
+    }
+  ],
+  "page": 1,
+  "pageSize": 250,
+  "count": 4,
+  "totalCount": 4
+}

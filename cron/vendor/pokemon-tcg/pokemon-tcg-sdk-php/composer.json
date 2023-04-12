@@ -1,0 +1,42 @@
+{
+    "name": "pokemon-tcg/pokemon-tcg-sdk-php",
+    "description": "This is the Pokémon TCG SDK PHP implementation. It is a wrapper around the Pokémon TCG API of pokemontcg.io.",
+    "keywords": [
+        "pokemon",
+        "tcg",
+        "sdk"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "CJ O'Hara",
+            "email": "mmonkey@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3 || ^7.4 || ^8.0",
+        "doctrine/inflector": "^2.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "dms/phpunit-arraysubset-asserts": "^0.2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pokemon\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/lib/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
+}
