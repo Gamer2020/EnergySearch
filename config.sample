@@ -1,0 +1,12 @@
+<?php
+// database hostname - you don't usually need to change this
+define('db_host','localhost');
+// database username
+define('db_user','root');
+// database password
+define('db_pass','');
+// database name
+define('db_name','energysearch');
+// database charset - change this only if utf8 is unsupported by your language
+define('db_charset','utf8');
+?>
