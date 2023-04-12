@@ -23,6 +23,10 @@ header {
     position: sticky;
     top: 0;
     z-index: 999;
+    max-width: 1160px;
+    /* added max-width */
+    margin: 0 auto;
+    /* added margin auto */
 }
 
 /* logo styling */
@@ -129,9 +133,9 @@ footer {
     padding: 20px;
     text-align: center;
     max-width: 1160px;
-    /* match the maximum width of the container */
+    /* added max-width */
     margin: 0 auto;
-    /* center the footer */
+    /* added margin auto */
 }
 
 footer p {
