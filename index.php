@@ -21,8 +21,6 @@
                 <li><a href="#">Credits</a></li>
                 <li><a href="#">Terms and Services</a></li>
                 <li><a href="#">About</a></li>
-
-                </li>
             </ul>
         </nav>
     </header>
