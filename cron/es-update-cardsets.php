@@ -14,7 +14,7 @@ function create_card_sets_table()
     global $pdo;
 
     $pdo->exec("
-        CREATE TABLE IF NOT EXISTS card_sets (
+        CREATE TABLE IF NOT EXISTS es_card_sets (
             id VARCHAR(255) PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             series VARCHAR(255) NOT NULL,
@@ -50,7 +50,7 @@ function import_card_sets()
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             // Update existing record
-            $stmt = $pdo->prepare("UPDATE card_sets SET name = :name, series = :series, printed_total = :printed_total, total = :total, 
+            $stmt = $pdo->prepare("UPDATE es_card_sets SET name = :name, series = :series, printed_total = :printed_total, total = :total, 
                                    unlimited_legality = :unlimited, standard_legality = :standard, expanded_legality = :expanded, ptcgo_code = :ptcgo_code, 
                                    release_date = :release_date, updated_at = :updated_at, symbol_url = :symbol_url, logo_url = :logo_url 
                                    WHERE id = :id");
