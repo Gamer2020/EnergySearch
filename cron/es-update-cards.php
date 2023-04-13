@@ -324,7 +324,8 @@ function import_cards()
       $stmt->bindParam(':expanded_legality', $cardData['legalities']['expanded']);
       $stmt->bindParam(':small_image', $cardData['images']['small']);
       $stmt->bindParam(':large_image', $cardData['images']['large']);
-      $stmt->bindParam(':ancientTrait', $cardData['ancientTrait']);
+      $ancientTraitvar = arrayToStringWithSpaces($cardData['ancientTrait']);
+      $stmt->bindParam(':ancientTrait', $ancientTraitvar);
 
       $defaultviewvar = 0;
       $stmt->bindParam(':views', $defaultviewvar);
