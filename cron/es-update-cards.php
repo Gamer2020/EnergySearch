@@ -65,8 +65,8 @@ function create_cards_table()
             small_image VARCHAR(255) DEFAULT NULL,
             large_image VARCHAR(255) DEFAULT NULL,
             ancientTrait VARCHAR(255) DEFAULT NULL,
-            views VARCHAR(50) DEFAULT NULL,
-            monthly_views VARCHAR(50) DEFAULT NULL
+            views INT DEFAULT 0,
+            monthly_views INT DEFAULT 0
           )";
 
   $pdo->exec($sql);
@@ -102,11 +102,11 @@ function import_cards()
               :attackname2, :attackcost2, :attackconvertedenergycost2, :attackdamage2, :attacktext2,
               :attackname3, :attackcost3, :attackconvertedenergycost3, :attackdamage3, :attacktext3,
               :attackname4, :attackcost4, :attackconvertedenergycost4, :attackdamage4, :attacktext4,
-              weaknesstype, weaknessvalue, resistancetype, resistancevalue,
-              retreat_cost, converted_retreat_cost,
-              set_id, set_number, artist, rarity, flavor_text, national_pokedex_numbers,
-              unlimited_legality, standard_legality, expanded_legality,
-              small_image, large_image, ancientTrait, views, monthly_views
+              :weaknesstype, :weaknessvalue, :resistancetype, :resistancevalue,
+              :retreat_cost, :converted_retreat_cost,
+              :set_id, :set_number, :artist, :rarity, :flavor_text, :national_pokedex_numbers,
+              :unlimited_legality, :standard_legality, :expanded_legality,
+              :small_image, :large_image, :ancientTrait, :views, :monthly_views
             )
             ON DUPLICATE KEY UPDATE
               name = :name,
@@ -296,24 +296,25 @@ function import_cards()
     $stmt->bindParam(':attackconvertedenergycost4', $attackconvertedEnergyCost4var);
     $stmt->bindParam(':attackdamage4', $attackdamage4var);
 
-    $stmt->bindParam(':weaknesstype', $tempvar);
-    $stmt->bindParam(':weaknessvalue', $tempvar);
-    $stmt->bindParam(':resistancetype', $tempvar);
-    $stmt->bindParam(':resistancevalue', $tempvar);
-    $stmt->bindParam(':retreat_cost', $tempvar);
-    $stmt->bindParam(':converted_retreat_cost', $tempvar);
-    $stmt->bindParam(':set_id', $tempvar);
-    $stmt->bindParam(':set_number', $tempvar);
-    $stmt->bindParam(':artist', $tempvar);
-    $stmt->bindParam(':rarity', $tempvar);
-    $stmt->bindParam(':flavor_text', $tempvar);
-    $stmt->bindParam(':national_pokedex_numbers', $tempvar);
-    $stmt->bindParam(':unlimited_legality', $tempvar);
-    $stmt->bindParam(':standard_legality', $tempvar);
-    $stmt->bindParam(':expanded_legality', $tempvar);
-    $stmt->bindParam(':small_image', $tempvar);
-    $stmt->bindParam(':large_image', $tempvar);
-    $stmt->bindParam(':ancientTrait', $tempvar);
+    $stmt->bindParam(':weaknesstype', $cardData['weaknesses']['type']);
+    $stmt->bindParam(':weaknessvalue', $cardData['weaknesses']['value']);
+    $stmt->bindParam(':resistancetype', $cardData['resistances']['type']);
+    $stmt->bindParam(':resistancevalue', $cardData['resistances']['value']);
+    $retreatcostvar = json_encode($cardData['retreatCost']);
+    $stmt->bindParam(':retreat_cost', $retreatcostvar);
+    $stmt->bindParam(':converted_retreat_cost', $cardData['convertedRetreatCost']);
+    $stmt->bindParam(':set_id', $cardData['set']['id']);
+    $stmt->bindParam(':set_number', $cardData['number']);
+    $stmt->bindParam(':artist', $cardData['artist']);
+    $stmt->bindParam(':rarity', $cardData['rarity']);
+    $stmt->bindParam(':flavor_text', $cardData['flavorText']);
+    $stmt->bindParam(':national_pokedex_numbers', $cardData['nationalPokedexNumbers'][0]);
+    $stmt->bindParam(':unlimited_legality', $cardData['legalities']['unlimited']);
+    $stmt->bindParam(':standard_legality', $cardData['legalities']['standard']);
+    $stmt->bindParam(':expanded_legality', $cardData['legalities']['expanded']);
+    $stmt->bindParam(':small_image', $cardData['images']['small']);
+    $stmt->bindParam(':large_image', $cardData['images']['large']);
+    $stmt->bindParam(':ancientTrait', $cardData['ancientTrait']);
 
     $defaultviewvar = 0;
     $stmt->bindParam(':views', $defaultviewvar);
