@@ -173,8 +173,8 @@ function import_cards()
     $stmt->bindParam(':id', $cardData['id']);
     $stmt->bindParam(':name', $cardData['name']);
     $stmt->bindParam(':supertype', $cardData['supertype']);
-    //$stmt->bindParam(':subtypes', $cardData['subtypes']);
-    $stmt->bindParam(':subtypes', $tempvar);
+    $subtypesvar = arrayToString($cardData['subtypes']);
+    $stmt->bindParam(':subtypes', $subtypesvar);
     $stmt->bindParam(':hp', $cardData['hp']);
 
     $stmt->bindParam(':types', $tempvar);
@@ -225,10 +225,21 @@ function import_cards()
     $stmt->bindParam(':small_image', $tempvar);
     $stmt->bindParam(':large_image', $tempvar);
     $stmt->bindParam(':ancientTrait', $tempvar);
-    $stmt->bindParam(':views', $tempvar);
-    $stmt->bindParam(':monthly_views', $tempvar);
+
+    $defaultviewvar = 0;
+    $stmt->bindParam(':views', $defaultviewvar);
+    $stmt->bindParam(':monthly_views', $defaultviewvar);
 
     $stmt->execute();
+  }
+}
+
+function arrayToString($variable)
+{
+  if (is_array($variable)) {
+    return implode('/', $variable);
+  } else {
+    return $variable;
   }
 }
 
