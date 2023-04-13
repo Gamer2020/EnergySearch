@@ -180,7 +180,8 @@ function import_cards()
     $stmt->bindParam(':types', $typesvar);
     $stmt->bindParam(':rules', $cardData['rules']);
     $stmt->bindParam(':evolves_from', $cardData['evolvesFrom']);
-    $stmt->bindParam(':evolves_to', $cardData['evolvesTo']);
+    $evolvestovar = arrayToString($cardData['evolvesTo']);
+    $stmt->bindParam(':evolves_to', $evolvestovar);
     $abilityname1var = getNestedArrayValue($cardData['abilities'],0,0);
     $stmt->bindParam(':abilityname1', $abilityname1var);
     $abilitytext1var = getNestedArrayValue($cardData['abilities'],0,1);
