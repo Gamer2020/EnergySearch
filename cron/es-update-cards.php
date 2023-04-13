@@ -167,7 +167,6 @@ function import_cards()
 
     $stmt = $pdo->prepare($sql);
 
-    $tempvar = "";
 
     // Bind the values here...
     $stmt->bindParam(':id', $cardData['id']);
