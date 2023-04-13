@@ -176,17 +176,23 @@ function import_cards()
     $subtypesvar = arrayToString($cardData['subtypes']);
     $stmt->bindParam(':subtypes', $subtypesvar);
     $stmt->bindParam(':hp', $cardData['hp']);
-
-    $stmt->bindParam(':types', $tempvar);
-    $stmt->bindParam(':rules', $tempvar);
-    $stmt->bindParam(':evolves_from', $tempvar);
-    $stmt->bindParam(':evolves_to', $tempvar);
-    $stmt->bindParam(':abilityname1', $tempvar);
-    $stmt->bindParam(':abilitytext1', $tempvar);
-    $stmt->bindParam(':abilitytype1', $tempvar);
-    $stmt->bindParam(':abilityname2', $tempvar);
-    $stmt->bindParam(':abilitytext2', $tempvar);
-    $stmt->bindParam(':abilitytype2', $tempvar);
+    $typesvar = arrayToString($cardData['types']);
+    $stmt->bindParam(':types', $typesvar);
+    $stmt->bindParam(':rules', $cardData['types']);
+    $stmt->bindParam(':evolves_from', $cardData['evolvesFrom']);
+    $stmt->bindParam(':evolves_to', $cardData['evolvesTo']);
+    $abilityname1var = getNestedArrayValue($cardData['abilities'],0,0);
+    $stmt->bindParam(':abilityname1', $abilityname1var);
+    $abilitytext1var = getNestedArrayValue($cardData['abilities'],0,1);
+    $stmt->bindParam(':abilitytext1', $abilitytext1var);
+    $abilitytype1var = getNestedArrayValue($cardData['abilities'],0,2);
+    $stmt->bindParam(':abilitytype1', $abilitytype1var);
+    $abilityname2var = getNestedArrayValue($cardData['abilities'],1,0);
+    $stmt->bindParam(':abilityname2', $abilityname2var);
+    $abilitytext2var = getNestedArrayValue($cardData['abilities'],1,1);
+    $stmt->bindParam(':abilitytext2', $abilitytext2var);
+    $abilitytype2var = getNestedArrayValue($cardData['abilities'],1,2);
+    $stmt->bindParam(':abilitytype2', $abilitytype2var);
     $stmt->bindParam(':attackname1', $tempvar);
     $stmt->bindParam(':attackcost1', $tempvar);
     $stmt->bindParam(':attackconvertedenergycost1', $tempvar);
@@ -234,14 +240,37 @@ function import_cards()
   }
 }
 
-function arrayToString($variable)
-{
+function arrayToString($variable) {
+  // Check if the input variable is an array
   if (is_array($variable)) {
+    // Concatenate all the array values into a string separated by "/"
     return implode('/', $variable);
   } else {
+    // If the input variable is not an array, return it as is
     return $variable;
   }
 }
+
+
+/**
+ * Retrieves a value from a nested array based on the given indexes.
+ *
+ * @param array $array The array to search through.
+ * @param int|string $outerIndex The index of the outer array that contains the inner array.
+ * @param int|string $innerIndex The index of the inner array that contains the value to retrieve.
+ *
+ * @return mixed|null The value at the given indexes, or null if either index doesn't exist.
+ */
+function getNestedArrayValue($array, $outerIndex, $innerIndex) {
+  // Check if the outer index exists in the array and if the inner index exists in the nested array.
+  if (isset($array[$outerIndex]) && isset($array[$outerIndex][$innerIndex])) {
+      // If both indexes exist, return the value at the given indexes.
+      return $array[$outerIndex][$innerIndex];
+  }
+  // If either index doesn't exist, return null.
+  return null;
+}
+
 
 create_cards_table();
 import_cards();
