@@ -183,38 +183,119 @@ function import_cards()
     $stmt->bindParam(':evolves_from', $cardData['evolvesFrom']);
     $evolvestovar = arrayToString($cardData['evolvesTo']);
     $stmt->bindParam(':evolves_to', $evolvestovar);
-    $abilityname1var = getNestedArrayValue($cardData['abilities'],0,0);
+
+    $abilityname1var = '';
+    $abilitytext1var = '';
+    $abilitytype1var = '';
+    $abilityname2var = '';
+    $abilitytext2var = '';
+    $abilitytype2var = '';
+
+    if (isset($cardData['abilities'][0])) {
+      $ability1 = $cardData['abilities'][0];
+      $abilityname1var = $ability1['name'];
+      $abilitytext1var = $ability1['text'];
+      $abilitytype1var = $ability1['type'];
+    }
+
+    if (isset($cardData['abilities'][1])) {
+      $ability2 = $cardData['abilities'][1];
+      $abilityname2var = $ability2['name'];
+      $abilitytext2var = $ability2['text'];
+      $abilitytype2var = $ability2['type'];
+    }
+
     $stmt->bindParam(':abilityname1', $abilityname1var);
-    $abilitytext1var = getNestedArrayValue($cardData['abilities'],0,1);
     $stmt->bindParam(':abilitytext1', $abilitytext1var);
-    $abilitytype1var = getNestedArrayValue($cardData['abilities'],0,2);
     $stmt->bindParam(':abilitytype1', $abilitytype1var);
-    $abilityname2var = getNestedArrayValue($cardData['abilities'],1,0);
     $stmt->bindParam(':abilityname2', $abilityname2var);
-    $abilitytext2var = getNestedArrayValue($cardData['abilities'],1,1);
     $stmt->bindParam(':abilitytext2', $abilitytext2var);
-    $abilitytype2var = getNestedArrayValue($cardData['abilities'],1,2);
     $stmt->bindParam(':abilitytype2', $abilitytype2var);
-    $stmt->bindParam(':attackname1', $tempvar);
-    $stmt->bindParam(':attackcost1', $tempvar);
-    $stmt->bindParam(':attackconvertedenergycost1', $tempvar);
-    $stmt->bindParam(':attackdamage1', $tempvar);
-    $stmt->bindParam(':attacktext1', $tempvar);
-    $stmt->bindParam(':attackname2', $tempvar);
-    $stmt->bindParam(':attackcost2', $tempvar);
-    $stmt->bindParam(':attackconvertedenergycost2', $tempvar);
-    $stmt->bindParam(':attackdamage2', $tempvar);
-    $stmt->bindParam(':attacktext2', $tempvar);
-    $stmt->bindParam(':attackname3', $tempvar);
-    $stmt->bindParam(':attackcost3', $tempvar);
-    $stmt->bindParam(':attackconvertedenergycost3', $tempvar);
-    $stmt->bindParam(':attackdamage3', $tempvar);
-    $stmt->bindParam(':attacktext3', $tempvar);
-    $stmt->bindParam(':attackname4', $tempvar);
-    $stmt->bindParam(':attackcost4', $tempvar);
-    $stmt->bindParam(':attackconvertedenergycost4', $tempvar);
-    $stmt->bindParam(':attackdamage4', $tempvar);
-    $stmt->bindParam(':attacktext4', $tempvar);
+
+    $attackname1var = '';
+    $attacktext1var = '';
+    $attackcost1var = '';
+    $attackconvertedEnergyCost1var = '';
+    $attackdamage1var = '';
+
+    $attackname2var = '';
+    $attacktext2var = '';
+    $attackcost2var = '';
+    $attackconvertedEnergyCost2var = '';
+    $attackdamage2var = '';
+
+    $attackname3var = '';
+    $attacktext3var = '';
+    $attackcost3var = '';
+    $attackconvertedEnergyCost3var = '';
+    $attackdamage3var = '';
+
+    $attackname4var = '';
+    $attacktext4var = '';
+    $attackcost4var = '';
+    $attackconvertedEnergyCost4var = '';
+    $attackdamage4var = '';
+
+    if (isset($cardData['attacks'][0])) {
+      $attack1 = $cardData['attacks'][0];
+      $attackname1var = $attack1['name'];
+      $attacktext1var = $attack1['text'];
+      $attackcost1var = json_encode($attack1['cost']);
+      $attackconvertedEnergyCost1var = $attack1['convertedEnergyCost'];
+      $attackdamage1var = $attack1['damage'];
+    }
+
+    if (isset($cardData['attacks'][1])) {
+      $attack2 = $cardData['attacks'][1];
+      $attackname2var = $attack2['name'];
+      $attacktext2var = $attack2['text'];
+      $attackcost2var = json_encode($attack2['cost']);
+      $attackconvertedEnergyCost2var = $attack2['convertedEnergyCost'];
+      $attackdamage2var = $attack2['damage'];
+    }
+
+    if (isset($cardData['attacks'][2])) {
+      $attack3 = $cardData['attacks'][2];
+      $attackname3var = $attack3['name'];
+      $attacktext3var = $attack3['text'];
+      $attackcost3var = json_encode($attack3['cost']);
+      $attackconvertedEnergyCost3var = $attack3['convertedEnergyCost'];
+      $attackdamage3var = $attack3['damage'];
+    }
+
+    if (isset($cardData['attacks'][3])) {
+      $attack4 = $cardData['attacks'][3];
+      $attackname4var = $attack4['name'];
+      $attacktext4var = $attack4['text'];
+      $attackcost4var = json_encode($attack4['cost']);
+      $attackconvertedEnergyCost4var = $attack4['convertedEnergyCost'];
+      $attackdamage4var = $attack4['damage'];
+    }
+
+    $stmt->bindParam(':attackname1', $attackname1var);
+    $stmt->bindParam(':attacktext1', $attacktext1var);
+    $stmt->bindParam(':attackcost1', $attackcost1var);
+    $stmt->bindParam(':attackconvertedenergycost1', $attackconvertedEnergyCost1var);
+    $stmt->bindParam(':attackdamage1', $attackdamage1var);
+
+    $stmt->bindParam(':attackname2', $attackname2var);
+    $stmt->bindParam(':attacktext2', $attacktext2var);
+    $stmt->bindParam(':attackcost2', $attackcost2var);
+    $stmt->bindParam(':attackconvertedenergycost2', $attackconvertedEnergyCost2var);
+    $stmt->bindParam(':attackdamage2', $attackdamage2var);
+
+    $stmt->bindParam(':attackname3', $attackname3var);
+    $stmt->bindParam(':attacktext3', $attacktext3var);
+    $stmt->bindParam(':attackcost3', $attackcost3var);
+    $stmt->bindParam(':attackconvertedenergycost3', $attackconvertedEnergyCost3var);
+    $stmt->bindParam(':attackdamage3', $attackdamage3var);
+
+    $stmt->bindParam(':attackname4', $attackname4var);
+    $stmt->bindParam(':attacktext4', $attacktext4var);
+    $stmt->bindParam(':attackcost4', $attackcost4var);
+    $stmt->bindParam(':attackconvertedenergycost4', $attackconvertedEnergyCost4var);
+    $stmt->bindParam(':attackdamage4', $attackdamage4var);
+
     $stmt->bindParam(':weaknesstype', $tempvar);
     $stmt->bindParam(':weaknessvalue', $tempvar);
     $stmt->bindParam(':resistancetype', $tempvar);
@@ -242,7 +323,8 @@ function import_cards()
   }
 }
 
-function arrayToString($variable) {
+function arrayToString($variable)
+{
   // Check if the input variable is an array
   if (is_array($variable)) {
     // Concatenate all the array values into a string separated by "/"
@@ -263,16 +345,28 @@ function arrayToString($variable) {
  *
  * @return mixed|null The value at the given indexes, or null if either index doesn't exist.
  */
-function getNestedArrayValue($array, $outerIndex, $innerIndex) {
+function getNestedArrayValue($array, $outerIndex, $innerIndex)
+{
   // Check if the outer index exists in the array and if the inner index exists in the nested array.
   if (isset($array[$outerIndex]) && isset($array[$outerIndex][$innerIndex])) {
-      // If both indexes exist, return the value at the given indexes.
-      return $array[$outerIndex][$innerIndex];
+    // If both indexes exist, return the value at the given indexes.
+    return $array[$outerIndex][$innerIndex];
   }
   // If either index doesn't exist, return null.
   return null;
 }
 
+function arrayToStringWithSpaces($variable)
+{
+  // Check if the input variable is an array
+  if (is_array($variable)) {
+    // Concatenate all the array values into a string separated by a space
+    return implode(' ', $variable);
+  } else {
+    // If the input variable is not an array, return it as is
+    return $variable;
+  }
+}
 
 create_cards_table();
 import_cards();
