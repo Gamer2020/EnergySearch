@@ -178,7 +178,7 @@ function import_cards()
     $stmt->bindParam(':hp', $cardData['hp']);
     $typesvar = arrayToString($cardData['types']);
     $stmt->bindParam(':types', $typesvar);
-    $stmt->bindParam(':rules', $cardData['types']);
+    $stmt->bindParam(':rules', $cardData['rules']);
     $stmt->bindParam(':evolves_from', $cardData['evolvesFrom']);
     $stmt->bindParam(':evolves_to', $cardData['evolvesTo']);
     $abilityname1var = getNestedArrayValue($cardData['abilities'],0,0);
