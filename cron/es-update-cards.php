@@ -178,7 +178,8 @@ function import_cards()
     $stmt->bindParam(':hp', $cardData['hp']);
     $typesvar = arrayToString($cardData['types']);
     $stmt->bindParam(':types', $typesvar);
-    $stmt->bindParam(':rules', $cardData['rules']);
+    $rulesvar = arrayToString($cardData['rules']);
+    $stmt->bindParam(':rules', $rulesvar);
     $stmt->bindParam(':evolves_from', $cardData['evolvesFrom']);
     $evolvestovar = arrayToString($cardData['evolvesTo']);
     $stmt->bindParam(':evolves_to', $evolvestovar);
