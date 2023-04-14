@@ -10,5 +10,8 @@ echo "DONE!<br>";
 echo "Installing cards...";
 require_once('es-update-cards.php');
 echo "DONE!<br>";
+echo "Installing types...";
+require_once('es-update-cardtypes.php');
+echo "DONE!<br>";
 
 ?>
