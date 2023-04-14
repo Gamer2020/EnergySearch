@@ -13,5 +13,11 @@ echo "DONE!<br>";
 echo "Installing types...";
 require_once('es-update-cardtypes.php');
 echo "DONE!<br>";
+echo "Installing super types...";
+require_once('es-update-cardsupertypes.php');
+echo "DONE!<br>";
+echo "Installing sub types...";
+require_once('es-update-cardsubtypes.php');
+echo "DONE!<br>";
 
 ?>
