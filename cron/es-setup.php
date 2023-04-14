@@ -19,5 +19,8 @@ echo "DONE!<br>";
 echo "Installing sub types...";
 require_once('es-update-cardsubtypes.php');
 echo "DONE!<br>";
+echo "Installing rarities...";
+require_once('es-update-cardrarities.php');
+echo "DONE!<br>";
 
 ?>
