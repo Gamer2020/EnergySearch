@@ -4,7 +4,6 @@ require_once('../config.php');
 
 require_once('vendor/autoload.php');
 
-use Pokemon\Models\Pagination;
 use Pokemon\Pokemon;
 
 
