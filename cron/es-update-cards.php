@@ -88,7 +88,8 @@ function create_cards_table()
             tcgplayerpricefirstEditionNormalmarket VARCHAR(255) DEFAULT NULL,
             tcgplayerpricefirstEditionNormaldirectLow VARCHAR(255) DEFAULT NULL,
             views INT DEFAULT 0,
-            monthly_views INT DEFAULT 0
+            monthly_views INT DEFAULT 0,
+            upvotes INT DEFAULT 0
           )";
 
   $pdo->exec($sql);
@@ -128,7 +129,7 @@ function import_cards()
               tcgplayerpricereverseHolofoillow, tcgplayerpricereverseHolofoilmid, tcgplayerpricereverseHolofoilhigh, tcgplayerpricereverseHolofoilmarket,
               tcgplayerpricereverseHolofoildirectLow, tcgplayerpricefirstEditionNormallow, tcgplayerpricefirstEditionNormalmid,
               tcgplayerpricefirstEditionNormalhigh, tcgplayerpricefirstEditionNormalmarket, tcgplayerpricefirstEditionNormaldirectLow,
-              views, monthly_views
+              views, monthly_views, upvotes
             )
             VALUES (
               :id, :name, :supertype, :subtypes, :hp, :types, :rules, :evolves_from, :evolves_to,
@@ -148,7 +149,7 @@ function import_cards()
               :tcgplayerpricereverseHolofoillow, :tcgplayerpricereverseHolofoilmid, :tcgplayerpricereverseHolofoilhigh, :tcgplayerpricereverseHolofoilmarket,
               :tcgplayerpricereverseHolofoildirectLow, :tcgplayerpricefirstEditionNormallow, :tcgplayerpricefirstEditionNormalmid,
               :tcgplayerpricefirstEditionNormalhigh, :tcgplayerpricefirstEditionNormalmarket, :tcgplayerpricefirstEditionNormaldirectLow,
-              :views, :monthly_views
+              :views, :monthly_views, :upvotes
             )
             ON DUPLICATE KEY UPDATE
               name = :name,
@@ -388,6 +389,7 @@ function import_cards()
       $defaultviewvar = 0;
       $stmt->bindParam(':views', $defaultviewvar);
       $stmt->bindParam(':monthly_views', $defaultviewvar);
+      $stmt->bindParam(':upvotes', $defaultviewvar);
 
       $tcgplayerurlvar = isset($cardData['tcgplayer']['url']) ? $cardData['tcgplayer']['url'] : NULL;
       $tcgplayerupdatedAtvar = isset($cardData['tcgplayer']['updatedAt']) ? $cardData['tcgplayer']['updatedAt'] : NULL;
