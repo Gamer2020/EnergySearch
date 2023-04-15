@@ -76,7 +76,17 @@ require_once 'include.php';
                     echo "</td>";
                     echo '</tr>';
                     echo '</table>';
-                    
+
+                    $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE set_id = ?");
+                    $stmt->execute([$id]);
+
+                    $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($cards as $card) {
+                        echo "<a href='card.php" . "?ID=" . $card['id'] . "'>" . '<img width="250" height="350" src=' . $card['large_image'] . "" . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
+
+                    }
+
 
                 } else {
                     echo "Set does not exist!";
