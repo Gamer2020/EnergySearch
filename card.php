@@ -9,8 +9,8 @@ require_once 'include.php';
 
 <body>
     <?php include "navbar.php" ?>
-    <div class="container-wide">
-        <div class="panel panel-full">
+    <div class="container">
+        <div class="panel">
 
             <?php if (isset($_GET['ID'])) {
                 if (card_exists(sanitizeInput($_GET['ID']))) {
@@ -283,6 +283,14 @@ require_once 'include.php';
             }
             ?>
         </div>
+        <aside>
+            <h2>Future Use</h2>
+            <ul>
+                <li>line 1</li>
+                <li>line 2</li>
+                <li>line 3</li>
+            </ul>
+        </aside>
     </div>
     <?php include "footer.php" ?>
 </body>
