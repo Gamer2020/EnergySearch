@@ -6,7 +6,7 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Card Search</a></li>
-            <li><a href="#">Sets</a></li>
+            <li><a href="sets.php">Sets</a></li>
             <li><a href="#">Decks</a></li>
             <li><a href="#">Credits</a></li>
             <li><a href="#">Terms and Services</a></li>
