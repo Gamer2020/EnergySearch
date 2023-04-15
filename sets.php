@@ -46,7 +46,7 @@ require_once 'include.php';
 
             foreach ($standard_sets as $set) {
 
-                echo '<a href=set.php?id=' . $set['id'] . '>' . '<img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</a><br>';
+                echo '<a href=set.php?ID=' . $set['id'] . '>' . '<img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</a><br>';
 
             }
 
@@ -58,7 +58,7 @@ require_once 'include.php';
 
             foreach ($expanded_sets as $set) {
 
-                echo '<a href=set.php?id=' . $set['id'] . '>' . '<img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</a><br>';
+                echo '<a href=set.php?ID=' . $set['id'] . '>' . '<img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</a><br>';
 
             }
             echo '</span>';
@@ -69,7 +69,7 @@ require_once 'include.php';
 
             foreach ($unlimited_sets as $set) {
 
-                echo '<a href=set.php?id=' . $set['id'] . '>' . '<img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</a><br>';
+                echo '<a href=set.php?ID=' . $set['id'] . '>' . '<img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</a><br>';
 
             }
 
