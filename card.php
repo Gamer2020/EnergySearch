@@ -23,7 +23,7 @@ require_once 'include.php';
                     $card = $stmt->fetch(PDO::FETCH_ASSOC);
 
                     try {
-            
+
                         echo '<table cellspacing="0" border="1">';
 
                         echo '<tbody>';
@@ -114,14 +114,7 @@ require_once 'include.php';
 
                         echo '<td> <b>Weakness:</b>';
 
-                        //echo '</td><td>' . $card['weaknesses'];
-                        echo '</td><td>';
-                        //print_r ($card['weaknesses']);
-                        // for ($x = 0; $x < count($card['weaknesses']); $x++) {
-                        //     echo TypeToImageHTML($card['weaknesses'][$x]['type']);
-                        //     echo " " . $card['weaknesses'][$x]['value'];
-                        //     echo '<br>';
-                        // }
+                        echo '</td><td>' . $card['weaknesstype'] . " " . $card['weaknessvalue'];
 
                         echo '</td></tr>';
 
@@ -133,14 +126,7 @@ require_once 'include.php';
 
                         echo '<td> <b>Resistance:</b>';
 
-                        //echo '</td><td>' . $card['resistances'];
-                        echo '</td><td>';
-
-                        // for ($x = 0; $x < count($card['resistances']); $x++) {
-                        //     echo TypeToImageHTML($card['resistances'][$x]['type']);
-                        //     echo " " . $card['resistances'][$x]['value'];
-                        //     echo '<br>';
-                        // }
+                        echo '</td><td>' . $card['resistancetype'] . " " . $card['resistancevalue'];
 
                         echo '</td></tr>';
 
@@ -157,7 +143,7 @@ require_once 'include.php';
                         // for ($x = 0; $x < count($card['retreatCost']); $x++) {
                         //     echo TypeToImageHTML($card['retreatCost'][$x]);
                         // }
-
+            
                         echo '</td></tr>';
 
 
@@ -191,30 +177,30 @@ require_once 'include.php';
                         //     echo $card['ability']['text'];
                         //     echo '<br>' . '<br>';
                         // }
-
+            
                         // for ($x = 0; $x < count($card['attacks']); $x++) {
-
+            
                         //     for ($y = 0; $y < count($card['attacks'][$x]['cost']); $y++) {
                         //         echo TypeToImageHTML($card['attacks'][$x]['cost'][$y]);
                         //     }
-
+            
                         //     echo " " . $card['attacks'][$x]['name'] . " | " . $card['attacks'][$x]['damage'] . "<br>";
                         //     echo $card['attacks'][$x]['text'];
                         //     echo '<br>' . '<br>';
                         // }
-
+            
                         // for ($x = 0; $x < count($card['text']); $x++) {
                         //     echo $card['text'][$x];
                         //     echo '<br>' . '<br>';
                         // }
-
+            
                         echo '</td></tr>';
 
                         echo '</tbody></table>';
 
                         // $cardPrev = "";
                         // $cardNext = "";
-
+            
                         // $response = Pokemon::Card($options)->where([
                         //     'setCode' => $card['setCode'],
                         //     'number' => ($card['number'] - 1)
@@ -222,7 +208,7 @@ require_once 'include.php';
                         // foreach ($response as $model) {
                         //     $cardPrev = $model->toArray();
                         // }
-
+            
                         // $response = Pokemon::Card($options)->where([
                         //     'setCode' => $card['setCode'],
                         //     'number' => ($card['number'] + 1)
@@ -230,29 +216,29 @@ require_once 'include.php';
                         // foreach ($response as $model) {
                         //     $cardNext = $model->toArray();
                         // }
-
+            
                         // echo '<table>';
                         // echo '<tr>';
-
+            
                         // if (!empty($cardPrev)) {
                         //     echo '<th>Previous card in set</th>';
                         // }
-
+            
                         // if (!empty($cardNext)) {
                         //     echo '<th>Next card in set</th>';
                         // }
-
+            
                         // echo '</tr>';
                         // echo '<tr>';
-
+            
                         // if (!empty($cardPrev)) {
                         //     echo "<td>" . '<div style="text-align:center"><a href="' . get_permalink($es_cardpage_options['page_id']) . "?ID=" . $cardPrev['id'] . '">' . '<img width="250" height="350" src=' . $cardPrev['imageUrl'] . "" . ">" . "</a></div>" . "</td>";
                         // }
-
+            
                         // if (!empty($cardNext)) {
                         //     echo "<td>" . '<div style="text-align:center"><a href="' . get_permalink($es_cardpage_options['page_id']) . "?ID=" . $cardNext['id'] . '">' . '<img width="250" height="350" src=' . $cardNext['imageUrl'] . "" . ">" . "</a></div>" . "</td>";
                         // }
-
+            
                         echo '</tr>';
                         echo '</table>';
 

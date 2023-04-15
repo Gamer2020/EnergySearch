@@ -366,10 +366,10 @@ function import_cards()
       $stmt->bindParam(':attackconvertedenergycost4', $attackconvertedEnergyCost4var);
       $stmt->bindParam(':attackdamage4', $attackdamage4var);
 
-      $stmt->bindParam(':weaknesstype', $cardData['weaknesses']['type']);
-      $stmt->bindParam(':weaknessvalue', $cardData['weaknesses']['value']);
-      $stmt->bindParam(':resistancetype', $cardData['resistances']['type']);
-      $stmt->bindParam(':resistancevalue', $cardData['resistances']['value']);
+      $stmt->bindParam(':weaknesstype', $cardData['weaknesses'][0]['type']);
+      $stmt->bindParam(':weaknessvalue', $cardData['weaknesses'][0]['value']);
+      $stmt->bindParam(':resistancetype', $cardData['resistances'][0]['type']);
+      $stmt->bindParam(':resistancevalue', $cardData['resistances'][0]['value']);
       $retreatcostvar = json_encode($cardData['retreatCost']);
       $stmt->bindParam(':retreat_cost', $retreatcostvar);
       $stmt->bindParam(':converted_retreat_cost', $cardData['convertedRetreatCost']);
