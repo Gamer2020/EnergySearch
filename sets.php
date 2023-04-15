@@ -8,7 +8,7 @@ require_once 'include.php';
 <?php include "header.php" ?>
 
 <body>
-<?php include "navbar.php" ?>
+    <?php include "navbar.php" ?>
     <div class="container-wide">
         <div class="panel panel-full">
             <h1>Welcome to my website</h1>
