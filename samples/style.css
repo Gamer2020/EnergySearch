@@ -26,6 +26,7 @@ header {
     max-width: 1160px;
     margin: 0 auto;
     border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* logo styling */
@@ -102,6 +103,7 @@ nav ul ul li a {
     padding: 20px;
     margin-right: 20px;
     border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .panel-full {
@@ -126,6 +128,7 @@ aside {
     background-color: #333;
     padding: 20px;
     border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
 }
 
 aside h2 {
@@ -149,6 +152,7 @@ footer {
     max-width: 1160px;
     margin: 0 auto;
     border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
 }
 
 footer p {
