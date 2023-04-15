@@ -75,6 +75,11 @@ require_once 'include.php';
 
             }
 
+            echo '</span>';
+            echo "</td>";
+            echo '</tr>';
+            echo '</table>';
+
             ?>
 
         </div>
