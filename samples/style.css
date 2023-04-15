@@ -1,0 +1,185 @@
+/* reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* set font family and size */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #000;
+}
+
+/* header styling */
+header {
+    display: flex;
+    align-items: center;
+    background-color: #222;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    max-width: 1160px;
+    margin: 0 auto;
+    border-radius: 10px 10px 10px 10px;
+}
+
+/* logo styling */
+.logo img {
+    width: 150px;
+    height: 50px;
+}
+
+/* navigation menu styling */
+nav {
+    margin: 0 auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    position: relative;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li:hover>ul {
+    display: block;
+}
+
+nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #222;
+    width: 150px;
+    z-index: 999;
+}
+
+nav ul ul li {
+    margin: 0;
+}
+
+nav ul ul li a {
+    padding: 10px;
+}
+
+/* container styling */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container-wide {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* panel styling */
+.panel {
+    flex: 1;
+    background-color: #111;
+    padding: 20px;
+    margin-right: 20px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.panel h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.panel p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* aside styling */
+aside {
+    flex: 0 0 30%;
+    background-color: #333;
+    padding: 20px;
+}
+
+aside h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li {
+    margin-bottom: 10px;
+}
+
+/* footer styling */
+footer {
+    background-color: #222;
+    padding: 20px;
+    text-align: center;
+    max-width: 1160px;
+    margin: 0 auto;
+    border-radius: 10px 10px 10px 10px;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+/* dark mode styling */
+body.dark-mode {
+    background-color: #000;
+    color: #fff;
+}
+
+.dark-mode header {
+    background-color: #000;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.dark-mode nav ul li a {
+    color: #fff;
+}
+
+.dark-mode nav ul ul {
+    background-color: #000;
+}
+
+.dark-mode aside {
+    background-color: #222;
+}
+
+.dark-mode footer {
+    background-color: #000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.dark-mode footer p {
+    color: #fff;
+}
