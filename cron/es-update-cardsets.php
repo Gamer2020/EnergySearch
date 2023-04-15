@@ -69,7 +69,7 @@ function import_card_sets()
             'unlimited' => returnWordIfNull($set['legalities']['unlimited'], "Not Legal"),
             'standard' => returnWordIfNull($set['legalities']['standard'], "Not Legal"),
             'expanded' => returnWordIfNull($set['legalities']['expanded'], "Not Legal"),
-            'ptcgo_code' => returnWordIfNull($set['ptcgoCode'], "XXX"),
+            'ptcgo_code' => returnWordIfNull(ptcgo_code_override($set['id'],$set['ptcgoCode']), "XXX"),
             'release_date' => $set['releaseDate'],
             'updated_at' => $set['updatedAt'],
             'symbol_url' => $set['images']['symbol'],
@@ -86,6 +86,23 @@ function returnWordIfNull($value, $word)
     } else {
         return $value;
     }
+}
+
+function ptcgo_code_override($inputValue, $returnValue)
+{
+    $valueList = array(
+        array("input" => "sv1", "matched" => "SV1"),
+        array("input" => "value2", "matched" => "output2"),
+        array("input" => "value3", "matched" => "output3")
+    );
+
+    foreach ($valueList as $match) {
+        if ($inputValue == $match['input']) {
+            return $match['matched'];
+        }
+    }
+
+    return $inputValue;
 }
 
 
