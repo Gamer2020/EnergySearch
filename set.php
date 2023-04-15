@@ -14,6 +14,16 @@ require_once 'include.php';
 
             <?php if (isset($_GET['ID'])) {
                 if (set_exists(sanitizeInput($_GET['ID']))) {
+
+                    global $pdo;
+                    // Retrieve the set
+                    $id = sanitizeInput($_GET['ID']);
+                    $stmt = $pdo->prepare("SELECT * FROM es_card_sets WHERE id = ?");
+                    $stmt->execute([$id]);
+                    $set = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    echo $set['name'];
+
                 } else {
                     echo "Set does not exist!";
                 }
