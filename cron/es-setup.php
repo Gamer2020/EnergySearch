@@ -22,5 +22,8 @@ echo "DONE!<br>";
 echo "Installing rarities...";
 require_once('es-update-cardrarities.php');
 echo "DONE!<br>";
+echo "Installing decks table...";
+require_once('es-create-decks.php');
+echo "DONE!<br>";
 
 ?>
