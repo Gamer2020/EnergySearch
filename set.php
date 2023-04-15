@@ -22,7 +22,61 @@ require_once 'include.php';
                     $stmt->execute([$id]);
                     $set = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    echo $set['name'];
+                    echo '<table>';
+                    echo '<tr>';
+                    echo '<th><img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</th>';
+                    echo '</tr>';
+
+                    echo '<tr>';
+                    echo '<td valign="top">';
+                    echo '<span id="Set">';
+
+                    ?>
+
+                    <b>Series:</b>
+                    <?php echo $set['series']; ?>
+                    <br>
+
+                    <b>Printed Total:</b>
+                    <?php echo $set['printed_total']; ?>
+                    <br>
+
+                    <b>Total:</b>
+                    <?php echo $set['total']; ?>
+                    <br>
+
+                    <b>Unlimited:</b>
+                    <?php echo $set['unlimited_legality']; ?>
+                    <br>
+
+                    <b>Standard:</b>
+                    <?php echo $set['standard_legality']; ?>
+                    <br>
+
+                    <b>Expanded:</b>
+                    <?php echo $set['expanded_legality']; ?>
+                    <br>
+
+                    <b>PTCGL Code:</b>
+                    <?php echo strtoupper($set['ptcgo_code']); ?>
+                    <br>
+
+                    <b>Release Date:</b>
+                    <?php echo $set['release_date']; ?>
+                    <br>
+
+                    <b>Updated At:</b>
+                    <?php echo $set['updated_at']; ?>
+                    <br>
+
+
+                    <?php
+
+                    echo '</span>';
+                    echo "</td>";
+                    echo '</tr>';
+                    echo '</table>';
+                    
 
                 } else {
                     echo "Set does not exist!";
