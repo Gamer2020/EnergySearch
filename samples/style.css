@@ -104,6 +104,11 @@ nav ul ul li a {
     border-radius: 10px 10px 10px 10px;
 }
 
+.panel-full {
+    flex-basis: 100%;
+    margin-right: 0;
+}
+
 .panel h1 {
     font-size: 36px;
     margin-bottom: 20px;
