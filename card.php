@@ -78,21 +78,7 @@ require_once 'include.php';
 
                         echo '<td> <b>Type:</b>';
 
-                        //echo '</td><td>' . $card['types'][0];
-            
-                        echo '</td><td>';
-
-                        // if (count($card['types']) == 0) {
-
-                        // } elseif (count($card['types']) == 1) {
-
-                        //     echo TypeToImageHTML($card['types'][0]) . " " . $card['types'][0];
-
-                        // } elseif (count($card['types']) == 2) {
-
-                        //     echo TypeToImageHTML($card['types'][0]) . " " . $card['types'][0] . " / " . TypeToImageHTML($card['types'][1]) . " " . $card['types'][1];
-
-                        // }
+                        echo '</td><td>' . $card['types'];
 
                         echo '</td></tr>';
 
