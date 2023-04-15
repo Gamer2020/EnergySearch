@@ -11,10 +11,8 @@ require_once 'include.php';
     <?php include "navbar.php" ?>
     <div class="container-wide">
         <div class="panel panel-full">
-            <h1>Welcome to my website</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend enim vitae augue faucibus, vel
-                aliquet odio consequat. Nam imperdiet volutpat risus, at rhoncus ex efficitur sit amet. Donec eu nunc
-                urna.</p>
+            <h1>Sets</h1>
+            <p>Below are all the card sets that Energy Seach knows about. Click on a set to learn more about it.</p>
 
             <?php
 
