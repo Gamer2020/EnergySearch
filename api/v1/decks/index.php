@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (
-        !isset($data['deck_name']) || !isset($data['cards']) ||
-        !isset($data['visible']) || !isset($data['source_type']) || !isset($data['source_info']) || !isset($data['source_identifier'])
+        !isset($data['deck_name']) || !isset($data['cards']) || !isset($data['visible']) ||
+        !isset($data['source_type']) || !isset($data['source_info']) || !isset($data['source_identifier'])
     ) {
         http_response_code(400);
         echo json_encode(['error' => 'Invalid request']);
@@ -33,13 +33,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt = $pdo->prepare("
-        INSERT INTO es_decks (deck_name, cards, featuredcard, visible, source_type, source_info, source_identifier)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO es_decks (deck_name, cards, featuredcard, unlimited_legality, standard_legality, expanded_legality, visible, source_type, source_info, source_identifier)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
     $result = $stmt->execute([
         sanitizeInput($data['deck_name']),
         sanitizeInput($data['cards']),
         sanitizeInput($data['featuredcard']) ?? NULL,
+        sanitizeInput($data['unlimited_legality']) ?? NULL,
+        sanitizeInput($data['standard_legality']) ?? NULL,
+        sanitizeInput($data['expanded_legality']) ?? NULL,
         sanitizeInput($data['visible']),
         sanitizeInput($data['source_type']),
         sanitizeInput($data['source_info']),
