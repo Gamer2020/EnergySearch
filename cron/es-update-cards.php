@@ -456,6 +456,7 @@ function import_cards()
         print_r($cardData);
         echo "<br><br>";
         echo 'Message: ' . $e->getMessage();
+        echo "<br><br>";
       }
     }
   }
