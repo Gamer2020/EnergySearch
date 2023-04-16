@@ -161,9 +161,9 @@ require_once 'include.php';
                         // for ($x = 0; $x < count($card['retreatCost']); $x++) {
                         //     echo TypeToImageHTML($card['retreatCost'][$x]);
                         // }
-
-                        echo $card['converted_retreat_cost'];
             
+                        echo $card['converted_retreat_cost'];
+
                         echo '</td></tr>';
 
 
@@ -188,16 +188,20 @@ require_once 'include.php';
 
                         echo '</td><td>';
 
-                        echo '<br>';
-
                         //print_r ($card['ability']);
             
-                        // if ($card['ability']['text'] <> "") {
-                        //     echo $card['ability']['type'] . " - " . $card['ability']['name'] . "<br>";
-                        //     echo $card['ability']['text'];
-                        //     echo '<br>' . '<br>';
-                        // }
-            
+                        if ($card['abilitytext1'] <> "") {
+                            echo $card['abilitytype1'] . " - " . $card['abilityname1'] . "<br>";
+                            echo $card['abilitytext1'];
+                            echo '<br>' . '<br>';
+                        }
+
+                        if ($card['abilitytext2'] <> "") {
+                            echo $card['abilitytype2'] . " - " . $card['abilityname2'] . "<br>";
+                            echo $card['abilitytext2'];
+                            echo '<br>' . '<br>';
+                        }
+
                         // for ($x = 0; $x < count($card['attacks']); $x++) {
             
                         //     for ($y = 0; $y < count($card['attacks'][$x]['cost']); $y++) {
