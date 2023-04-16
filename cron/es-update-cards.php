@@ -52,7 +52,7 @@ function create_cards_table()
             retreat_cost VARCHAR(255) DEFAULT NULL,
             converted_retreat_cost INT DEFAULT NULL,
             set_id VARCHAR(50) DEFAULT NULL,
-            set_number VARCHAR(50) DEFAULT NULL,
+            set_number INT DEFAULT NULL,
             artist VARCHAR(255) DEFAULT NULL,
             rarity VARCHAR(50) DEFAULT NULL,
             flavor_text TEXT DEFAULT NULL,
