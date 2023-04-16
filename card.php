@@ -188,8 +188,6 @@ require_once 'include.php';
 
                         echo '</td><td>';
 
-                        //print_r ($card['ability']);
-            
                         if ($card['abilitytext1'] <> "") {
                             echo $card['abilitytype1'] . " - " . $card['abilityname1'] . "<br>";
                             echo $card['abilitytext1'];
@@ -202,22 +200,30 @@ require_once 'include.php';
                             echo '<br>' . '<br>';
                         }
 
-                        // for ($x = 0; $x < count($card['attacks']); $x++) {
-            
-                        //     for ($y = 0; $y < count($card['attacks'][$x]['cost']); $y++) {
-                        //         echo TypeToImageHTML($card['attacks'][$x]['cost'][$y]);
-                        //     }
-            
-                        //     echo " " . $card['attacks'][$x]['name'] . " | " . $card['attacks'][$x]['damage'] . "<br>";
-                        //     echo $card['attacks'][$x]['text'];
-                        //     echo '<br>' . '<br>';
-                        // }
-            
-                        // for ($x = 0; $x < count($card['text']); $x++) {
-                        //     echo $card['text'][$x];
-                        //     echo '<br>' . '<br>';
-                        // }
-            
+                        if ($card['attackname1'] <> "") {
+                            echo $card['attackcost1'] . " - " . $card['attackname1'] . "<br>";
+                            echo $card['attacktext1'];
+                            echo '<br>' . '<br>';
+                        }
+
+                        if ($card['attackname2'] <> "") {
+                            echo $card['attackcost2'] . " - " . $card['attackname2'] . "<br>";
+                            echo $card['attacktext2'];
+                            echo '<br>' . '<br>';
+                        }
+
+                        if ($card['attackname3'] <> "") {
+                            echo $card['attackcost3'] . " - " . $card['attackname3'] . "<br>";
+                            echo $card['attacktext3'];
+                            echo '<br>' . '<br>';
+                        }
+
+                        if ($card['attackname4'] <> "") {
+                            echo $card['attackcost4'] . " - " . $card['attackname4'] . "<br>";
+                            echo $card['attacktext4'];
+                            echo '<br>' . '<br>';
+                        }
+
                         echo '</td></tr>';
 
                         echo '</tbody></table>';
