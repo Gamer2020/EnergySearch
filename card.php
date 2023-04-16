@@ -114,7 +114,15 @@ require_once 'include.php';
 
                         echo '<td> <b>Weakness:</b>';
 
-                        echo '</td><td>' . $card['weakness'];
+                        echo '</td><td>';
+
+                        $weaknesses = json_decode($card['weakness'], true);
+                        
+                        for ($x = 0; $x < count($weaknesses); $x++) {
+                            echo $weaknesses[$x]['type'];
+                            echo " " . $weaknesses[$x]['value'];
+                            echo '<br>';
+                        }                        
 
                         echo '</td></tr>';
 
