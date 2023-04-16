@@ -39,7 +39,7 @@ class Resistance extends Model
     /**
      * @return string
      */
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->value;
     }
@@ -47,7 +47,7 @@ class Resistance extends Model
     /**
      * @param string $value
      */
-    public function setValue(string $value)
+    public function setValue(?string $value)
     {
         $this->value = $value;
     }

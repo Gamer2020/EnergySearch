@@ -18,7 +18,8 @@ function create_Deck_Table()
                 monthly_upvotes INT DEFAULT 0,
                 visible TEXT NOT NULL,
                 source_type TEXT NOT NULL,
-                source_info TEXT NOT NULL
+                source_info TEXT NOT NULL,
+                source_identifier TEXT NOT NULL
             )";
 
     try {
