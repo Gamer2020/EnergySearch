@@ -189,6 +189,11 @@ require_once 'include.php';
 
                         echo '</td><td>';
 
+                        if ($card['rules'] <> "") {
+                            echo $card['rules'];
+                            echo '<br>' . '<br>';
+                        }
+
                         if ($card['abilitytext1'] <> "") {
                             echo $card['abilitytype1'] . " - " . $card['abilityname1'] . "<br>";
                             echo $card['abilitytext1'];
