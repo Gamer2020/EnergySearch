@@ -18,6 +18,7 @@ require_once 'include.php';
 
                     global $pdo;
                     $id = sanitizeInput($_GET['ID']);
+                    card_add_view($id);
                     $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE id = ?");
                     $stmt->execute([$id]);
                     $card = $stmt->fetch(PDO::FETCH_ASSOC);
