@@ -115,15 +115,15 @@ require_once 'include.php';
                         echo '<td> <b>Weakness:</b>';
 
                         echo '</td><td>';
+                        if (($card['weakness']) != "null") {
+                            $weaknesses = json_decode($card['weakness'], true);
 
-                        $weaknesses = json_decode($card['weakness'], true);
-                        
-                        for ($x = 0; $x < count($weaknesses); $x++) {
-                            echo $weaknesses[$x]['type'];
-                            echo " " . $weaknesses[$x]['value'];
-                            echo '<br>';
-                        }                        
-
+                            for ($x = 0; $x < count($weaknesses); $x++) {
+                                echo $weaknesses[$x]['type'];
+                                echo " " . $weaknesses[$x]['value'];
+                                echo '<br>';
+                            }
+                        }
                         echo '</td></tr>';
 
 
@@ -134,7 +134,17 @@ require_once 'include.php';
 
                         echo '<td> <b>Resistance:</b>';
 
-                        echo '</td><td>' . $card['resistance'];
+                        echo '</td><td>';
+
+                        if (($card['resistance']) != "null") {
+                            $resistance = json_decode($card['resistance'], true);
+
+                            for ($x = 0; $x < count($resistance); $x++) {
+                                echo $resistance[$x]['type'];
+                                echo " " . $resistance[$x]['value'];
+                                echo '<br>';
+                            }
+                        }
 
                         echo '</td></tr>';
 
