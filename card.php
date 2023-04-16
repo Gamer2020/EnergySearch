@@ -114,7 +114,7 @@ require_once 'include.php';
 
                         echo '<td> <b>Weakness:</b>';
 
-                        echo '</td><td>' . $card['weaknesstype'] . " " . $card['weaknessvalue'];
+                        echo '</td><td>' . $card['weakness'];
 
                         echo '</td></tr>';
 
@@ -126,7 +126,7 @@ require_once 'include.php';
 
                         echo '<td> <b>Resistance:</b>';
 
-                        echo '</td><td>' . $card['resistancetype'] . " " . $card['resistancevalue'];
+                        echo '</td><td>' . $card['resistance'];
 
                         echo '</td></tr>';
 

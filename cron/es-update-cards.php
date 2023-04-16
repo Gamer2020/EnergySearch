@@ -47,10 +47,8 @@ function create_cards_table()
             attackconvertedenergycost4 TEXT DEFAULT NULL,
             attackdamage4 TEXT DEFAULT NULL,
             attacktext4 TEXT DEFAULT NULL,
-            weaknesstype TEXT DEFAULT NULL,
-            weaknessvalue TEXT DEFAULT NULL,
-            resistancetype TEXT DEFAULT NULL,
-            resistancevalue TEXT DEFAULT NULL,
+            weakness TEXT DEFAULT NULL,
+            resistance TEXT DEFAULT NULL,
             retreat_cost VARCHAR(255) DEFAULT NULL,
             converted_retreat_cost INT DEFAULT NULL,
             set_id VARCHAR(50) DEFAULT NULL,
@@ -119,7 +117,7 @@ function import_cards()
               attackname2, attackcost2, attackconvertedenergycost2, attackdamage2, attacktext2,
               attackname3, attackcost3, attackconvertedenergycost3, attackdamage3, attacktext3,
               attackname4, attackcost4, attackconvertedenergycost4, attackdamage4, attacktext4,
-              weaknesstype, weaknessvalue, resistancetype, resistancevalue,
+              weakness, resistance,
               retreat_cost, converted_retreat_cost,
               set_id, set_number, artist, rarity, flavor_text, national_pokedex_numbers,
               unlimited_legality, standard_legality, expanded_legality,
@@ -139,7 +137,7 @@ function import_cards()
               :attackname2, :attackcost2, :attackconvertedenergycost2, :attackdamage2, :attacktext2,
               :attackname3, :attackcost3, :attackconvertedenergycost3, :attackdamage3, :attacktext3,
               :attackname4, :attackcost4, :attackconvertedenergycost4, :attackdamage4, :attacktext4,
-              :weaknesstype, :weaknessvalue, :resistancetype, :resistancevalue,
+              :weakness, :resistance,
               :retreat_cost, :converted_retreat_cost,
               :set_id, :set_number, :artist, :rarity, :flavor_text, :national_pokedex_numbers,
               :unlimited_legality, :standard_legality, :expanded_legality,
@@ -187,10 +185,8 @@ function import_cards()
               attackconvertedenergycost4 = :attackconvertedenergycost4,
               attackdamage4 = :attackdamage4,
               attacktext4 = :attacktext4,
-              weaknesstype = :weaknesstype,
-              weaknessvalue = :weaknessvalue,
-              resistancetype = :resistancetype,
-              resistancevalue = :resistancevalue,
+              weakness = :weakness,
+              resistance = :resistance,
               retreat_cost = :retreat_cost,
               converted_retreat_cost = :converted_retreat_cost,
               set_id = :set_id,
@@ -368,10 +364,12 @@ function import_cards()
         $stmt->bindParam(':attackconvertedenergycost4', $attackconvertedEnergyCost4var);
         $stmt->bindParam(':attackdamage4', $attackdamage4var);
 
-        $stmt->bindParam(':weaknesstype', $cardData['weaknesses'][0]['type']);
-        $stmt->bindParam(':weaknessvalue', $cardData['weaknesses'][0]['value']);
-        $stmt->bindParam(':resistancetype', $cardData['resistances'][0]['type']);
-        $stmt->bindParam(':resistancevalue', $cardData['resistances'][0]['value']);
+        $weaknessesvar = json_encode($cardData['weaknesses']);
+        $stmt->bindParam(':weakness', $weaknessesvar );
+
+        $resistancesvar = json_encode($cardData['resistances']);
+        $stmt->bindParam(':resistance', $resistancesvar );
+
         $retreatcostvar = json_encode($cardData['retreatCost']);
         $stmt->bindParam(':retreat_cost', $retreatcostvar);
         $stmt->bindParam(':converted_retreat_cost', $cardData['convertedRetreatCost']);
