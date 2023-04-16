@@ -25,5 +25,8 @@ echo "DONE!<br>";
 echo "Installing decks table...";
 require_once('es-create-decks.php');
 echo "DONE!<br>";
+echo "Installing api token table...";
+require_once('es-create-api.php');
+echo "DONE!<br>";
 
 ?>
