@@ -161,6 +161,8 @@ require_once 'include.php';
                         // for ($x = 0; $x < count($card['retreatCost']); $x++) {
                         //     echo TypeToImageHTML($card['retreatCost'][$x]);
                         // }
+
+                        echo $card['converted_retreat_cost'];
             
                         echo '</td></tr>';
 
