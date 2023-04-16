@@ -365,10 +365,19 @@ function import_cards()
         $stmt->bindParam(':attackdamage4', $attackdamage4var);
 
         $weaknessesvar = json_encode($cardData['weaknesses']);
-        $stmt->bindParam(':weakness', $weaknessesvar );
+        $stmt->bindParam(':weakness', $weaknessesvar);
 
-        $resistancesvar = json_encode($cardData['resistances']);
-        $stmt->bindParam(':resistance', $resistancesvar );
+        try {
+
+          $resistancesvar = json_encode($cardData['resistances']);
+          $stmt->bindParam(':resistance', $resistancesvar);
+        } catch (Exception $e) {
+          print_r($cardData);
+          echo "<br><br>";
+          echo 'Message: ' . $e->getMessage();
+          $resistancesvar = "ERROR";
+          $stmt->bindParam(':resistance', $resistancesvar);
+        }
 
         $retreatcostvar = json_encode($cardData['retreatCost']);
         $stmt->bindParam(':retreat_cost', $retreatcostvar);
