@@ -15,7 +15,10 @@ function create_Deck_Table()
                 views INT DEFAULT 0,
                 monthly_views INT DEFAULT 0,
                 upvotes INT DEFAULT 0,
-                monthly_upvotes INT DEFAULT 0
+                monthly_upvotes INT DEFAULT 0,
+                visible TEXT NOT NULL,
+                source_type TEXT NOT NULL,
+                source_info TEXT NOT NULL
             )";
 
     try {
