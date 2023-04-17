@@ -37,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ");
     $result = $stmt->execute([
         sanitizeInput($data['deck_name']),
-        sanitizeInput($data['cards']),
+        json_encode($data['cards']),
         sanitizeInput($data['featuredcard']) ?? NULL,
         sanitizeInput($data['unlimited_legality']) ?? NULL,
         sanitizeInput($data['standard_legality']) ?? NULL,
         sanitizeInput($data['expanded_legality']) ?? NULL,
         sanitizeInput($data['visible']),
         sanitizeInput($data['source_type']),
-        sanitizeInput($data['source_info']),
+        json_encode($data['source_info']),
         sanitizeInput($data['source_identifier'])
     ]);
 
