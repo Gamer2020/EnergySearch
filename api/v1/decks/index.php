@@ -5,13 +5,12 @@ require_once('../../../functions/general.php');
 
 header("Content-Type:application/json");
 
-$authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
-$token = str_replace('Bearer ', '', $authHeader);
-
+$authHeader = $_SERVER['HTTP_X_AUTH_TOKEN'] ?? '';
+$token = $authHeader;
 global $pdo;
 
 $stmt = $pdo->prepare("SELECT * FROM es_api_tokens WHERE token_value = ?");
-$stmt->execute(sanitizeInput([$token]));
+$stmt->execute([sanitizeInput($token)]);
 $apiToken = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$apiToken) {

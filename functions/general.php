@@ -2,6 +2,9 @@
 
 function sanitizeInput($input)
 {
+    // Ensure $input is a string
+    $input = strval($input);
+
     // Remove whitespace from the beginning and end of the input
     $input = trim($input);
 
