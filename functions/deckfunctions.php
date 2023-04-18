@@ -1,39 +1,39 @@
 <?php
 
-function ptcglDeckListToJson($deck_list)
+function ptcglDeckListToJson($decklist)
 {
-    $deck_regex = '/(?:(?:##?\s*Pok[eé]mon|Pok[eé]mon:)\s*-?\s*\d*[\r\n]+(?:\*?\s*\d+\s+[\w\s\'-]+[A-Z]+\s\d+(?:\sPH)?[\r\n]+)+)(?:(?:##?\s*Trainer|Trainer:)\s*-?\s*\d*[\r\n]+(?:\*?\s*\d+\s+[\w\s\'-]+[A-Z]+\s\d+(?:\sPH)?[\r\n]+)+)(?:(?:##?\s*Energy|Energy:)\s*-?\s*\d*[\r\n]+(?:\*?\s*\d+\s+[\w\s\'-]+[A-Z]+\s\d+(?:\sPH)?[\r\n]+)+)/';
+    $lines = explode("\n", $decklist);
+    $json_data = [
+        "pokemon" => [],
+        "trainers" => [],
+        "energies" => [],
+    ];
 
-    if (preg_match($deck_regex, $deck_list, $matches)) {
-        $deck = $matches[0];
+    $current_section = "";
 
-        $deck_data = [];
-        $categories = ["pokemon", "trainer", "energy"];
-        $category_index = 0;
+    foreach ($lines as $line) {
+        $line = trim($line);
+        if (preg_match('/^##? ?Pok[eé]mon(:)?/i', $line)) {
+            $current_section = "pokemon";
+        } elseif (preg_match('/^##? ?Trainer(:)?/i', $line)) {
+            $current_section = "trainers";
+        } elseif (preg_match('/^##? ?Energy(:)?/i', $line)) {
+            $current_section = "energies";
+        } elseif (preg_match('/^\*?(\d+)\s+([\w\s\-\']+)(\w{3}\s+\d+)(\s+PH)?/i', $line, $matches) || preg_match('/^(\d+)\s+([\w\s\-\']+)(\w{2,3}\s+\d+)(\s+PH)?/i', $line, $matches)) {
+            $quantity = $matches[1];
+            $card_name = $matches[2];
+            $set_code = $matches[3];
 
-        $lines = explode("\n", $deck);
-        foreach ($lines as $line) {
-            $line = trim($line);
-            if (strlen($line) == 0) {
-                continue;
-            }
-
-            if (preg_match('/^(\d+)\s([\w\s\'-]+)\s([A-Z]+)\s(\d+)/', $line, $card_matches)) {
-                $deck_data[$categories[$category_index]][] = [
-                    "quantity" => intval($card_matches[1]),
-                    "name" => $card_matches[2],
-                    "set_code" => $card_matches[3],
-                    "set_number" => intval($card_matches[4]),
-                ];
-            } else {
-                $category_index++;
-            }
+            $json_data[$current_section][] = [
+                "quantity" => $quantity,
+                "name" => $card_name,
+                "set_code" => $set_code,
+            ];
         }
-
-        return json_encode($deck_data, JSON_PRETTY_PRINT);
-    } else {
-        return null;
     }
+
+    return json_encode($json_data, JSON_PRETTY_PRINT);
 }
+
 
 ?>
