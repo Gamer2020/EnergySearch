@@ -1,0 +1,9 @@
+<h1>About Energy Search!</h1>
+<p>This is some sample text that I've included in a text file.</p>
+
+<h1>Original About Page Text from 2016</h1>
+<p> The basic idea for this website is to be a way for players to be able to share deck lists and ideas with each other. Once registered users can post deck lists for others to see and give feedback on. This can be a good way for new users to learn about new decks and for more experienced players to bounce ideas around.</p>
+<p> This website was started in the hope that it will be useful to the players and collectors of the Pokémon TCG. The goal of this website is to be a medium for people to learn about the game and to interact with other players/collectors. This site is non-profit and all content is available for free. Some features require that you have an account but registration is free.</p>
+<p> This website is intended for everyone ranging from beginners to professional players. It is my goal that people will find this website useful in some way. This website will always be a work in progress and improvements will be made over time.</p>
+<p> I created this website simply because I have loved this card game ever since it came out. I have made many new friends and have had a lot of fun because of this card game. This website is my way of contributing to the game in the best way I can.</p>
+<p>-Gamer2020</p>
