@@ -1,5 +1,32 @@
 <?php
 
+function deck_exists($deck_id)
+{
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM es_decks WHERE id = ?");
+    $stmt->execute([$deck_id]);
+
+    $count = $stmt->fetchColumn();
+
+    return $count > 0;
+}
+
+function deck_add_view($deck_id)
+{
+    global $pdo;
+
+    // Update the views column
+    $sql = "UPDATE es_decks SET views = views + 1 WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$deck_id]);
+
+    // Update the monthly_views column
+    $sql = "UPDATE es_decks SET monthly_views = monthly_views + 1 WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$deck_id]);
+}
+
 function ptcglDeckListToJson($decklist)
 {
     $lines = explode("\n", $decklist);
