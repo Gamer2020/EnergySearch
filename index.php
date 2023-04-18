@@ -35,7 +35,7 @@ require_once 'include.php';
                 //     echo "<a href='view-deck?DeckID=" . $row['DeckID'] . "'>" . '<img width="153" height="98" src=wp-content/plugins/php-code-for-posts/PokemonTCGDatabase/CroppedCards/' . $row['FeaturedCard'] . ".jpg" . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
                 // }
                 echo "<a href='deck.php?ID=" . $row['id'] . "'>" . '<img width="153" height="98" src=https://placehold.co/153x98' . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
-                echo "Name: <a href='deck.pho?ID=" . $row['id'] . "'>" . strip_tags($row['deck_name']) . "</a>";
+                echo "Name: <a href='deck.php?ID=" . $row['id'] . "'>" . strip_tags($row['deck_name']) . "</a>";
                 //echo " Format: " . strip_tags($row['Format']) . "<br>";
                 //echo " Votes: " . strip_tags($row['UpVotes']) . "<br>";
                 //echo "Posted by " . '<a href="/members/' . $row['DeckOwner'] . '/">' . $row['DeckOwner'] . '</a><br>';
