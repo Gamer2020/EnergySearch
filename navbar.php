@@ -8,7 +8,7 @@
             <li><a href="#">Card Search</a></li>
             <li><a href="sets.php">Sets</a></li>
             <li><a href="#">Decks</a></li>
-            <li><a href="#">Submit Deck</a></li>
+            <li><a href="submit.php">Submit Deck</a></li>
             <li><a href="credits.php">Credits</a></li>
             <li><a href="changelog.php">Change Log</a></li>
             <li><a href="tos.php">TOS</a></li>
