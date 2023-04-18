@@ -1,7 +1,6 @@
 <?php
 
-require_once('../../../config.php');
-require_once('../../../functions/general.php');
+require_once('../../../include.php');
 
 header("Content-Type:application/json");
 
@@ -37,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ");
     $result = $stmt->execute([
         sanitizeInput($data['deck_name']),
-        json_encode($data['cards']),
+        ptcglDeckListToJson($data['cards']),
         sanitizeInput($data['featuredcard']) ?? NULL,
         sanitizeInput($data['unlimited_legality']) ?? NULL,
         sanitizeInput($data['standard_legality']) ?? NULL,
