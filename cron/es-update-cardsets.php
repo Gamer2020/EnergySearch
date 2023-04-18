@@ -91,7 +91,7 @@ function returnWordIfNull($value, $word)
 function ptcgo_code_override($inputValue, $returnValue)
 {
     $valueList = array(
-        array("input" => "sv1", "matched" => "SV1"),
+        array("input" => "sv1", "matched" => "SVI"),
         array("input" => "value2", "matched" => "output2"),
         array("input" => "value3", "matched" => "output3")
     );
