@@ -24,7 +24,20 @@ require_once 'include.php';
                     $deck = $stmt->fetch(PDO::FETCH_ASSOC);
 
                     try {
+                        print_r($deck['cards']);
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<br>";
+                        $deck_list = json_decode($deck['cards'])->{''} ?: [];
+                        print_r($deck_list);
 
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<br>";
+
+                        foreach ($deck_list as $item) {
+                            echo "Quantity: {$item->quantity}, Name: {$item->name}, Set Code: {$item->set_code}" . "<br>";
+                        }
 
                         //catch exception
                     } catch (Exception $e) {
