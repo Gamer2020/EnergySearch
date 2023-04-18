@@ -4,10 +4,10 @@
     </div>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Card Search</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="cards.php">Cards</a></li>
             <li><a href="sets.php">Sets</a></li>
-            <li><a href="#">Decks</a></li>
+            <li><a href="decks.php">Decks</a></li>
             <li><a href="submit.php">Submit Deck</a></li>
             <li><a href="credits.php">Credits</a></li>
             <li><a href="changelog.php">Change Log</a></li>
