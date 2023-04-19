@@ -24,6 +24,17 @@ require_once 'include.php';
                     $deck = $stmt->fetch(PDO::FETCH_ASSOC);
 
                     try {
+
+                        print_r($deck['source_identifier']);
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<br>";
+
+                        // print_r($deck['source_info']);
+                        // echo "<br>";
+                        // echo "<br>";
+                        // echo "<br>";
+
                         print_r($deck['cards']);
                         echo "<br>";
                         echo "<br>";
