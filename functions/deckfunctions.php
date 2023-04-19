@@ -46,7 +46,7 @@ function ptcglDeckListToJson($decklist)
             $current_section = "trainers";
         } elseif (preg_match('/^##? ?Energy(:)?/i', $line)) {
             $current_section = "energies";
-        } elseif (preg_match('/^\*?(\d+)\s+([\w\s\-\']+)(\w{3}\s+\d+)(\s+PH)?/i', $line, $matches) || preg_match('/^(\d+)\s+([\w\s\-\']+)(\w{2,3}\s+\d+)(\s+PH)?/i', $line, $matches)) {
+        } elseif (preg_match('/^\*?(\d+)\s+([\w\s\-\']+)(\w{1,3}\s+\d+)(\s+PH)?/i', $line, $matches)) {
             $quantity = $matches[1];
             $card_name = $matches[2];
             $set_code = $matches[3];
@@ -61,6 +61,7 @@ function ptcglDeckListToJson($decklist)
 
     return json_encode($json_data, JSON_PRETTY_PRINT);
 }
+
 
 
 ?>
