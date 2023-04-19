@@ -22,4 +22,22 @@ function get_set_name_from_id($id)
     return $result['name'] ?? null;
 }
 
+function get_ptcgo_code_by_set_id($set_id)
+{
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT ptcgo_code FROM es_card_sets WHERE id = :set_id");
+    $stmt->bindValue(':set_id', $set_id);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        return $result['ptcgo_code'];
+    } else {
+        return null;
+    }
+}
+
+
 ?>
