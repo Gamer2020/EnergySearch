@@ -31,31 +31,26 @@ function ptcglDeckListToJson($decklist)
 {
     $lines = explode("\n", $decklist);
     $json_data = [
-        "pokemon" => [],
-        "trainers" => [],
-        "energies" => [],
+        "cards" => [],
     ];
-
-    $current_section = "";
 
     foreach ($lines as $line) {
         $line = trim($line);
-        if (preg_match('/^##? ?Pok[eé]mon(:)?/i', $line)) {
-            $current_section = "pokemon";
-        } elseif (preg_match('/^##? ?Trainer(:)?/i', $line)) {
-            $current_section = "trainers";
-        } elseif (preg_match('/^##? ?Energy(:)?/i', $line)) {
-            $current_section = "energies";
-        } elseif (preg_match('/^\*?(\d+)\s+([\w\s\-\']+)(\w{1,3}\s+\d+)(\s+PH)?/i', $line, $matches)) {
+
+        if (preg_match('/^(\d+)\s+(.+)\s+(\w{1,4})\s+(\d+)(\s+PH)?$/i', $line, $matches)) {
             $quantity = $matches[1];
             $card_name = $matches[2];
             $set_code = $matches[3];
-
-            $json_data[$current_section][] = [
+            $set_number = $matches[4];
+            
+            $card_data = [
                 "quantity" => $quantity,
                 "name" => $card_name,
                 "set_code" => $set_code,
+                "set_number" => $set_number,
             ];
+
+            $json_data["cards"][] = $card_data;
         }
     }
 

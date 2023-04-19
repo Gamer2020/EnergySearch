@@ -25,29 +25,32 @@ require_once 'include.php';
 
                     try {
 
-                        print_r($deck['source_identifier']);
-                        echo "<br>";
-                        echo "<br>";
-                        echo "<br>";
-
+                        // print_r($deck['source_identifier']);
+                        // echo "<br>";
+                        // echo "<br>";
+                        // echo "<br>";
+            
                         // print_r($deck['source_info']);
                         // echo "<br>";
                         // echo "<br>";
                         // echo "<br>";
-
-                        print_r($deck['cards']);
-                        echo "<br>";
-                        echo "<br>";
-                        echo "<br>";
-                        $deck_list = json_decode($deck['cards'])->{''} ?: [];
-                        print_r($deck_list);
-
-                        echo "<br>";
-                        echo "<br>";
-                        echo "<br>";
-
-                        foreach ($deck_list as $item) {
-                            echo "Quantity: {$item->quantity}, Name: {$item->name}, Set Code: {$item->set_code}" . "<br>";
+            
+                        // print_r($deck['cards']);
+                        // echo "<br>";
+                        // echo "<br>";
+                        // echo "<br>";
+                        $deck_list = json_decode($deck['cards']);
+                        // print_r($deck_list);
+            
+                        // echo "<br>";
+                        // echo "<br>";
+                        // echo "<br>";
+            
+                        foreach ($deck_list->cards as $card) {
+                            echo "Quantity: " . $card->quantity . "<br>";
+                            echo "Name: " . $card->name . "<br>";
+                            echo "Set code: " . $card->set_code . "<br>";
+                            echo "Set number: " . $card->set_number . "<br><br>";
                         }
 
                         //catch exception
