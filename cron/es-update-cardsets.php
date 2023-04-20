@@ -69,7 +69,7 @@ function import_card_sets()
             'unlimited' => returnWordIfNull($set['legalities']['unlimited'], "Not Legal"),
             'standard' => returnWordIfNull($set['legalities']['standard'], "Not Legal"),
             'expanded' => returnWordIfNull($set['legalities']['expanded'], "Not Legal"),
-            'ptcgo_code' => returnWordIfNull(ptcgo_code_override($set['id'],$set['ptcgoCode']), "XXX"),
+            'ptcgo_code' => strtoupper(ptcgo_code_override($set['id'],$set['ptcgoCode'])),
             'release_date' => $set['releaseDate'],
             'updated_at' => $set['updatedAt'],
             'symbol_url' => $set['images']['symbol'],

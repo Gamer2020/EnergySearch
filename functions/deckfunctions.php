@@ -37,36 +37,46 @@ function ptcglDeckListToJson($decklist)
     foreach ($lines as $line) {
         $line = trim($line);
 
-        if (preg_match('/^(\d+)\s+(.+?)(?:\s+(\w{1,4})\s+(\d+))?(\s+PH)?$/i', $line, $matches)) {
+        if ($line) {
+            $parts = explode(' ', $line);
 
-            if (isset($matches[1]) && isset($matches[2])) {
+            $quantity = array_shift($parts);
 
-                $quantity = $matches[1];
-                $card_name = $matches[2];
-
-                if (isset($matches[3]) && isset($matches[4])) {
-                    $set_code = $matches[3];
-                    $set_number = $matches[4];
-                } else {
-
-                    $set_code = get_ptcgo_code_by_set_id(get_set_id_by_card_name($matches[3]));
-                    $set_number = get_set_number_by_card_name($matches[2]);                    
-                }
-
-                $card_data = [
-                    "quantity" => $quantity,
-                    "name" => $card_name,
-                    "set_code" => $set_code,
-                    "set_number" => $set_number,
-                ];
-
-                $json_data["cards"][] = $card_data;
+            $set_number = array_pop($parts);
+            while (!is_numeric($set_number) && !empty($parts)) {
+                array_unshift($parts, $set_number);
+                $set_number = array_pop($parts);
             }
+
+            if (empty($parts)) {
+                continue;
+            }
+
+            $set_code = array_pop($parts);
+            $card_name = implode(' ', $parts);
+
+            if (empty($set_code)) {
+                $set_code = get_ptcgo_code_by_set_id(get_set_id_by_card_name($card_name));
+            }
+
+            if (empty($set_number)) {
+                $set_number = get_set_number_by_card_name($card_name);
+            }
+
+            $card_data = [
+                "quantity" => $quantity,
+                "name" => $card_name,
+                "set_code" => $set_code,
+                "set_number" => $set_number,
+            ];
+
+            $json_data["cards"][] = $card_data;
         }
     }
 
     return json_encode($json_data, JSON_PRETTY_PRINT);
 }
+
 
 
 ?>
