@@ -40,16 +40,16 @@ function ptcglDeckListToJson($decklist)
         if ($line) {
             $parts = explode(' ', $line);
 
+            if (empty($parts)) {
+                continue;
+            }
+
             $quantity = array_shift($parts);
 
             $set_number = array_pop($parts);
             while (!is_numeric($set_number) && !empty($parts)) {
                 array_unshift($parts, $set_number);
                 $set_number = array_pop($parts);
-            }
-
-            if (empty($parts)) {
-                continue;
             }
 
             $set_code = array_pop($parts);
@@ -76,6 +76,7 @@ function ptcglDeckListToJson($decklist)
 
     return json_encode($json_data, JSON_PRETTY_PRINT);
 }
+
 
 
 
