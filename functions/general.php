@@ -21,4 +21,17 @@ function sanitizeInput($input)
     return $input;
 }
 
+function sanitizeArray($array)
+{
+    if (!is_array($array)) {
+        return sanitizeInput($array);
+    }
+
+    foreach ($array as $key => &$value) {
+        $value = sanitizeArray($value);
+    }
+
+    return $array;
+}
+
 ?>

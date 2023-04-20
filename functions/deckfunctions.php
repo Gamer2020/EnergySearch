@@ -74,6 +74,8 @@ function ptcglDeckListToJson($decklist)
         }
     }
 
+    sanitizeArray($json_data);
+
     return json_encode($json_data, JSON_PRETTY_PRINT);
 }
 

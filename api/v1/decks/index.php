@@ -34,17 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         INSERT INTO es_decks (deck_name, cards, featuredcard, unlimited_legality, standard_legality, expanded_legality, visible, source_type, source_info, source_identifier)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
+
+    $data = sanitizeArray($data);
+    
     $result = $stmt->execute([
-        sanitizeInput($data['deck_name']),
+        $data['deck_name'],
         ptcglDeckListToJson($data['cards']),
-        sanitizeInput($data['featuredcard']) ?? NULL,
-        sanitizeInput($data['unlimited_legality']) ?? NULL,
-        sanitizeInput($data['standard_legality']) ?? NULL,
-        sanitizeInput($data['expanded_legality']) ?? NULL,
-        sanitizeInput($data['visible']),
-        sanitizeInput($data['source_type']),
+        $data['featuredcard'] ?? NULL,
+        $data['unlimited_legality'] ?? NULL,
+        $data['standard_legality'] ?? NULL,
+        $data['expanded_legality'] ?? NULL,
+        $data['visible'],
+        $data['source_type'],
         json_encode($data['source_info']),
-        sanitizeInput($data['source_identifier'])
+        $data['source_identifier']
     ]);
 
     if ($result) {

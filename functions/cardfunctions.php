@@ -31,7 +31,7 @@ function get_set_number_by_card_name($card_name)
   global $pdo;
 
   $stmt = $pdo->prepare("SELECT set_number FROM es_cards WHERE name LIKE :card_name");
-  $stmt->bindValue(':card_name', '%' . $card_name . '%');
+  $stmt->bindValue(':card_name', '%' . $card_name . '%', PDO::PARAM_STR);
   $stmt->execute();
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -48,7 +48,7 @@ function get_set_id_by_card_name($card_name)
   global $pdo;
 
   $stmt = $pdo->prepare("SELECT set_id FROM es_cards WHERE name LIKE :card_name");
-  $stmt->bindValue(':card_name', '%' . $card_name . '%');
+  $stmt->bindValue(':card_name', '%' . $card_name . '%', PDO::PARAM_STR);
   $stmt->execute();
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
