@@ -40,4 +40,15 @@ function get_ptcgo_code_by_set_id($set_id)
 }
 
 
+function get_set_id_by_ptcgo_code($ptcgo_code) {
+    global $pdo;
+  
+    $stmt = $pdo->prepare("SELECT id FROM es_card_sets WHERE ptcgo_code = :ptcgo_code");
+    $stmt->bindParam(":ptcgo_code", $ptcgo_code);
+    $stmt->execute();
+  
+    $result = $stmt->fetch();
+    return $result['id'];
+  }
+
 ?>

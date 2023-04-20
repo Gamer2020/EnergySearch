@@ -36,10 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ");
 
     $data = sanitizeArray($data);
-    
+
+    $card_list = ptcglDeckListToJson($data['cards']);
+
+
+
     $result = $stmt->execute([
         $data['deck_name'],
-        ptcglDeckListToJson($data['cards']),
+        $card_list,
         $data['featuredcard'] ?? NULL,
         $data['unlimited_legality'] ?? NULL,
         $data['standard_legality'] ?? NULL,

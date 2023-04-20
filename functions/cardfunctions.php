@@ -60,5 +60,32 @@ function get_set_id_by_card_name($card_name)
   }
 }
 
+function get_card_name_by_set_number($set_id, $set_number)
+{
+  global $pdo;
+
+  $stmt = $pdo->prepare("SELECT name FROM es_cards WHERE set_id = :set_id AND set_number = :set_number");
+  $stmt->bindParam(":set_id", $set_id);
+  $stmt->bindParam(":set_number", $set_number);
+  $stmt->execute();
+
+  $result = $stmt->fetch();
+  return $result['name'];
+}
+
+function card_exists_by_set_number($set_id, $set_number)
+{
+  global $pdo;
+
+  $stmt = $pdo->prepare("SELECT COUNT(*) FROM es_cards WHERE set_id = :set_id AND set_number = :set_number");
+  $stmt->bindParam(":set_id", $set_id);
+  $stmt->bindParam(":set_number", $set_number);
+  $stmt->execute();
+
+  $result = $stmt->fetchColumn();
+  return $result > 0;
+}
+
+
 
 ?>

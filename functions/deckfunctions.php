@@ -79,7 +79,26 @@ function ptcglDeckListToJson($decklist)
     return json_encode($json_data, JSON_PRETTY_PRINT);
 }
 
+function updateDeckListNames($deck_input)
+{
+    $deck_list = json_decode($deck_input['cards']);
 
+    foreach ($deck_list->cards as $card) {
+
+        if (card_exists_by_set_number(get_set_id_by_ptcgo_code($card->set_code), $card->set_number)) {
+            $card->name = get_card_name_by_set_number(get_set_id_by_ptcgo_code($card->set_code), $card->set_number);
+        }
+
+        $card->name = 2;
+
+        echo "Quantity: " . $card->quantity . "<br>";
+        echo "Name: " . $card->name . "<br>";
+        echo "Set code: " . $card->set_code . "<br>";
+        echo "Set number: " . $card->set_number . "<br><br>";
+    }
+
+
+}
 
 
 ?>
