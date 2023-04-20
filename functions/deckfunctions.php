@@ -66,7 +66,7 @@ function ptcglDeckListToJson($decklist)
             $card_data = [
                 "quantity" => $quantity,
                 "name" => $card_name,
-                "set_code" => $set_code,
+                "set_code" => strtoupper($set_code),
                 "set_number" => $set_number,
             ];
 
