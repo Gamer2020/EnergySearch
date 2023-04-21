@@ -207,25 +207,25 @@ require_once 'include.php';
                         }
 
                         if ($card['attackname1'] <> "") {
-                            echo $card['attackcost1'] . " - " . $card['attackname1'] . "<br>";
+                            echo $card['attackcost1'] . " - " . $card['attackname1'] . " " . $card['attackdamage1'] . "<br>";
                             echo $card['attacktext1'];
                             echo '<br>' . '<br>';
                         }
 
                         if ($card['attackname2'] <> "") {
-                            echo $card['attackcost2'] . " - " . $card['attackname2'] . "<br>";
+                            echo $card['attackcost2'] . " - " . $card['attackname2'] . " " . $card['attackdamage2'] . "<br>";
                             echo $card['attacktext2'];
                             echo '<br>' . '<br>';
                         }
 
                         if ($card['attackname3'] <> "") {
-                            echo $card['attackcost3'] . " - " . $card['attackname3'] . "<br>";
+                            echo $card['attackcost3'] . " - " . $card['attackname3'] . " " . $card['attackdamage3'] . "<br>";
                             echo $card['attacktext3'];
                             echo '<br>' . '<br>';
                         }
 
                         if ($card['attackname4'] <> "") {
-                            echo $card['attackcost4'] . " - " . $card['attackname4'] . "<br>";
+                            echo $card['attackcost4'] . " - " . $card['attackname4'] . " " . $card['attackdamage4'] . "<br>";
                             echo $card['attacktext4'];
                             echo '<br>' . '<br>';
                         }
