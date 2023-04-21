@@ -69,7 +69,7 @@ function import_card_sets()
             'unlimited' => returnWordIfNull($set['legalities']['unlimited'], "Not Legal"),
             'standard' => returnWordIfNull($set['legalities']['standard'], "Not Legal"),
             'expanded' => returnWordIfNull($set['legalities']['expanded'], "Not Legal"),
-            'ptcgo_code' => strtoupper(ptcgo_code_override($set['id'],$set['ptcgoCode'])),
+            'ptcgo_code' => ptcgo_code_override($set['ptcgoCode'], $set['id']),
             'release_date' => $set['releaseDate'],
             'updated_at' => $set['updatedAt'],
             'symbol_url' => $set['images']['symbol'],
@@ -88,21 +88,35 @@ function returnWordIfNull($value, $word)
     }
 }
 
-function ptcgo_code_override($inputValue, $returnValue)
+function ptcgo_code_override($PTCGO_Value, $SET_Value)
 {
-    $valueList = array(
-        array("input" => "sv1", "matched" => "SVI"),
-        array("input" => "value2", "matched" => "output2"),
-        array("input" => "value3", "matched" => "output3")
-    );
 
-    foreach ($valueList as $match) {
-        if ($inputValue == $match['input']) {
-            return $match['matched'];
+    if ($PTCGO_Value == "") {
+
+        $valueList = array(
+            array("input" => "sv1", "matched" => "SVI"),
+            array("input" => "svp", "matched" => "PR-SV"),
+            array("input" => "swsh12tg", "matched" => "CRZ-GG"),
+            array("input" => "sma", "matched" => "HIF")
+        );
+
+        foreach ($valueList as $match) {
+            if ($SET_Value == $match['input']) {
+                return $match['matched'];
+            }
         }
+
+        return "INVALID";
+
+    } elseif ($SET_Value == "swsh12pt5gg") {
+
+        return "CRZ-GG";
+
+    } else {
+
+        return $PTCGO_Value;
     }
 
-    return $inputValue;
 }
 
 
