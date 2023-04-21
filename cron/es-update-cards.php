@@ -383,7 +383,14 @@ function import_cards()
         $stmt->bindParam(':retreat_cost', $retreatcostvar);
         $stmt->bindParam(':converted_retreat_cost', $cardData['convertedRetreatCost']);
         $stmt->bindParam(':set_id', $cardData['set']['id']);
-        $stmt->bindParam(':set_number', $cardData['number']);
+
+        $setnumbervar = $cardData['number'];
+
+        if ($cardData['set']['id'] == "sma") {
+          $setnumbervar = (preg_replace('/[^0-9]/', '', $setnumbervar)) + 69;
+        }
+
+        $stmt->bindParam(':set_number', $setnumbervar);
         $stmt->bindParam(':artist', $cardData['artist']);
         $stmt->bindParam(':rarity', $cardData['rarity']);
         $stmt->bindParam(':flavor_text', $cardData['flavorText']);
