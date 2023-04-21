@@ -384,7 +384,7 @@ function import_cards()
         $stmt->bindParam(':converted_retreat_cost', $cardData['convertedRetreatCost']);
         $stmt->bindParam(':set_id', $cardData['set']['id']);
 
-        $setnumbervar = $cardData['number'];
+        $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']);
 
         if ($cardData['set']['id'] == "sma") {
           $setnumbervar = (preg_replace('/[^0-9]/', '', $setnumbervar)) + 69;
