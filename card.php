@@ -43,7 +43,7 @@ require_once 'include.php';
             
                         echo '<tr>';
 
-                        echo '<td rowspan="90"><a href="' . $card['large_image'] . '">' . '<img width="250" height="350" src=' . $card['large_image'] . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
+                        echo '<td rowspan="90"><a href="' . $card['large_image'] . '">' . '<img width="250" height="350" src=' . $card['small_image'] . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
 
                         echo '</td></tr>';
 

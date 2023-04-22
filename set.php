@@ -83,7 +83,7 @@ require_once 'include.php';
                         $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         foreach ($cards as $card) {
-                            echo "<a href='card.php" . "?ID=" . $card['id'] . "'>" . '<img width="250" height="350" src=' . $card['large_image'] . "" . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
+                            echo "<a href='card.php" . "?ID=" . $card['id'] . "'>" . '<img width="250" height="350" src=' . $card['small_image'] . "" . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
 
                         }
 
