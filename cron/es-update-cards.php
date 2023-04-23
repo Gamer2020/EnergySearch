@@ -385,13 +385,11 @@ function import_cards()
         $stmt->bindParam(':set_id', $cardData['set']['id']);
 
         if (substr($cardData['number'], -1) === "a") {
-          $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number'])  . "a";
+          $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']) . "a";
         } else {
           $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']);
 
         }
-
-        $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']);
 
         if ($cardData['set']['id'] == "sma") {
           $setnumbervar = (preg_replace('/[^0-9]/', '', $setnumbervar)) + 69;
