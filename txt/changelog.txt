@@ -1,5 +1,5 @@
 <h1>Change Log</h1>
 	<h2>Version 0.1.0</h2>
 	<ul style="margin-left: 20px;">
-		<li>Initial release of Energy Search!</li>
+		<li>Initial release of Energy Search! This release is considered a beta. Basic functionality exists, but it is far from finished.</li>
 	</ul>
