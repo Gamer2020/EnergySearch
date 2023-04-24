@@ -28,5 +28,8 @@ echo "DONE!<br>";
 echo "Installing api token table...";
 require_once('es-create-api.php');
 echo "DONE!<br>";
+echo "Installing Alternate Card Arts table...";
+require_once('es-update-alternate-arts.php');
+echo "DONE!<br>";
 
 ?>
