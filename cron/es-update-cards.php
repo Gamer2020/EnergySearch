@@ -390,6 +390,8 @@ function import_cards()
           $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']) . "b";
         } else if (substr($cardData['number'], -1) === "c") {
           $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']) . "c";
+        } else if (substr($cardData['number'], 0, 2) === "RC") {
+          $setnumbervar = "RC" . preg_replace('/[^0-9]/', '', $cardData['number']);
         } else {
           $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']);
 
