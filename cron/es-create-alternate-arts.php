@@ -102,14 +102,23 @@ function insert_alternate_art_cards()
         ['xyp-XY67a', 'Jirachi', 'xyp', '67a']
     ];
 
-    $sql = "INSERT INTO es_alternate_art_cards (id, name, set_id, set_number) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO es_alternate_art_cards (id, name, set_id, set_number) VALUES (:id, :name, :set_id, :set_number)
+            ON DUPLICATE KEY UPDATE
+            name = :name,
+            set_id = :set_id,
+            set_number = :set_number";
+
     $stmt = $pdo->prepare($sql);
 
-    foreach ($data as $row) {
-        $stmt->execute($row);
+    foreach ($data as $item) {
+        $stmt->bindValue(':id', $item[0]);
+        $stmt->bindValue(':name', $item[1]);
+        $stmt->bindValue(':set_id', $item[2]);
+        $stmt->bindValue(':set_number', $item[3]);
+
+        $stmt->execute();
     }
 }
-
 
 
 create_alternate_art_cards_table();
