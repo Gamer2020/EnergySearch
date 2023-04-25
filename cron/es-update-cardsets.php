@@ -112,6 +112,26 @@ function ptcgo_code_override($PTCGO_Value, $SET_Value)
 
         return "CRZ-GG";
 
+    } elseif ($SET_Value == "swsh12tg") {
+
+        return "SIT-GG";
+
+    } elseif ($SET_Value == "swsh11tg") {
+
+        return "LOR-GG";
+
+    } elseif ($SET_Value == "swsh10tg") {
+
+        return "ASR-GG";
+
+    } elseif ($SET_Value == "swsh9tg") {
+
+        return "BRS-GG";
+
+    } elseif ($SET_Value == "cel25c") {
+
+        return "CEL-CC";
+
     } else {
 
         return $PTCGO_Value;

@@ -385,20 +385,22 @@ function import_cards()
         $stmt->bindParam(':set_id', $cardData['set']['id']);
 
         if (substr($cardData['number'], -1) === "a") {
-          $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']) . "a";
+          $setnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "a";
         } else if (substr($cardData['number'], -1) === "b") {
-          $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']) . "b";
+          $setnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "b";
         } else if (substr($cardData['number'], -1) === "c") {
-          $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']) . "c";
+          $setnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "c";
         } else if (substr($cardData['number'], 0, 2) === "RC") {
-          $setnumbervar = "RC" . preg_replace('/[^0-9]/', '', $cardData['number']);
+          $setnumbervar = "RC" . ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
         } else {
-          $setnumbervar = preg_replace('/[^0-9]/', '', $cardData['number']);
+          $setnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
 
         }
 
         if ($cardData['set']['id'] == "sma") {
           $setnumbervar = (preg_replace('/[^0-9]/', '', $setnumbervar)) + 69;
+        } elseif ($cardData['set']['id'] == "swsh45sv") {
+          $setnumbervar = (preg_replace('/[^0-9]/', '', $setnumbervar)) + 73;
         }
 
         $stmt->bindParam(':set_number', $setnumbervar);
