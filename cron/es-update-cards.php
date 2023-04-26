@@ -480,7 +480,7 @@ function import_cards()
       }
     }
 
-    sleep(10); // wait for 10 seconds
+    sleep(15); // wait for 10 seconds
 
   }
 
