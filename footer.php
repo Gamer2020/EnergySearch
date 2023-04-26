@@ -5,7 +5,7 @@
         creators are in no way affiliated with or endorsed by Nintendo LLC, Creatures, GAMEFREAK inc, The Pokémon
         Company, Pokémon USA, Inc., The Pokémon Company International, or Wizards of the Coast.
         <br>The use of the copyrighted material on this website falls under <a
-            href="https://web.archive.org/web/20161114112219/http://en.wikipedia.org/wiki/Fair_use">fair use</a>.
+            href="https://en.wikipedia.org/wiki/Fair_use">fair use</a>.
 
     </p>
 </footer>
