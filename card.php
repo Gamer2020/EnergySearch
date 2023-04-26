@@ -33,7 +33,7 @@ require_once 'include.php';
             
                         echo '<tr>';
 
-                        echo '<th style="font-size: 1.5em; line-height: 1.5em; color:: #000000;" colspan="3">' . $card['name'];
+                        echo '<th style="font-size: 1.5em; line-height: 1.5em;" colspan="3">' . $card['name'];
 
                         echo '</th></tr>';
 
