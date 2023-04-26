@@ -275,8 +275,8 @@ require_once 'include.php';
                         //     echo "<td>" . '<div style="text-align:center"><a href="' . get_permalink($es_cardpage_options['page_id']) . "?ID=" . $cardNext['id'] . '">' . '<img width="250" height="350" src=' . $cardNext['imageUrl'] . "" . ">" . "</a></div>" . "</td>";
                         // }
             
-                        echo '</tr>';
-                        echo '</table>';
+                        // echo '</tr>';
+                        // echo '</table>';
 
                         //catch exception
                     } catch (Exception $e) {
