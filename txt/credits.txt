@@ -2,5 +2,5 @@
 	<ul style="margin-left: 20px;">
 		<li><a href="https://pokemontcg.io/">Pokemon TCG API</a></li> Cards are pulled from this API. This has been a godsend that didn't exist when I coded the first version of Energy Search. I don't have to worry as much about having all the data and can focus on other features.
 		<li><a href="https://github.com/PokemonTCG/pokemon-tcg-sdk-python">pokemon-tcg-sdk-python</a></li> This SDK is used by the php scripts that download the card data from the API.
-		<li><a href="https://chat.openai.com/">ChatGPT</a></li> This is another godsend. The ability to quickly generate code has helped to rewrite Energy Search faster than if done by hand. With the right guidance and logic this is an invaluable coding tool.
+		<li><a href="https://chat.openai.com/">ChatGPT</a></li> This is another godsend. The ability to quickly generate code has helped to rewrite Energy Search faster than if done by hand. (Even the initial HTML/CSS that will be updated eventually was made by it.) With the right guidance and logic this is an invaluable coding tool.
 	</ul>
