@@ -20,7 +20,14 @@
                 <li><a href="#">Decks</a></li>
                 <li><a href="#">Credits</a></li>
                 <li><a href="#">Terms and Services</a></li>
-                <li><a href="#">About</a></li>
+                <li>
+                    <a href="#">About</a>
+                    <ul>
+                        <li><a href="#">Submenu item 1</a></li>
+                        <li><a href="#">Submenu item 2</a></li>
+                        <li><a href="#">Submenu item 3</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>

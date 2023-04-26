@@ -68,6 +68,12 @@ nav ul li a {
     padding: 10px;
     color: #fff;
     text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li:hover>a {
+    background-color: #333;
+    border-radius: 5px;
 }
 
 nav ul li:hover>ul {
@@ -82,6 +88,8 @@ nav ul ul {
     background-color: #222;
     width: 150px;
     z-index: 999;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 nav ul ul li {
@@ -90,7 +98,13 @@ nav ul ul li {
 
 nav ul ul li a {
     padding: 10px;
+    transition: background-color 0.3s ease;
 }
+
+nav ul ul li:hover {
+    background-color: #333;
+}
+
 
 /* container styling */
 .container {

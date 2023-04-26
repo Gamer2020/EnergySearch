@@ -9,10 +9,14 @@
             <li><a href="sets.php">Sets</a></li>
             <li><a href="decks.php">Decks</a></li>
             <li><a href="submit.php">Submit Deck</a></li>
-            <li><a href="credits.php">Credits</a></li>
-            <li><a href="changelog.php">Change Log</a></li>
-            <li><a href="tos.php">TOS</a></li>
-            <li><a href="about.php">About</a></li>
+            <li>
+                <a href="about.php">About</a>
+                <ul>
+                    <li><a href="credits.php">Credits</a></li>
+                    <li><a href="changelog.php">Change Log</a></li>
+                    <li><a href="tos.php">Terms of Service</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </header>
