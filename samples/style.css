@@ -29,6 +29,19 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 /* logo styling */
 .logo img {
     width: 150px;
