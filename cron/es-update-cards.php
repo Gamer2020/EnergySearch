@@ -479,6 +479,9 @@ function import_cards()
         echo "<br><br>";
       }
     }
+
+    sleep(30); // wait for 30 seconds
+
   }
 
 
