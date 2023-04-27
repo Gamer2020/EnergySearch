@@ -226,7 +226,27 @@ function import_cards()
 
   for ($i = 1; $i <= $total_pages; $i++) {
 
-    $response = Pokemon::Card()->page($i)->pageSize($page_size)->all();
+    $retryCount = 0;
+    $maxRetries = 5;
+
+
+    while ($retryCount < $maxRetries) {
+      try {
+        $response = Pokemon::Card()->page($i)->pageSize($page_size)->all();
+        break;
+      } catch (Exception $e) {
+        // Handle the exception, if necessary
+        // ...
+        // Increment the retry count and wait for a short time before trying again
+        $retryCount++;
+        sleep(15);
+      }
+    }
+
+    if ($retryCount == $maxRetries) {
+      // If all attempts failed, throw an exception or handle the error
+      // ...
+    }
 
     foreach ($response as $model) {
 
@@ -479,9 +499,6 @@ function import_cards()
         echo "<br><br>";
       }
     }
-
-    sleep(15); // wait for 10 seconds
-
   }
 
 
