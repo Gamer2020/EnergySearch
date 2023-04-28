@@ -63,28 +63,7 @@ function create_cards_table()
             small_image VARCHAR(255) DEFAULT NULL,
             large_image VARCHAR(255) DEFAULT NULL,
             ancientTrait VARCHAR(255) DEFAULT NULL,
-            tcgplayerurl VARCHAR(255) DEFAULT NULL,
-            tcgplayerupdatedAt VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricenormallow VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricenormalmid VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricenormalhigh VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricenormalmarket VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricenormaldirectLow VARCHAR(255) DEFAULT NULL,
-            tcgplayerpriceholofoillow VARCHAR(255) DEFAULT NULL,
-            tcgplayerpriceholofoilmid VARCHAR(255) DEFAULT NULL,
-            tcgplayerpriceholofoilhigh VARCHAR(255) DEFAULT NULL,
-            tcgplayerpriceholofoilmarket VARCHAR(255) DEFAULT NULL,
-            tcgplayerpriceholofoildirectLow VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricereverseHolofoillow VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricereverseHolofoilmid VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricereverseHolofoilhigh VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricereverseHolofoilmarket VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricereverseHolofoildirectLow VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricefirstEditionNormallow VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricefirstEditionNormalmid VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricefirstEditionNormalhigh VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricefirstEditionNormalmarket VARCHAR(255) DEFAULT NULL,
-            tcgplayerpricefirstEditionNormaldirectLow VARCHAR(255) DEFAULT NULL,
+            tcg_player_data TEXT DEFAULT NULL,
             views INT DEFAULT 0,
             monthly_views INT DEFAULT 0,
             upvotes INT DEFAULT 0,
@@ -122,12 +101,7 @@ function import_cards()
               set_id, set_number, artist, rarity, flavor_text, national_pokedex_numbers,
               unlimited_legality, standard_legality, expanded_legality,
               small_image, large_image, ancientTrait,
-              tcgplayerurl, tcgplayerupdatedAt, tcgplayerpricenormallow, tcgplayerpricenormalmid,
-              tcgplayerpricenormalhigh, tcgplayerpricenormalmarket, tcgplayerpricenormaldirectLow, tcgplayerpriceholofoillow,
-              tcgplayerpriceholofoilmid, tcgplayerpriceholofoilhigh, tcgplayerpriceholofoilmarket, tcgplayerpriceholofoildirectLow,
-              tcgplayerpricereverseHolofoillow, tcgplayerpricereverseHolofoilmid, tcgplayerpricereverseHolofoilhigh, tcgplayerpricereverseHolofoilmarket,
-              tcgplayerpricereverseHolofoildirectLow, tcgplayerpricefirstEditionNormallow, tcgplayerpricefirstEditionNormalmid,
-              tcgplayerpricefirstEditionNormalhigh, tcgplayerpricefirstEditionNormalmarket, tcgplayerpricefirstEditionNormaldirectLow,
+              tcg_player_data,
               views, monthly_views, upvotes, monthly_upvotes
             )
             VALUES (
@@ -142,12 +116,7 @@ function import_cards()
               :set_id, :set_number, :artist, :rarity, :flavor_text, :national_pokedex_numbers,
               :unlimited_legality, :standard_legality, :expanded_legality,
               :small_image, :large_image, :ancientTrait, 
-              :tcgplayerurl, :tcgplayerupdatedAt, :tcgplayerpricenormallow, :tcgplayerpricenormalmid,
-              :tcgplayerpricenormalhigh, :tcgplayerpricenormalmarket, :tcgplayerpricenormaldirectLow, :tcgplayerpriceholofoillow,
-              :tcgplayerpriceholofoilmid, :tcgplayerpriceholofoilhigh, :tcgplayerpriceholofoilmarket, :tcgplayerpriceholofoildirectLow,
-              :tcgplayerpricereverseHolofoillow, :tcgplayerpricereverseHolofoilmid, :tcgplayerpricereverseHolofoilhigh, :tcgplayerpricereverseHolofoilmarket,
-              :tcgplayerpricereverseHolofoildirectLow, :tcgplayerpricefirstEditionNormallow, :tcgplayerpricefirstEditionNormalmid,
-              :tcgplayerpricefirstEditionNormalhigh, :tcgplayerpricefirstEditionNormalmarket, :tcgplayerpricefirstEditionNormaldirectLow,
+              :tcg_player_data,
               :views, :monthly_views, :upvotes, :monthly_upvotes
             )
             ON DUPLICATE KEY UPDATE
@@ -201,28 +170,7 @@ function import_cards()
               small_image = :small_image,
               large_image = :large_image,
               ancientTrait = :ancientTrait,
-              tcgplayerurl = :tcgplayerurl,
-              tcgplayerupdatedAt = :tcgplayerupdatedAt,
-              tcgplayerpricenormallow = :tcgplayerpricenormallow,
-              tcgplayerpricenormalmid = :tcgplayerpricenormalmid,
-              tcgplayerpricenormalhigh = :tcgplayerpricenormalhigh,
-              tcgplayerpricenormalmarket = :tcgplayerpricenormalmarket,
-              tcgplayerpricenormaldirectLow = :tcgplayerpricenormaldirectLow,
-              tcgplayerpriceholofoillow = :tcgplayerpriceholofoillow,
-              tcgplayerpriceholofoilmid = :tcgplayerpriceholofoilmid,
-              tcgplayerpriceholofoilhigh = :tcgplayerpriceholofoilhigh,
-              tcgplayerpriceholofoilmarket = :tcgplayerpriceholofoilmarket,
-              tcgplayerpriceholofoildirectLow = :tcgplayerpriceholofoildirectLow,
-              tcgplayerpricereverseHolofoillow = :tcgplayerpricereverseHolofoillow,
-              tcgplayerpricereverseHolofoilmid = :tcgplayerpricereverseHolofoilmid,
-              tcgplayerpricereverseHolofoilhigh = :tcgplayerpricereverseHolofoilhigh,
-              tcgplayerpricereverseHolofoilmarket = :tcgplayerpricereverseHolofoilmarket,
-              tcgplayerpricereverseHolofoildirectLow = :tcgplayerpricereverseHolofoildirectLow,
-              tcgplayerpricefirstEditionNormallow = :tcgplayerpricefirstEditionNormallow,
-              tcgplayerpricefirstEditionNormalmid = :tcgplayerpricefirstEditionNormalmid,
-              tcgplayerpricefirstEditionNormalhigh = :tcgplayerpricefirstEditionNormalhigh,
-              tcgplayerpricefirstEditionNormalmarket = :tcgplayerpricefirstEditionNormalmarket,
-              tcgplayerpricefirstEditionNormaldirectLow = :tcgplayerpricefirstEditionNormaldirectLow;";
+              tcg_player_data = :tcg_player_data;";
 
   for ($i = 1; $i <= $total_pages; $i++) {
 
@@ -442,52 +390,8 @@ function import_cards()
         $stmt->bindParam(':upvotes', $defaultviewvar);
         $stmt->bindParam(':monthly_upvotes', $defaultviewvar);
 
-        $tcgplayerurlvar = isset($cardData['tcgplayer']['url']) ? $cardData['tcgplayer']['url'] : NULL;
-        $tcgplayerupdatedAtvar = isset($cardData['tcgplayer']['updatedAt']) ? $cardData['tcgplayer']['updatedAt'] : NULL;
-        $tcgplayerpricenormallowvar = isset($cardData['tcgplayer']['prices']['normal']['low']) ? $cardData['tcgplayer']['prices']['normal']['low'] : NULL;
-        $tcgplayerpricenormalmidvar = isset($cardData['tcgplayer']['prices']['normal']['mid']) ? $cardData['tcgplayer']['prices']['normal']['mid'] : NULL;
-        $tcgplayerpricenormalhighvar = isset($cardData['tcgplayer']['prices']['normal']['high']) ? $cardData['tcgplayer']['prices']['normal']['high'] : NULL;
-        $tcgplayerpricenormalmarketvar = isset($cardData['tcgplayer']['prices']['normal']['market']) ? $cardData['tcgplayer']['prices']['normal']['market'] : NULL;
-        $tcgplayerpricenormaldirectLowvar = isset($cardData['tcgplayer']['prices']['normal']['directLow']) ? $cardData['tcgplayer']['prices']['normal']['directLow'] : NULL;
-        $tcgplayerpriceholofoillowvar = isset($cardData['tcgplayer']['prices']['holofoil']['low']) ? $cardData['tcgplayer']['prices']['holofoil']['low'] : NULL;
-        $tcgplayerpriceholofoilmidvar = isset($cardData['tcgplayer']['prices']['holofoil']['mid']) ? $cardData['tcgplayer']['prices']['holofoil']['mid'] : NULL;
-        $tcgplayerpriceholofoilhighvar = isset($cardData['tcgplayer']['prices']['holofoil']['high']) ? $cardData['tcgplayer']['prices']['holofoil']['high'] : NULL;
-        $tcgplayerpriceholofoilmarketvar = isset($cardData['tcgplayer']['prices']['holofoil']['market']) ? $cardData['tcgplayer']['prices']['holofoil']['market'] : NULL;
-        $tcgplayerpriceholofoildirectLowvar = isset($cardData['tcgplayer']['prices']['holofoil']['directLow']) ? $cardData['tcgplayer']['prices']['holofoil']['directLow'] : NULL;
-        $tcgplayerpricereverseHolofoillowvar = isset($cardData['tcgplayer']['prices']['reverseHolofoil']['low']) ? $cardData['tcgplayer']['prices']['reverseHolofoil']['low'] : NULL;
-        $tcgplayerpricereverseHolofoilmidvar = isset($cardData['tcgplayer']['prices']['reverseHolofoil']['mid']) ? $cardData['tcgplayer']['prices']['reverseHolofoil']['mid'] : NULL;
-        $tcgplayerpricereverseHolofoilhighvar = isset($cardData['tcgplayer']['prices']['reverseHolofoil']['high']) ? $cardData['tcgplayer']['prices']['reverseHolofoil']['high'] : NULL;
-        $tcgplayerpricereverseHolofoilmarketvar = isset($cardData['tcgplayer']['prices']['reverseHolofoil']['market']) ? $cardData['tcgplayer']['prices']['reverseHolofoil']['market'] : null;
-        $tcgplayerpricereverseHolofoildirectLowvar = isset($cardData['tcgplayer']['prices']['reverseHolofoil']['directLow']) ? $cardData['tcgplayer']['prices']['reverseHolofoil']['directLow'] : null;
-        $tcgplayerpricefirstEditionNormallowvar = isset($cardData['prices']['1stEditionNormal']['low']) ? $tcgplayerData['prices']['1stEditionNormal']['low'] : NULL;
-        $tcgplayerpricefirstEditionNormalmidvar = isset($cardData['prices']['1stEditionNormal']['mid']) ? $tcgplayerData['prices']['1stEditionNormal']['mid'] : NULL;
-        $tcgplayerpricefirstEditionNormalhighvar = isset($cardData['prices']['1stEditionNormal']['high']) ? $tcgplayerData['prices']['1stEditionNormal']['high'] : NULL;
-        $tcgplayerpricefirstEditionNormalmarketvar = isset($cardData['prices']['1stEditionNormal']['market']) ? $tcgplayerData['prices']['1stEditionNormal']['market'] : NULL;
-        $tcgplayerpricefirstEditionNormaldirectLowvar = isset($cardData['prices']['1stEditionNormalDirectLow']) ? $tcgplayerData['prices']['1stEditionNormalDirectLow'] : NULL;
-
-
-        $stmt->bindParam(':tcgplayerurl', $tcgplayerurlvar);
-        $stmt->bindParam(':tcgplayerupdatedAt', $tcgplayerupdatedAtvar);
-        $stmt->bindParam(':tcgplayerpricenormallow', $tcgplayerpricenormallowvar);
-        $stmt->bindParam(':tcgplayerpricenormalmid', $tcgplayerpricenormalmidvar);
-        $stmt->bindParam(':tcgplayerpricenormalhigh', $tcgplayerpricenormalhighvar);
-        $stmt->bindParam(':tcgplayerpricenormalmarket', $tcgplayerpricenormalmarketvar);
-        $stmt->bindParam(':tcgplayerpricenormaldirectLow', $tcgplayerpricenormaldirectLowvar);
-        $stmt->bindParam(':tcgplayerpriceholofoillow', $tcgplayerpriceholofoillowvar);
-        $stmt->bindParam(':tcgplayerpriceholofoilmid', $tcgplayerpriceholofoilmidvar);
-        $stmt->bindParam(':tcgplayerpriceholofoilhigh', $tcgplayerpriceholofoilhighvar);
-        $stmt->bindParam(':tcgplayerpriceholofoilmarket', $tcgplayerpriceholofoilmarketvar);
-        $stmt->bindParam(':tcgplayerpriceholofoildirectLow', $tcgplayerpriceholofoildirectLowvar);
-        $stmt->bindParam(':tcgplayerpricereverseHolofoillow', $tcgplayerpricereverseHolofoillowvar);
-        $stmt->bindParam(':tcgplayerpricereverseHolofoilmid', $tcgplayerpricereverseHolofoilmidvar);
-        $stmt->bindParam(':tcgplayerpricereverseHolofoilhigh', $tcgplayerpricereverseHolofoilhighvar);
-        $stmt->bindParam(':tcgplayerpricereverseHolofoilmarket', $tcgplayerpricereverseHolofoilmarketvar);
-        $stmt->bindParam(':tcgplayerpricereverseHolofoildirectLow', $tcgplayerpricereverseHolofoildirectLowvar);
-        $stmt->bindParam(':tcgplayerpricefirstEditionNormallow', $tcgplayerpricefirstEditionNormallowvar);
-        $stmt->bindParam(':tcgplayerpricefirstEditionNormalmid', $tcgplayerpricefirstEditionNormalmidvar);
-        $stmt->bindParam(':tcgplayerpricefirstEditionNormalhigh', $tcgplayerpricefirstEditionNormalhighvar);
-        $stmt->bindParam(':tcgplayerpricefirstEditionNormalmarket', $tcgplayerpricefirstEditionNormalmarketvar);
-        $stmt->bindParam(':tcgplayerpricefirstEditionNormaldirectLow', $tcgplayerpricefirstEditionNormaldirectLowvar);
+        $tcgplayerdatavar = json_encode($cardData['tcgplayer']);
+        $stmt->bindParam(':tcg_player_data', $tcgplayerdatavar);
 
 
         $stmt->execute();
