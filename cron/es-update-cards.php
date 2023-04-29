@@ -65,6 +65,8 @@ function create_cards_table()
             ancientTrait VARCHAR(255) DEFAULT NULL,
             tcg_player_data TEXT DEFAULT NULL,
             card_market_data TEXT DEFAULT NULL,
+            PTCGL_set_id VARCHAR(50) DEFAULT NULL, 
+            PTCGL_set_number INT DEFAULT 0,
             views INT DEFAULT 0,
             monthly_views INT DEFAULT 0,
             upvotes INT DEFAULT 0,
@@ -103,6 +105,7 @@ function import_cards()
               unlimited_legality, standard_legality, expanded_legality,
               small_image, large_image, ancientTrait,
               tcg_player_data, card_market_data,
+              PTCGL_set_id, PTCGL_set_number,
               views, monthly_views, upvotes, monthly_upvotes
             )
             VALUES (
@@ -118,6 +121,7 @@ function import_cards()
               :unlimited_legality, :standard_legality, :expanded_legality,
               :small_image, :large_image, :ancientTrait, 
               :tcg_player_data, :card_market_data,
+              :PTCGL_set_id, :PTCGL_set_number,
               :views, :monthly_views, :upvotes, :monthly_upvotes
             )
             ON DUPLICATE KEY UPDATE
@@ -172,7 +176,9 @@ function import_cards()
               large_image = :large_image,
               ancientTrait = :ancientTrait,
               tcg_player_data = :tcg_player_data,
-              card_market_data = :card_market_data;";
+              card_market_data = :card_market_data,
+              PTCGL_set_id = :PTCGL_set_id, 
+              PTCGL_set_number = :PTCGL_set_number;";
 
   for ($i = 1; $i <= $total_pages; $i++) {
 
@@ -352,28 +358,39 @@ function import_cards()
         $retreatcostvar = json_encode($cardData['retreatCost']);
         $stmt->bindParam(':retreat_cost', $retreatcostvar);
         $stmt->bindParam(':converted_retreat_cost', $cardData['convertedRetreatCost']);
+
         $stmt->bindParam(':set_id', $cardData['set']['id']);
+        $stmt->bindParam(':set_number', $cardData['number']);
+
+
+        $PTCGLsetidvar = ptcgl_code_override($cardData['set']['ptcgoCode'], $cardData['set']['id']);
+
+        $stmt->bindParam(':PTCGL_set_id', $PTCGLsetidvar);
+
 
         if (substr($cardData['number'], -1) === "a") {
-          $setnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "a";
+          $PTCGLsetnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "a";
         } else if (substr($cardData['number'], -1) === "b") {
-          $setnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "b";
+          $PTCGLsetnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "b";
         } else if (substr($cardData['number'], -1) === "c") {
-          $setnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "c";
+          $PTCGLsetnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "c";
         } else if (substr($cardData['number'], 0, 2) === "RC") {
-          $setnumbervar = "RC" . ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
+          $PTCGLsetnumbervar = "RC" . ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
         } else {
-          $setnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
+          $PTCGLsetnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
 
         }
 
         if ($cardData['set']['id'] == "sma") {
-          $setnumbervar = (preg_replace('/[^0-9]/', '', $setnumbervar)) + 69;
+          $setnumbervar = (preg_replace('/[^0-9]/', '', $PTCGLsetnumbervar)) + 69;
         } elseif ($cardData['set']['id'] == "swsh45sv") {
-          $setnumbervar = (preg_replace('/[^0-9]/', '', $setnumbervar)) + 73;
+          $setnumbervar = (preg_replace('/[^0-9]/', '', $PTCGLsetnumbervar)) + 73;
         }
 
-        $stmt->bindParam(':set_number', $setnumbervar);
+
+
+        $stmt->bindParam(':PTCGL_set_number', $PTCGLsetnumbervar);
+
         $stmt->bindParam(':artist', $cardData['artist']);
         $stmt->bindParam(':rarity', $cardData['rarity']);
         $stmt->bindParam(':flavor_text', $cardData['flavorText']);
@@ -455,6 +472,57 @@ function arrayToStringWithSpaces($variable)
     // If the input variable is not an array, return it as is
     return $variable;
   }
+}
+
+function ptcgl_code_override($PTCGO_Value, $SET_Value)
+{
+
+  if ($PTCGO_Value == "") {
+
+    $valueList = array(
+      array("input" => "sv1", "matched" => "SVI"),
+      array("input" => "svp", "matched" => "PR-SV"),
+      array("input" => "swsh12tg", "matched" => "CRZ-GG"),
+      array("input" => "sma", "matched" => "HIF")
+    );
+
+    foreach ($valueList as $match) {
+      if ($SET_Value == $match['input']) {
+        return $match['matched'];
+      }
+    }
+
+    return "INVALID";
+
+  } elseif ($SET_Value == "swsh12pt5gg") {
+
+    return "CRZ-GG";
+
+  } elseif ($SET_Value == "swsh12tg") {
+
+    return "SIT-GG";
+
+  } elseif ($SET_Value == "swsh11tg") {
+
+    return "LOR-GG";
+
+  } elseif ($SET_Value == "swsh10tg") {
+
+    return "ASR-GG";
+
+  } elseif ($SET_Value == "swsh9tg") {
+
+    return "BRS-GG";
+
+  } elseif ($SET_Value == "cel25c") {
+
+    return "CEL-CC";
+
+  } else {
+
+    return $PTCGO_Value;
+  }
+
 }
 
 create_cards_table();
