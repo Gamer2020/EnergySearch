@@ -64,6 +64,7 @@ function create_cards_table()
             large_image VARCHAR(255) DEFAULT NULL,
             ancientTrait VARCHAR(255) DEFAULT NULL,
             tcg_player_data TEXT DEFAULT NULL,
+            card_market_data TEXT DEFAULT NULL,
             views INT DEFAULT 0,
             monthly_views INT DEFAULT 0,
             upvotes INT DEFAULT 0,
@@ -101,7 +102,7 @@ function import_cards()
               set_id, set_number, artist, rarity, flavor_text, national_pokedex_numbers,
               unlimited_legality, standard_legality, expanded_legality,
               small_image, large_image, ancientTrait,
-              tcg_player_data,
+              tcg_player_data, card_market_data,
               views, monthly_views, upvotes, monthly_upvotes
             )
             VALUES (
@@ -116,7 +117,7 @@ function import_cards()
               :set_id, :set_number, :artist, :rarity, :flavor_text, :national_pokedex_numbers,
               :unlimited_legality, :standard_legality, :expanded_legality,
               :small_image, :large_image, :ancientTrait, 
-              :tcg_player_data,
+              :tcg_player_data, :card_market_data,
               :views, :monthly_views, :upvotes, :monthly_upvotes
             )
             ON DUPLICATE KEY UPDATE
@@ -170,7 +171,8 @@ function import_cards()
               small_image = :small_image,
               large_image = :large_image,
               ancientTrait = :ancientTrait,
-              tcg_player_data = :tcg_player_data;";
+              tcg_player_data = :tcg_player_data,
+              card_market_data = :card_market_data;";
 
   for ($i = 1; $i <= $total_pages; $i++) {
 
@@ -393,6 +395,8 @@ function import_cards()
         $tcgplayerdatavar = json_encode($cardData['tcgplayer']);
         $stmt->bindParam(':tcg_player_data', $tcgplayerdatavar);
 
+        $cardmarketdatavar = json_encode($cardData['cardmarket']);
+        $stmt->bindParam(':card_market_data', $cardmarketdatavar);
 
         $stmt->execute();
         //catch exception
