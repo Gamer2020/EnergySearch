@@ -137,4 +137,30 @@ function ptcgl_code_override($PTCGO_Value, $SET_Value)
 
 }
 
+function get_set_id_from_alternate_art_table($id)
+{
+  global $pdo;
+
+  $sql = "SELECT set_id FROM es_alternate_art_cards WHERE id = :id";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':id', $id);
+  $stmt->execute();
+
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $result ? $result['set_id'] : null;
+}
+
+function get_set_number_from_alternate_art_table($id)
+{
+  global $pdo;
+
+  $sql = "SELECT set_number FROM es_alternate_art_cards WHERE id = :id";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':id', $id);
+  $stmt->execute();
+
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $result ? $result['set_number'] : null;
+}
+
 ?>

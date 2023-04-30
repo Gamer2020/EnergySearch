@@ -366,15 +366,13 @@ function import_cards()
 
         $PTCGLsetidvar = ptcgl_code_override($cardData['set']['ptcgoCode'], $cardData['set']['id']);
 
-        $stmt->bindParam(':PTCGL_set_id', $PTCGLsetidvar);
-
 
         if (substr($cardData['number'], -1) === "a") {
-          $PTCGLsetnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "a";
+          $PTCGLsetidvar = get_set_id_from_alternate_art_table($cardData['id']);
+          $PTCGLsetnumbervar = get_set_number_from_alternate_art_table($cardData['id']);
         } else if (substr($cardData['number'], -1) === "b") {
-          $PTCGLsetnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "b";
-        } else if (substr($cardData['number'], -1) === "c") {
-          $PTCGLsetnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0") . "c";
+          $PTCGLsetidvar = get_set_id_from_alternate_art_table($cardData['id']);
+          $PTCGLsetnumbervar = get_set_number_from_alternate_art_table($cardData['id']);
         } else if (substr($cardData['number'], 0, 2) === "RC") {
           $PTCGLsetnumbervar = "RC" . ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
         } else {
@@ -383,13 +381,13 @@ function import_cards()
         }
 
         if ($cardData['set']['id'] == "sma") {
-          $setnumbervar = (preg_replace('/[^0-9]/', '', $PTCGLsetnumbervar)) + 69;
+          $PTCGLsetnumbervar = (preg_replace('/[^0-9]/', '', $cardData['number'])) + 69;
         } elseif ($cardData['set']['id'] == "swsh45sv") {
-          $setnumbervar = (preg_replace('/[^0-9]/', '', $PTCGLsetnumbervar)) + 73;
+          $PTCGLsetnumbervar = (preg_replace('/[^0-9]/', '', $cardData['number'])) + 73;
         }
 
 
-
+        $stmt->bindParam(':PTCGL_set_id', $PTCGLsetidvar);
         $stmt->bindParam(':PTCGL_set_number', $PTCGLsetnumbervar);
 
         $stmt->bindParam(':artist', $cardData['artist']);
