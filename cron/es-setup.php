@@ -31,5 +31,9 @@ echo "DONE!<br>";
 echo "Installing Alternate Card Arts table...";
 require_once('es-update-alternate-arts.php');
 echo "DONE!<br>";
+echo "Installing Classic Collection Card table...";
+require_once('es-update-classic-collection.php');
+echo "DONE!<br>";
+
 
 ?>
