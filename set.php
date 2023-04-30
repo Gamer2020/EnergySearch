@@ -77,7 +77,7 @@ require_once 'include.php';
                         echo '</tr>';
                         echo '</table>';
 
-                        $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE set_id = ? ORDER BY set_number ASC");
+                        $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE set_id = ? ORDER BY CAST(REGEXP_REPLACE(set_number, '[^0-9]', '') AS UNSIGNED) ASC");
                         $stmt->execute([$id]);
 
                         $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
