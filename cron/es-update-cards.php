@@ -385,6 +385,9 @@ function import_cards()
           $PTCGLsetnumbervar = (preg_replace('/[^0-9]/', '', $cardData['number'])) + 69;
         } elseif ($cardData['set']['id'] == "swsh45sv") {
           $PTCGLsetnumbervar = (preg_replace('/[^0-9]/', '', $cardData['number'])) + 73;
+        } elseif ($cardData['set']['id'] == "cel25c") {
+          $PTCGLsetidvar = get_set_id_from_classic_collection_table($cardData['id']);
+          $PTCGLsetnumbervar = get_set_number_from_classic_collection_table($cardData['id']);
         }
 
 

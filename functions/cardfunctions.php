@@ -163,4 +163,30 @@ function get_set_number_from_alternate_art_table($id)
   return $result ? $result['set_number'] : null;
 }
 
+function get_set_id_from_classic_collection_table($id)
+{
+  global $pdo;
+
+  $sql = "SELECT set_id FROM es_classic_collection_cards WHERE id = :id";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':id', $id);
+  $stmt->execute();
+
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $result ? $result['set_id'] : null;
+}
+
+function get_set_number_from_classic_collection_table($id)
+{
+  global $pdo;
+
+  $sql = "SELECT set_number FROM es_classic_collection_cards WHERE id = :id";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':id', $id);
+  $stmt->execute();
+
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $result ? $result['set_number'] : null;
+}
+
 ?>
