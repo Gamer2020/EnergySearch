@@ -375,6 +375,7 @@ function import_cards()
           $PTCGLsetnumbervar = get_set_number_from_alternate_art_table($cardData['id']);
         } else if (substr($cardData['number'], 0, 2) === "RC") {
           $PTCGLsetnumbervar = "RC" . ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
+          $PTCGLsetidvar = "LTR-RC";
         } else {
           $PTCGLsetnumbervar = ltrim(preg_replace('/[^0-9]/', '', $cardData['number']), "0");
 
