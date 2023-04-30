@@ -1,6 +1,7 @@
 <?php
 require_once('config.php');
 require_once('../config.php');
+require_once('../include.php');
 
 require_once('vendor/autoload.php');
 
@@ -86,57 +87,6 @@ function returnWordIfNull($value, $word)
     } else {
         return $value;
     }
-}
-
-function ptcgl_code_override($PTCGO_Value, $SET_Value)
-{
-
-    if ($PTCGO_Value == "") {
-
-        $valueList = array(
-            array("input" => "sv1", "matched" => "SVI"),
-            array("input" => "svp", "matched" => "PR-SV"),
-            array("input" => "swsh12tg", "matched" => "CRZ-GG"),
-            array("input" => "sma", "matched" => "HIF")
-        );
-
-        foreach ($valueList as $match) {
-            if ($SET_Value == $match['input']) {
-                return $match['matched'];
-            }
-        }
-
-        return "INVALID";
-
-    } elseif ($SET_Value == "swsh12pt5gg") {
-
-        return "CRZ-GG";
-
-    } elseif ($SET_Value == "swsh12tg") {
-
-        return "SIT-GG";
-
-    } elseif ($SET_Value == "swsh11tg") {
-
-        return "LOR-GG";
-
-    } elseif ($SET_Value == "swsh10tg") {
-
-        return "ASR-GG";
-
-    } elseif ($SET_Value == "swsh9tg") {
-
-        return "BRS-GG";
-
-    } elseif ($SET_Value == "cel25c") {
-
-        return "CEL-CC";
-
-    } else {
-
-        return $PTCGO_Value;
-    }
-
 }
 
 
