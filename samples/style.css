@@ -131,6 +131,7 @@ nav ul ul li:hover {
     margin-right: 20px;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+    width: 50%
 }
 
 .panel-full {
