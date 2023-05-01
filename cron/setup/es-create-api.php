@@ -1,6 +1,6 @@
 <?php
-require_once('config.php');
 require_once('../config.php');
+require_once('../../config.php');
 
 function create_api_token_Table()
 {

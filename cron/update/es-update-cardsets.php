@@ -1,9 +1,9 @@
 <?php
-require_once('config.php');
 require_once('../config.php');
-require_once('../include.php');
+require_once('../../config.php');
+require_once('../../include.php');
 
-require_once('vendor/autoload.php');
+require_once('../vendor/autoload.php');
 
 use Pokemon\Pokemon;
 
