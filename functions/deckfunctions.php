@@ -25,6 +25,18 @@ function deck_add_view($deck_id)
     $sql = "UPDATE es_decks SET monthly_views = monthly_views + 1 WHERE id = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$deck_id]);
+
+    increment_total_deck_views();
+}
+
+function increment_total_deck_views()
+{
+    global $pdo;
+
+    $sql = "UPDATE es_site_vars SET var_value = var_value + 1 WHERE var_name = 'total_deck_views'";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
 }
 
 function ptcglDeckListToJson($decklist)

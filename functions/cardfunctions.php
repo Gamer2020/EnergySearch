@@ -24,6 +24,18 @@ function card_add_view($card_id)
   $sql = "UPDATE es_cards SET monthly_views = monthly_views + 1 WHERE id = ?";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([$card_id]);
+
+  increment_total_card_views();
+}
+
+function increment_total_card_views()
+{
+  global $pdo;
+
+  $sql = "UPDATE es_site_vars SET var_value = var_value + 1 WHERE var_name = 'total_card_views'";
+
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute();
 }
 
 function get_set_number_by_card_name($card_name)
