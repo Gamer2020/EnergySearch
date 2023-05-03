@@ -34,6 +34,9 @@ echo "DONE!<br>";
 echo "Installing Classic Collection Card table...";
 require_once('update/es-update-classic-collection.php');
 echo "DONE!<br>";
+echo "Installing Site Vars table...";
+require_once('update/es-create-site-vars.php');
+echo "DONE!<br>";
 
 
 ?>
