@@ -58,6 +58,11 @@ function ptcglDeckListToJson($decklist)
 
             $quantity = array_shift($parts);
 
+            if (!is_numeric($quantity)) {
+                continue;
+            }
+
+
             $set_number = array_pop($parts);
             while (!is_numeric($set_number) && !empty($parts)) {
                 array_unshift($parts, $set_number);
@@ -67,13 +72,13 @@ function ptcglDeckListToJson($decklist)
             $set_code = array_pop($parts);
             $card_name = implode(' ', $parts);
 
-            if (empty($set_code)) {
-                $set_code = get_ptcgo_code_by_set_id(get_set_id_by_card_name($card_name));
-            }
+            // if (empty($set_code)) {
+            //     $set_code = get_ptcgo_code_by_set_id(get_set_id_by_card_name($card_name));
+            // }
 
-            if (empty($set_number)) {
-                $set_number = get_set_number_by_card_name($card_name);
-            }
+            // if (empty($set_number)) {
+            //     $set_number = get_set_number_by_card_name($card_name);
+            // }
 
             $card_data = [
                 "quantity" => $quantity,
