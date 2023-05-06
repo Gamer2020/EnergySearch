@@ -17,7 +17,7 @@ function output_placeholder_image($width, $height)
 
 // Check if the image URL is provided
 if (!isset($_GET['ID']) || empty($_GET['ID'])) {
-    output_placeholder_image(153, 98);
+    output_placeholder_image(205, 127);
     exit;
 }
 
@@ -25,7 +25,7 @@ $url = get_card_image_by_id(sanitizeInput($_GET['ID']));
 
 // Check if the URL is valid
 if (!filter_var($url, FILTER_VALIDATE_URL)) {
-    output_placeholder_image(153, 98);
+    output_placeholder_image(205, 127);
     exit;
 }
 
@@ -34,7 +34,7 @@ $source_image = @imagecreatefrompng($url);
 
 // Check if the image is loaded successfully
 if (!$source_image) {
-    output_placeholder_image(153, 98);
+    output_placeholder_image(205, 127);
     exit;
 }
 
@@ -45,12 +45,12 @@ $width = imagesx($source_image);
 $height = imagesy($source_image);
 
 // Define the desired dimensions for the cropped image
-$crop_width = 153;
-$crop_height = 98;
+$crop_width = 205;
+$crop_height = 127;
 
 // Calculate the position to crop the image
-$x = ($width - $crop_width) / 2;
-$y = ($height - $crop_height) / 2;
+$x = 20;
+$y = 34;
 
 // Create a new image with the desired dimensions
 $cropped_image = imagecreatetruecolor($crop_width, $crop_height);
