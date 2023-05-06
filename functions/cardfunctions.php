@@ -98,6 +98,16 @@ function card_exists_by_set_number($set_id, $set_number)
   return $result > 0;
 }
 
+function get_card_image_by_id($id)
+{
+  global $pdo;
+  $stmt = $pdo->prepare("SELECT small_image FROM es_cards WHERE id = ?");
+  $stmt->bindValue(1, $id, PDO::PARAM_STR);
+  $stmt->execute();
+  $result = $stmt->fetch();
+  return $result ? $result['small_image'] : null;
+}
+
 function ptcgl_code_override($PTCGO_Value, $SET_Value)
 {
 
