@@ -39,6 +39,24 @@ function increment_total_deck_views()
     $stmt->execute();
 }
 
+function get_featuredcard_from_id($id)
+{
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT featuredcard FROM es_decks WHERE id = :id");
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$result) {
+        // Deck not found
+        return null;
+    }
+
+    return $result['featuredcard'];
+}
+
 function ptcglDeckListToJson($decklist)
 {
     $lines = explode("\n", $decklist);
