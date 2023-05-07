@@ -39,12 +39,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $card_list = ptcglDeckListToJson($data['cards']);
 
+    $deck_featured_card = "";
+
+    if ($data['source_type'] == "YOUTUBE") {
+
+        $deck_list_decoded = json_decode($card_list);
+
+        foreach ($deck_list_decoded->cards as $card) {
+
+            if (containsStringIgnoreCase($data['deck_name'], getFirstWord($card->name))) {
+
+                $deck_featured_card = get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number);
+
+                break;
+            } else {
+                $deck_featured_card = $data['featuredcard'];
+            }
+
+        }
+
+
+    } else {
+        $deck_featured_card = $data['featuredcard'];
+    }
 
 
     $result = $stmt->execute([
         $data['deck_name'],
         $card_list,
-        $data['featuredcard'] ?? NULL,
+        $deck_featured_card ?? NULL,
         $data['unlimited_legality'] ?? NULL,
         $data['standard_legality'] ?? NULL,
         $data['expanded_legality'] ?? NULL,

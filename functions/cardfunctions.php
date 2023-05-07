@@ -108,6 +108,24 @@ function get_card_image_by_id($id)
   return $result ? $result['small_image'] : null;
 }
 
+function get_card_id_by_ptcgl_set_num($ptcgl_set_id, $ptcgl_set_number) {
+  global $pdo;
+
+  $stmt = $pdo->prepare("SELECT id FROM es_cards WHERE PTCGL_set_id = :ptcgl_set_id AND PTCGL_set_number = :ptcgl_set_number");
+  $stmt->bindValue(':ptcgl_set_id', $ptcgl_set_id);
+  $stmt->bindValue(':ptcgl_set_number', $ptcgl_set_number);
+  $stmt->execute();
+
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($result) {
+      return $result['id'];
+  } else {
+      return null;
+  }
+}
+
+
 function ptcgl_code_override($PTCGO_Value, $SET_Value)
 {
 

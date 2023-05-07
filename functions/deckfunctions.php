@@ -120,9 +120,9 @@ function updateDeckListNames($deck_input)
 
     foreach ($deck_list->cards as $card) {
 
-        if (card_exists_by_set_number(get_set_id_by_ptcgo_code($card->set_code), $card->set_number)) {
-            $card->name = get_card_name_by_set_number(get_set_id_by_ptcgo_code($card->set_code), $card->set_number);
-        }
+        // if (card_exists_by_set_number(get_set_id_by_ptcgo_code($card->set_code), $card->set_number)) {
+        //     $card->name = get_card_name_by_set_number(get_set_id_by_ptcgo_code($card->set_code), $card->set_number);
+        // }
 
         $card->name = 2;
 

@@ -34,4 +34,15 @@ function sanitizeArray($array)
     return $array;
 }
 
+function getFirstWord($inputString)
+{
+    $words = explode(' ', $inputString);
+    return $words[0];
+}
+
+function containsStringIgnoreCase($haystack, $needle)
+{
+    return stripos($haystack, $needle) !== false;
+}
+
 ?>
