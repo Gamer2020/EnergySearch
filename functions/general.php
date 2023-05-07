@@ -45,4 +45,14 @@ function containsStringIgnoreCase($haystack, $needle)
     return stripos($haystack, $needle) !== false;
 }
 
+function limitStringLength($string, $maxLength)
+{
+    if (strlen($string) > $maxLength) {
+        $limitedString = substr($string, 0, $maxLength) . "...";
+    } else {
+        $limitedString = $string;
+    }
+    return $limitedString;
+}
+
 ?>

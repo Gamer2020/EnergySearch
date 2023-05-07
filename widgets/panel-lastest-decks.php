@@ -12,14 +12,8 @@ if ($row_count > 0) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo '<span id="Deck" style="float: left; width: 205px; margin-right: 20px;">';
 
-        // if ($row['FeaturedCard'] == '') {
-        //     $tempydecky = explode(',', $row['DeckList']);
-        //     echo "<a href='view-deck?DeckID=" . $row['DeckID'] . "'>" . '<img width="153" height="98" src=wp-content/plugins/php-code-for-posts/PokemonTCGDatabase/CroppedCards/' . $tempydecky[0] . ".jpg" . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
-        // } else {
-        //     echo "<a href='view-deck?DeckID=" . $row['DeckID'] . "'>" . '<img width="153" height="98" src=wp-content/plugins/php-code-for-posts/PokemonTCGDatabase/CroppedCards/' . $row['FeaturedCard'] . ".jpg" . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
-        // }
-        echo "<a href='deck.php?ID=" . $row['id'] . "'>" . '<img width="205" height="127" src=img/crop_card.php?ID=' . get_featuredcard_from_id($row['id']) . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
-        echo "<a href='deck.php?ID=" . $row['id'] . "'>" . strip_tags($row['deck_name']) . "</a>";
+        echo "<a href='deck.php?ID=" . $row['id'] . "'>" . '<img width="205" height="127" src=img/crop_card.php?ID=' . $row['featuredcard'] . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
+        echo "<a href='deck.php?ID=" . $row['id'] . "'>" . limitStringLength(htmlspecialchars_decode($row['deck_name']),60) . "</a>";
         //echo " Format: " . strip_tags($row['Format']) . "<br>";
         //echo " Votes: " . strip_tags($row['UpVotes']) . "<br>";
         //echo "Posted by " . '<a href="/members/' . $row['DeckOwner'] . '/">' . $row['DeckOwner'] . '</a><br>';
