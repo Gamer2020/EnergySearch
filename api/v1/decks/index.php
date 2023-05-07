@@ -39,6 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $card_list = ptcglDeckListToJson($data['cards']);
 
+
+    //check if list is empty
+    $deck_list_decoded = json_decode($card_list);
+
+    if (empty($deck_list_decoded->cards)) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Failed to create deck']);
+        exit();
+    }
+
+    // Determine featured card
     $deck_featured_card = $data['featuredcard'];
 
     $firstinstanceflag = 1;
