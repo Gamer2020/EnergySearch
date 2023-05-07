@@ -108,7 +108,8 @@ function get_card_image_by_id($id)
   return $result ? $result['small_image'] : null;
 }
 
-function get_card_id_by_ptcgl_set_num($ptcgl_set_id, $ptcgl_set_number) {
+function get_card_id_by_ptcgl_set_num($ptcgl_set_id, $ptcgl_set_number)
+{
   global $pdo;
 
   $stmt = $pdo->prepare("SELECT id FROM es_cards WHERE PTCGL_set_id = :ptcgl_set_id AND PTCGL_set_number = :ptcgl_set_number");
@@ -119,9 +120,9 @@ function get_card_id_by_ptcgl_set_num($ptcgl_set_id, $ptcgl_set_number) {
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
   if ($result) {
-      return $result['id'];
+    return $result['id'];
   } else {
-      return null;
+    return null;
   }
 }
 
@@ -227,6 +228,29 @@ function get_set_number_from_classic_collection_table($id)
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
   return $result ? $result['set_number'] : null;
+}
+
+function removeNonSpeciesFromNameString($string)
+{
+  $wordsToRemove = array('Origin', 'Forme', 'PH', 'Radiant', 'Hisuian');
+
+  // Convert string and words to lowercase to avoid case-sensitive matching
+  $string = strtolower($string);
+  $wordsToRemove = array_map('strtolower', $wordsToRemove);
+
+  // Remove words from string
+  foreach ($wordsToRemove as $word) {
+    $string = str_replace($word, '', $string);
+  }
+
+  // Remove extra spaces between words
+  $string = preg_replace('/\s+/', ' ', $string);
+
+  // Trim spaces from beginning and end of string
+  $string = trim($string);
+
+  // Return the modified string
+  return $string;
 }
 
 ?>
