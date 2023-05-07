@@ -156,7 +156,7 @@ function ptcgl_code_override($PTCGO_Value, $SET_Value)
 
   } elseif ($SET_Value == "swsh11tg") {
 
-    return "LOR-GG";
+    return "LOR-TG";
 
   } elseif ($SET_Value == "swsh10tg") {
 
