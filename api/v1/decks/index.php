@@ -51,7 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $deck_featured_card = get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number);
 
-                break;
+                if (!empty($deck_featured_card)) {
+                    break;
+                }
+
             } else {
                 $deck_featured_card = $data['featuredcard'];
             }
