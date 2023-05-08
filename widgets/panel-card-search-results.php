@@ -42,14 +42,14 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
     $has_previous_page = $page > 1;
     $has_next_page = $page < $total_pages;
 
-echo '<div style="text-align: center;">';
+    echo '<div style="text-align: center;">';
 
     foreach ($results as $card) {
         echo "<a href='card.php" . "?ID=" . $card['id'] . "'>" . '<img width="250" height="350" src=' . $card['small_image'] . "" . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
 
     }
 
-echo '</div>';
+    echo '</div>';
 
     // Encode the results and pagination information as a JSON string and output it
     // echo json_encode([
