@@ -21,7 +21,7 @@
 <p> Any claim relating to Energy Search’s web site shall be governed by the laws of the State of New Jersey without regard to its conflict of law provisions.</p>
 <p>Privacy Policy</p>
 <p> Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate and disclose and make use of personal information. The following outlines our privacy policy.</p>
-<p>At this time we only collect IP addresses when a person performs an upvote. This is done to limit how many upvotes a person can perform on one item. The Engery Search code does not rely on cookies at all. In testing a PHP session cookie (PHPSESSID) was seen, but this is normal for PHP websites and it is not used. No other information is currently collected and this will be updated if that every changes.</p>
+<p>At this time we only collect IP addresses when a person performs an upvote. This is done to limit how many upvotes a person can perform on one item. The Engery Search code does not rely on cookies at all. In testing a PHP session cookie (PHPSESSID) was seen, but this is normal for PHP websites and it is not used. No other information is currently collected and this will be updated if that ever changes.</p>
 <p>*Before or at the time of collecting personal information, we will identify the purposes for which information is being collected.<br>
 *We will collect and use of personal information solely with the objective of fulfilling those purposes specified by us and for other compatible purposes, unless we obtain the consent of the individual concerned or as required by law.<br>
 *We will only retain personal information as long as necessary for the fulfillment of those purposes.<br>

@@ -23,7 +23,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 999;
-    max-width: 1160px;
+    max-width: 1460px;
     margin: 0 auto;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -110,7 +110,7 @@ nav ul ul li:hover {
 .container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -118,7 +118,7 @@ nav ul ul li:hover {
 .container-wide {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1210px;
+    max-width: 1510px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -152,7 +152,7 @@ nav ul ul li:hover {
 
 /* aside styling */
 aside {
-    flex: 0 0 30%;
+    flex: 0 0 18%;
     background-color: #333;
     padding: 20px;
     border-radius: 10px 10px 10px 10px;
@@ -177,7 +177,7 @@ footer {
     background-color: #222;
     padding: 20px;
     text-align: center;
-    max-width: 1160px;
+    max-width: 1460px;
     margin: 0 auto;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);

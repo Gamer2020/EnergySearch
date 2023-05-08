@@ -24,7 +24,7 @@ if ($row_count > 0) {
 
         $RowNumVar = $RowNumVar + 1;
 
-        if ($RowNumVar == 3) {
+        if ($RowNumVar == 5) {
 
             echo "<br style='clear: left;' /><br style='clear: left;' />";
 
