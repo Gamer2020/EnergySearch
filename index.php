@@ -12,19 +12,14 @@ require_once 'include.php';
     <div class="container">
         <div class="panel">
 
-            <h1>Energy Search</h1>
+            <!-- <h1>Energy Search</h1> -->
             <!-- <p>TODO Think of something to put here. Card search maybe?</p> -->
-            <br>
-            <?php include "widgets/panel-lastest-decks.php" ?>
+            <!-- <br> -->
+            <?php include "widgets/panel-lastest-decks.php"; ?>
 
         </div>
         <aside>
-            <h2>Future Use</h2>
-            <ul>
-                <li>line 1</li>
-                <li>line 2</li>
-                <li>line 3</li>
-            </ul>
+            <?php include "sidebar/sidebar-generic.php"; ?>
         </aside>
     </div>
     <?php include "footer.php" ?>
