@@ -1,9 +1,6 @@
 <?php
 if (isset($_GET['search']) && ($_GET['search'] == "search")) {
 
-    echo "<h2>Search Results</h2>";
-    echo "<br>";
-
     global $pdo;
 
     // Get the search query and page number from the URL and check if they are set and not empty
@@ -42,12 +39,50 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
     $has_previous_page = $page > 1;
     $has_next_page = $page < $total_pages;
 
+    echo "<h2>Search Results: " . $total_records . " cards found!</h2>";
+    echo "<br>";
+
     echo '<div style="text-align: center;">';
+
+    echo '<div class="pagination">';
+
+    if ($has_previous_page) {
+        $previous_page = $page - 1;
+        echo "<a href='?search=search&page={$previous_page}&cardname=" . urlencode(strtolower($cardname)) . "' style='margin-right: 10px;'>Previous</a>";
+    }
+
+    echo "Page {$page} of {$total_pages}";
+
+    if ($has_next_page) {
+        $next_page = $page + 1;
+        echo "<a href='?search=search&page={$next_page}&cardname=" . urlencode(strtolower($cardname)) . "' style='margin-left: 10px;'>Next</a>";
+    }
+
+    echo '</div>';
+
 
     foreach ($results as $card) {
         echo "<a href='card.php" . "?ID=" . $card['id'] . "'>" . '<img width="250" height="350" src=' . $card['small_image'] . "" . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
 
     }
+
+    echo "<br>";
+
+    echo '<div class="pagination">';
+
+    if ($has_previous_page) {
+        $previous_page = $page - 1;
+        echo "<a href='?search=search&page={$previous_page}&cardname=" . urlencode(strtolower($cardname)) . "' style='margin-right: 10px;'>Previous</a>";
+    }
+
+    echo "Page {$page} of {$total_pages}";
+
+    if ($has_next_page) {
+        $next_page = $page + 1;
+        echo "<a href='?search=search&page={$next_page}&cardname=" . urlencode(strtolower($cardname)) . "' style='margin-left: 10px;'>Next</a>";
+    }
+
+    echo '</div>';
 
     echo '</div>';
 
