@@ -22,13 +22,20 @@ require_once 'include.php';
                         $stmt->execute([$id]);
                         $set = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                        echo '<table>';
+                        echo '<table cellspacing="0" border="1">';
+                        echo '<tbody>';
                         echo '<tr>';
-                        echo '<th><img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</th>';
+                        echo '<th style="font-size: 1.5em; line-height: 1.5em;" colspan="3"><img width="30" height="30" src=' . $set['symbol_url'] . '>' . $set['name'] . '</th>';
                         echo '</tr>';
 
                         echo '<tr>';
-                        echo '<td valign="top">';
+
+                        echo '<td rowspan="90" width="30%">' . '<img width="700" height="250" src=' . $set['logo_url'] . " alt=" . '"' . $set['name'] . '"' . ">";
+
+                        echo '</td></tr>';
+
+                        echo '<tr>';
+                        echo '<td valign="top" >';
                         echo '<span id="Set">';
 
                         ?>
@@ -37,27 +44,27 @@ require_once 'include.php';
                         <?php echo $set['series']; ?>
                         <br>
 
-                        <b>Printed Total:</b>
-                        <?php echo $set['printed_total']; ?>
-                        <br>
+                        <!-- <b>Printed Total:</b>
+                        <?php //echo $set['printed_total']; ?>
+                        <br> -->
 
-                        <b>Total:</b>
+                        <b>Total Cards:</b>
                         <?php echo $set['total']; ?>
                         <br>
+
+                        <b>Standard:</b>
+                        <?php echo $set['standard_legality']; ?>
+                        &nbsp;
+
+                        <b>Expanded:</b>
+                        <?php echo $set['expanded_legality']; ?>
+                        &nbsp;
 
                         <b>Unlimited:</b>
                         <?php echo $set['unlimited_legality']; ?>
                         <br>
 
-                        <b>Standard:</b>
-                        <?php echo $set['standard_legality']; ?>
-                        <br>
-
-                        <b>Expanded:</b>
-                        <?php echo $set['expanded_legality']; ?>
-                        <br>
-
-                        <b>PTCGL Code:</b>
+                        <b>PTCGL Set Code:</b>
                         <?php echo strtoupper($set['ptcgo_code']); ?>
                         <br>
 
@@ -65,7 +72,7 @@ require_once 'include.php';
                         <?php echo $set['release_date']; ?>
                         <br>
 
-                        <b>Updated At:</b>
+                        <b>Data Updated At:</b>
                         <?php echo $set['updated_at']; ?>
                         <br>
 
@@ -75,7 +82,7 @@ require_once 'include.php';
                         echo '</span>';
                         echo "</td>";
                         echo '</tr>';
-                        echo '</table>';
+                        echo '</tbody></table>';
 
                         $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE set_id = ? ORDER BY CAST(REGEXP_REPLACE(set_number, '[^0-9]', '') AS UNSIGNED) ASC");
                         $stmt->execute([$id]);
