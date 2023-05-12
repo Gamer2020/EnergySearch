@@ -1,5 +1,6 @@
 <?php
-if (isset($_GET['search']) && ($_GET['search'] == "search")) {
+if (isset($_GET['search']) && ($_GET['search'] == "search"))
+{
 
     global $pdo;
 
@@ -9,18 +10,20 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
 
     // To add more parameters, follow the pattern above, replacing 'setid' with the parameter name.
 
-    $page = isset($_GET['page']) && !empty($_GET['page']) ? (int) $_GET['page'] : 1;
+    $page = isset($_GET['page']) && !empty($_GET['page']) ? (int)$_GET['page'] : 1;
     $limit = 40;
     $offset = ($page - 1) * $limit;
 
     // Prepare the SQL statement with optional conditions and pagination
     $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM es_cards WHERE 1=1";
 
-    if ($cardname !== null) {
+    if ($cardname !== null)
+    {
         $sql .= " AND name LIKE :cardname";
     }
 
-    if ($setid !== null) {
+    if ($setid !== null)
+    {
         $sql .= " AND setid = :setid";
     }
 
@@ -29,11 +32,13 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
     $sql .= " LIMIT :limit OFFSET :offset";
     $stmt = $pdo->prepare($sql);
 
-    if ($cardname !== null) {
+    if ($cardname !== null)
+    {
         $stmt->bindValue(':cardname', '%' . $cardname . '%', PDO::PARAM_STR);
     }
 
-    if ($setid !== null) {
+    if ($setid !== null)
+    {
         $stmt->bindValue(':setid', $setid, PDO::PARAM_STR);
     }
 
@@ -48,7 +53,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
 
     // Get the total number of records
     $count_stmt = $pdo->query("SELECT FOUND_ROWS()");
-    $total_records = (int) $count_stmt->fetchColumn();
+    $total_records = (int)$count_stmt->fetchColumn();
     $total_pages = ceil($total_records / $limit);
 
     $has_previous_page = $page > 1;
@@ -72,7 +77,8 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
     $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
 
     // If there's a previous page
-    if ($has_previous_page) {
+    if ($has_previous_page)
+    {
         $previous_page = $page - 1;
         // Create a link to the previous page, append page number at the end
         echo "<a href='{$base_url}&page={$previous_page}' style='margin-right: 10px;'>Previous</a>";
@@ -82,7 +88,8 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
     echo "Page {$page} of {$total_pages}";
 
     // If there's a next page
-    if ($has_next_page) {
+    if ($has_next_page)
+    {
         $next_page = $page + 1;
         // Create a link to the next page, append page number at the end
         echo "<a href='{$base_url}&page={$next_page}' style='margin-left: 10px;'>Next</a>";
@@ -92,7 +99,8 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
     // End of pagination
 
 
-    foreach ($results as $card) {
+    foreach ($results as $card)
+    {
         echo "<a href='card.php" . "?ID=" . $card['id'] . "'>" . '<img width="250" height="350" src=' . $card['small_image'] . "" . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
     }
 
@@ -111,7 +119,8 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
     $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
 
     // If there's a previous page
-    if ($has_previous_page) {
+    if ($has_previous_page)
+    {
         $previous_page = $page - 1;
         // Create a link to the previous page, append page number at the end
         echo "<a href='{$base_url}&page={$previous_page}' style='margin-right: 10px;'>Previous</a>";
@@ -121,7 +130,8 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
     echo "Page {$page} of {$total_pages}";
 
     // If there's a next page
-    if ($has_next_page) {
+    if ($has_next_page)
+    {
         $next_page = $page + 1;
         // Create a link to the next page, append page number at the end
         echo "<a href='{$base_url}&page={$next_page}' style='margin-left: 10px;'>Next</a>";
