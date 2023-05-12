@@ -3,8 +3,11 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
 
     global $pdo;
 
-    // Get the search query and page number from the URL and check if they are set and not empty
+    // Define the search parameters
     $cardname = isset($_GET['cardname']) && !empty($_GET['cardname']) ? sanitizeInput($_GET['cardname']) : null;
+    $setid = isset($_GET['setid']) && !empty($_GET['setid']) ? sanitizeInput($_GET['setid']) : null;
+
+    // To add more parameters, follow the pattern above, replacing 'setid' with the parameter name.
 
     $page = isset($_GET['page']) && !empty($_GET['page']) ? (int) $_GET['page'] : 1;
     $limit = 40;
@@ -17,12 +20,24 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
         $sql .= " AND name LIKE :cardname";
     }
 
+    if ($setid !== null) {
+        $sql .= " AND setid = :setid";
+    }
+
+    // To add more conditions, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and field name respectively.
+
     $sql .= " LIMIT :limit OFFSET :offset";
     $stmt = $pdo->prepare($sql);
 
     if ($cardname !== null) {
         $stmt->bindValue(':cardname', '%' . $cardname . '%', PDO::PARAM_STR);
     }
+
+    if ($setid !== null) {
+        $stmt->bindValue(':setid', $setid, PDO::PARAM_STR);
+    }
+
+    // To bind more parameters, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and variable respectively.
 
     $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -44,45 +59,77 @@ if (isset($_GET['search']) && ($_GET['search'] == "search")) {
 
     echo '<div style="text-align: center;">';
 
+    // Pagination
     echo '<div class="pagination">';
 
+    // Create the base URL for pagination links
+    $base_url = "?search=search";
+
+    // Append the parameters to the base URL if they are set and not empty
+    // To add more search parameters, copy and modify the following line:
+    // $base_url .= isset($parameter) && !empty($parameter) ? "&parameter=" . urlencode($parameter) : "";
+    $base_url .= isset($cardname) && !empty($cardname) ? "&cardname=" . urlencode(strtolower($cardname)) : "";
+    $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
+
+    // If there's a previous page
     if ($has_previous_page) {
         $previous_page = $page - 1;
-        echo "<a href='?search=search&page={$previous_page}&cardname=" . urlencode(strtolower($cardname)) . "' style='margin-right: 10px;'>Previous</a>";
+        // Create a link to the previous page, append page number at the end
+        echo "<a href='{$base_url}&page={$previous_page}' style='margin-right: 10px;'>Previous</a>";
     }
 
+    // Display the current page number and the total number of pages
     echo "Page {$page} of {$total_pages}";
 
+    // If there's a next page
     if ($has_next_page) {
         $next_page = $page + 1;
-        echo "<a href='?search=search&page={$next_page}&cardname=" . urlencode(strtolower($cardname)) . "' style='margin-left: 10px;'>Next</a>";
+        // Create a link to the next page, append page number at the end
+        echo "<a href='{$base_url}&page={$next_page}' style='margin-left: 10px;'>Next</a>";
     }
 
     echo '</div>';
+    // End of pagination
 
 
     foreach ($results as $card) {
         echo "<a href='card.php" . "?ID=" . $card['id'] . "'>" . '<img width="250" height="350" src=' . $card['small_image'] . "" . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
-
     }
 
     echo "<br>";
 
+    // Pagination
     echo '<div class="pagination">';
 
+    // Create the base URL for pagination links
+    $base_url = "?search=search";
+
+    // Append the parameters to the base URL if they are set and not empty
+    // To add more search parameters, copy and modify the following line:
+    // $base_url .= isset($parameter) && !empty($parameter) ? "&parameter=" . urlencode($parameter) : "";
+    $base_url .= isset($cardname) && !empty($cardname) ? "&cardname=" . urlencode(strtolower($cardname)) : "";
+    $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
+
+    // If there's a previous page
     if ($has_previous_page) {
         $previous_page = $page - 1;
-        echo "<a href='?search=search&page={$previous_page}&cardname=" . urlencode(strtolower($cardname)) . "' style='margin-right: 10px;'>Previous</a>";
+        // Create a link to the previous page, append page number at the end
+        echo "<a href='{$base_url}&page={$previous_page}' style='margin-right: 10px;'>Previous</a>";
     }
 
+    // Display the current page number and the total number of pages
     echo "Page {$page} of {$total_pages}";
 
+    // If there's a next page
     if ($has_next_page) {
         $next_page = $page + 1;
-        echo "<a href='?search=search&page={$next_page}&cardname=" . urlencode(strtolower($cardname)) . "' style='margin-left: 10px;'>Next</a>";
+        // Create a link to the next page, append page number at the end
+        echo "<a href='{$base_url}&page={$next_page}' style='margin-left: 10px;'>Next</a>";
     }
 
     echo '</div>';
+    // End of pagination
+
 
     echo '</div>';
 
