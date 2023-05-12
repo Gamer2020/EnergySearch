@@ -49,7 +49,8 @@ function get_featuredcard_from_id($id)
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$result) {
+    if (!$result)
+    {
         // Deck not found
         return null;
     }
@@ -64,25 +65,30 @@ function ptcglDeckListToJson($decklist)
         "cards" => [],
     ];
 
-    foreach ($lines as $line) {
+    foreach ($lines as $line)
+    {
         $line = trim($line);
 
-        if ($line) {
+        if ($line)
+        {
             $parts = explode(' ', $line);
 
-            if (empty($parts)) {
+            if (empty($parts))
+            {
                 continue;
             }
 
             $quantity = array_shift($parts);
 
-            if (!is_numeric($quantity)) {
+            if (!is_numeric($quantity))
+            {
                 continue;
             }
 
 
             $set_number = array_pop($parts);
-            while (!is_numeric($set_number) && !empty($parts)) {
+            while (!is_numeric($set_number) && !empty($parts))
+            {
                 array_unshift($parts, $set_number);
                 $set_number = array_pop($parts);
             }
@@ -97,6 +103,11 @@ function ptcglDeckListToJson($decklist)
             // if (empty($set_number)) {
             //     $set_number = get_set_number_by_card_name($card_name);
             // }
+
+            if (card_exists_by_ptcgl(strtoupper($set_code), $set_number))
+            {
+                $card_name = get_card_name_by_ptcgl(strtoupper($set_code), $set_number);
+            }
 
             $card_data = [
                 "quantity" => $quantity,
@@ -118,7 +129,8 @@ function updateDeckListNames($deck_input)
 {
     $deck_list = json_decode($deck_input['cards']);
 
-    foreach ($deck_list->cards as $card) {
+    foreach ($deck_list->cards as $card)
+    {
 
         // if (card_exists_by_set_number(get_set_id_by_ptcgo_code($card->set_code), $card->set_number)) {
         //     $card->name = get_card_name_by_set_number(get_set_id_by_ptcgo_code($card->set_code), $card->set_number);
