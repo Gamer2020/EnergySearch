@@ -8,6 +8,11 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     $cardname = isset($_GET['cardname']) && !empty($_GET['cardname']) ? sanitizeInput($_GET['cardname']) : null;
     $setid = isset($_GET['setid']) && !empty($_GET['setid']) ? sanitizeInput($_GET['setid']) : null;
 
+    if ($setid === "All")
+    {
+        $setid = null;
+    }
+
     // To add more parameters, follow the pattern above, replacing 'setid' with the parameter name.
 
     $page = isset($_GET['page']) && !empty($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -24,7 +29,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
 
     if ($setid !== null)
     {
-        $sql .= " AND setid = :setid";
+        $sql .= " AND set_id = :setid";
     }
 
     // To add more conditions, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and field name respectively.
@@ -85,7 +90,11 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     }
 
     // Display the current page number and the total number of pages
-    echo "Page {$page} of {$total_pages}";
+    if ($total_records !== 0)
+    {
+        echo "Page {$page} of {$total_pages}";
+    }
+
 
     // If there's a next page
     if ($has_next_page)
@@ -127,7 +136,10 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     }
 
     // Display the current page number and the total number of pages
-    echo "Page {$page} of {$total_pages}";
+    if ($total_records !== 0)
+    {
+        echo "Page {$page} of {$total_pages}";
+    }
 
     // If there's a next page
     if ($has_next_page)
