@@ -11,9 +11,11 @@ require_once 'include.php';
     <?php include "navbar.php" ?>
     <div class="container">
         <div class="panel">
-
-            <?php if (isset($_GET['ID'])) {
-                if (card_exists(sanitizeInput($_GET['ID']))) {
+            <?php include "widgets/panel-card-search.php" ?>
+            <?php if (isset($_GET['ID']))
+            {
+                if (card_exists(sanitizeInput($_GET['ID'])))
+                {
 
 
                     global $pdo;
@@ -23,7 +25,8 @@ require_once 'include.php';
                     $stmt->execute([$id]);
                     $card = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    try {
+                    try
+                    {
 
                         echo '<table cellspacing="0" border="1">';
 
@@ -116,10 +119,12 @@ require_once 'include.php';
                         echo '<td> <b>Weakness:</b>';
 
                         echo '</td><td>';
-                        if (($card['weakness']) != "null") {
+                        if (($card['weakness']) != "null")
+                        {
                             $weaknesses = json_decode($card['weakness'], true);
 
-                            for ($x = 0; $x < count($weaknesses); $x++) {
+                            for ($x = 0; $x < count($weaknesses); $x++)
+                            {
                                 echo $weaknesses[$x]['type'];
                                 echo " " . $weaknesses[$x]['value'];
                                 echo '<br>';
@@ -137,10 +142,12 @@ require_once 'include.php';
 
                         echo '</td><td>';
 
-                        if (($card['resistance']) != "null") {
+                        if (($card['resistance']) != "null")
+                        {
                             $resistance = json_decode($card['resistance'], true);
 
-                            for ($x = 0; $x < count($resistance); $x++) {
+                            for ($x = 0; $x < count($resistance); $x++)
+                            {
                                 echo $resistance[$x]['type'];
                                 echo " " . $resistance[$x]['value'];
                                 echo '<br>';
@@ -189,42 +196,49 @@ require_once 'include.php';
 
                         echo '</td><td>';
 
-                        if ($card['rules'] <> "") {
+                        if ($card['rules'] <> "")
+                        {
                             echo $card['rules'];
                             echo '<br>' . '<br>';
                         }
 
-                        if ($card['abilitytext1'] <> "") {
+                        if ($card['abilitytext1'] <> "")
+                        {
                             echo $card['abilitytype1'] . " - " . $card['abilityname1'] . "<br>";
                             echo $card['abilitytext1'];
                             echo '<br>' . '<br>';
                         }
 
-                        if ($card['abilitytext2'] <> "") {
+                        if ($card['abilitytext2'] <> "")
+                        {
                             echo $card['abilitytype2'] . " - " . $card['abilityname2'] . "<br>";
                             echo $card['abilitytext2'];
                             echo '<br>' . '<br>';
                         }
 
-                        if ($card['attackname1'] <> "") {
+                        if ($card['attackname1'] <> "")
+                        {
                             echo $card['attackcost1'] . " - " . $card['attackname1'] . " " . $card['attackdamage1'] . "<br>";
                             echo $card['attacktext1'];
                             echo '<br>' . '<br>';
                         }
 
-                        if ($card['attackname2'] <> "") {
+                        if ($card['attackname2'] <> "")
+                        {
                             echo $card['attackcost2'] . " - " . $card['attackname2'] . " " . $card['attackdamage2'] . "<br>";
                             echo $card['attacktext2'];
                             echo '<br>' . '<br>';
                         }
 
-                        if ($card['attackname3'] <> "") {
+                        if ($card['attackname3'] <> "")
+                        {
                             echo $card['attackcost3'] . " - " . $card['attackname3'] . " " . $card['attackdamage3'] . "<br>";
                             echo $card['attacktext3'];
                             echo '<br>' . '<br>';
                         }
 
-                        if ($card['attackname4'] <> "") {
+                        if ($card['attackname4'] <> "")
+                        {
                             echo $card['attackcost4'] . " - " . $card['attackname4'] . " " . $card['attackdamage4'] . "<br>";
                             echo $card['attacktext4'];
                             echo '<br>' . '<br>';
@@ -277,27 +291,28 @@ require_once 'include.php';
             
                         // echo '</tr>';
                         // echo '</table>';
-
+            
                         //catch exception
-                    } catch (Exception $e) {
+                    }
+                    catch (Exception $e)
+                    {
                         echo 'Message: ' . $e->getMessage();
                     }
 
-                } else {
+                }
+                else
+                {
                     echo "Card does not exist!";
                 }
-            } else {
+            }
+            else
+            {
                 echo "No card specified!";
             }
             ?>
         </div>
         <aside>
-            <h2>Future Use</h2>
-            <ul>
-                <li>line 1</li>
-                <li>line 2</li>
-                <li>line 3</li>
-            </ul>
+            <?php include "sidebar/sidebar-card.php"; ?>
         </aside>
     </div>
     <?php include "footer.php" ?>
