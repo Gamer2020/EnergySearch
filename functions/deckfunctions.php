@@ -12,6 +12,25 @@ function deck_exists($deck_id)
     return $count > 0;
 }
 
+function deck_is_visible($deck_id)
+{
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT * FROM es_decks WHERE id = ?");
+    $stmt->execute([$deck_id]);
+
+    $deck = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($deck['visible'] === 'YES')
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
 function deck_add_view($deck_id)
 {
     global $pdo;

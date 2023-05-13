@@ -2,7 +2,7 @@
 
 <?php if (isset($_GET['ID']))
 {
-    if (deck_exists(sanitizeInput($_GET['ID'])))
+    if (deck_exists(sanitizeInput($_GET['ID'])) && deck_is_visible(sanitizeInput($_GET['ID'])))
     {
         global $pdo;
         $id = sanitizeInput($_GET['ID']);
