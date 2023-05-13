@@ -165,61 +165,85 @@
   echo '</select>';
   ?>
 
-  <?php
-  // $supertypes = Pokemon::Supertype()->all();
-  
-  // echo 'Category: <select name="cat">';
-  
-  // echo '<option'; ?>
-  <?php //if (isset($_GET['cat'])) {
-  //        if (sanitize_text_field($_GET['cat']) == "All") {
-  //            echo "selected";
-  //        }
-  //    } else {
-  //        echo "selected";
-  //    } ?>
-  <?php //echo 'value="All">All</option>';
-  
-  //     foreach ($supertypes as $supertype) {
-  
-  //         echo '<option ' .
-  //             ((isset($_GET['cat'])) ?
-  //                 ((sanitize_text_field($_GET['cat']) == $supertype) ? 'selected' : '')
-  //                 : '')
-  //             . ' value="' . $supertype . '">' . $supertype . '</option>';
-  
-  //     }
-  
-  //     echo '</select>';
-  ?>
+<?php
 
-  <?php
-  // $subtypes = Pokemon::Subtype()->all();
-  
-  // echo 'Sub Category: <select name="subcat">';
-  
-  // echo '<option'; ?>
-  <?php //if (isset($_GET['subcat'])) {
-  //        if (sanitize_text_field($_GET['subcat']) == "All") {
-  //            echo "selected";
-  //        }
-  //    } else {
-  //        echo "selected";
-  //    }     ?>
-  <?php //echo 'value="All">All</option>';
-  
-  //     foreach ($subtypes as $subtype) {
-  
-  //         echo '<option ' .
-  //             ((isset($_GET['subcat'])) ?
-  //                 ((sanitize_text_field($_GET['subcat']) == $subtype) ? 'selected' : '')
-  //                 : '')
-  //             . ' value="' . $subtype . '">' . $subtype . '</option>';
-  
-  //     }
-  
-  //     echo '</select>';
-  ?>
+echo 'Category: <select name="supertypes">';
+echo '<option ';
+
+if (isset($_GET['supertypes']))
+{
+  if (sanitizeInput($_GET['supertypes']) == "All")
+  {
+    echo "selected";
+  }
+}
+else
+{
+  echo "selected";
+} ?>
+<?php echo 'value="All">All</option>'; ?>
+
+<?php
+
+global $pdo;
+
+$stmt = $pdo->prepare("SELECT * FROM es_card_super_types");
+$stmt->execute();
+$types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($types as $type)
+{
+
+  echo '<option ' .
+      ((isset($_GET['supertypes'])) ?
+          ((sanitizeInput($_GET['supertypes']) == $type['name']) ? 'selected' : '')
+          : '')
+      . ' value="' . $type['name'] . '">' . $type['name'] . '</option>';
+
+}
+
+echo '</select>';
+?>
+
+<?php
+
+echo 'Sub Category: <select name="subtypes">';
+echo '<option ';
+
+if (isset($_GET['subtypes']))
+{
+  if (sanitizeInput($_GET['subtypes']) == "All")
+  {
+    echo "selected";
+  }
+}
+else
+{
+  echo "selected";
+} ?>
+<?php echo 'value="All">All</option>'; ?>
+
+<?php
+
+global $pdo;
+
+$stmt = $pdo->prepare("SELECT * FROM es_card_sub_types");
+$stmt->execute();
+$types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($types as $type)
+{
+
+  echo '<option ' .
+      ((isset($_GET['subtypes'])) ?
+          ((sanitizeInput($_GET['subtypes']) == $type['name']) ? 'selected' : '')
+          : '')
+      . ' value="' . $type['name'] . '">' . $type['name'] . '</option>';
+
+}
+
+echo '</select>';
+?>
 
   <input type="submit" name="search" value="search"></input>
 </form><br>
