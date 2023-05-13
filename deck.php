@@ -12,8 +12,13 @@ require_once 'include.php';
     <div class="container">
         <div class="panel">
 
-            <?php if (isset($_GET['ID'])) {
-                if (deck_exists(sanitizeInput($_GET['ID']))) {
+
+
+
+            <?php if (isset($_GET['ID']))
+            {
+                if (deck_exists(sanitizeInput($_GET['ID'])))
+                {
 
 
                     global $pdo;
@@ -23,7 +28,18 @@ require_once 'include.php';
                     $stmt->execute([$id]);
                     $deck = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    try {
+                    try
+                    {
+
+                        echo '<div id="deckviewer-wrapper">';
+                        echo '<div id="deckviewer-title">' . limitStringLength(htmlspecialchars_decode($deck['deck_name']), 100) . '</div>';
+                        echo '<div id="deckviewer">';
+                        echo '<ul>';
+                        echo '<li><a href="#tab-1">Deck List</a></li>';
+                        echo '<li><a href="#tab-2">Future Use</a></li>';
+                        echo '<li><a href="#tab-3">Future Use</a></li>';
+                        echo '</ul>';
+
 
                         // print_r($deck['source_identifier']);
                         // echo "<br>";
@@ -46,22 +62,51 @@ require_once 'include.php';
                         // echo "<br>";
                         // echo "<br>";
             
-                        foreach ($deck_list->cards as $card) {
+                        echo '<div id="tab-1">';
+                        //echo '<p>Content for Tab 1</p>';
+            
+
+                        foreach ($deck_list->cards as $card)
+                        {
                             echo "Quantity: " . $card->quantity . "<br>";
                             echo "Name: " . $card->name . "<br>";
                             echo "Set code: " . $card->set_code . "<br>";
                             echo "Set number: " . $card->set_number . "<br><br>";
                         }
 
+                        echo '</div>';
+
+                        echo '<div id="tab-2">';
+                        echo '<p>This is a planned feature that has not been implemented yet...</p>';
+                        echo '</div>';
+                        echo '<div id="tab-3">';
+                        echo '<p>This is a planned feature that has not been implemented yet...</p>';
+                        echo '</div>';
+
+                        echo "</div>";
+                        echo "</div>";
+
+                        echo "<script>";
+                        echo "$(function () {";
+                        echo '$("#deckviewer").tabs();';
+                        echo "});";
+                        echo "</script>";
+
                         //catch exception
-                    } catch (Exception $e) {
+                    }
+                    catch (Exception $e)
+                    {
                         echo 'Message: ' . $e->getMessage();
                     }
 
-                } else {
+                }
+                else
+                {
                     echo "Deck does not exist!";
                 }
-            } else {
+            }
+            else
+            {
                 echo "No deck specified!";
             }
             ?>
