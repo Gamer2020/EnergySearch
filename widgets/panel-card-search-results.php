@@ -161,11 +161,11 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     // $base_url .= isset($parameter) && !empty($parameter) ? "&parameter=" . urlencode($parameter) : "";
     $base_url .= isset($cardname) && !empty($cardname) ? "&cardname=" . urlencode(strtolower($cardname)) : "";
     $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
-    $base_url .= isset($type) && !empty($type) ? "&set_id=" . urlencode($type) : "";
-    $base_url .= isset($weakness) && !empty($weakness) ? "&set_id=" . urlencode($weakness) : "";
-    $base_url .= isset($resistance) && !empty($resistance) ? "&set_id=" . urlencode($resistance) : "";
-    $base_url .= isset($supertypes) && !empty($supertypes) ? "&set_id=" . urlencode($supertypes) : "";
-    $base_url .= isset($subtypes) && !empty($subtypes) ? "&set_id=" . urlencode($subtypes) : "";
+    $base_url .= isset($type) && !empty($type) ? "&type=" . urlencode($type) : "";
+    $base_url .= isset($weakness) && !empty($weakness) ? "&weakness=" . urlencode($weakness) : "";
+    $base_url .= isset($resistance) && !empty($resistance) ? "&resistance=" . urlencode($resistance) : "";
+    $base_url .= isset($supertypes) && !empty($supertypes) ? "&supertypes=" . urlencode($supertypes) : "";
+    $base_url .= isset($subtypes) && !empty($subtypes) ? "&subtypes=" . urlencode($subtypes) : "";
 
     // If there's a previous page
     if ($has_previous_page)
@@ -212,11 +212,11 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     // $base_url .= isset($parameter) && !empty($parameter) ? "&parameter=" . urlencode($parameter) : "";
     $base_url .= isset($cardname) && !empty($cardname) ? "&cardname=" . urlencode(strtolower($cardname)) : "";
     $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
-    $base_url .= isset($type) && !empty($type) ? "&set_id=" . urlencode($type) : "";
-    $base_url .= isset($weakness) && !empty($weakness) ? "&set_id=" . urlencode($weakness) : "";
-    $base_url .= isset($resistance) && !empty($resistance) ? "&set_id=" . urlencode($resistance) : "";
-    $base_url .= isset($supertypes) && !empty($supertypes) ? "&set_id=" . urlencode($supertypes) : "";
-    $base_url .= isset($subtypes) && !empty($subtypes) ? "&set_id=" . urlencode($subtypes) : "";
+    $base_url .= isset($type) && !empty($type) ? "&type=" . urlencode($type) : "";
+    $base_url .= isset($weakness) && !empty($weakness) ? "&weakness=" . urlencode($weakness) : "";
+    $base_url .= isset($resistance) && !empty($resistance) ? "&resistance=" . urlencode($resistance) : "";
+    $base_url .= isset($supertypes) && !empty($supertypes) ? "&supertypes=" . urlencode($supertypes) : "";
+    $base_url .= isset($subtypes) && !empty($subtypes) ? "&subtypes=" . urlencode($subtypes) : "";
 
     // If there's a previous page
     if ($has_previous_page)
