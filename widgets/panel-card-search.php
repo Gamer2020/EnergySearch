@@ -14,12 +14,12 @@
   {
     if (sanitizeInput($_GET['setid']) == "All")
     {
-      echo "selected";
+      echo "selected ";
     }
   }
   else
   {
-    echo "selected";
+    echo "selected ";
   } ?>
   <?php echo 'value="All">All</option>'; ?>
 
@@ -54,12 +54,12 @@
   {
     if (sanitizeInput($_GET['type']) == "All")
     {
-      echo "selected";
+      echo "selected ";
     }
   }
   else
   {
-    echo "selected";
+    echo "selected ";
   } ?>
   <?php echo 'value="All">All</option>'; ?>
 
@@ -94,12 +94,12 @@
   {
     if (sanitizeInput($_GET['weakness']) == "All")
     {
-      echo "selected";
+      echo "selected ";
     }
   }
   else
   {
-    echo "selected";
+    echo "selected ";
   } ?>
   <?php echo 'value="All">All</option>'; ?>
 
@@ -134,12 +134,12 @@
   {
     if (sanitizeInput($_GET['resistance']) == "All")
     {
-      echo "selected";
+      echo "selected ";
     }
   }
   else
   {
-    echo "selected";
+    echo "selected ";
   } ?>
   <?php echo 'value="All">All</option>'; ?>
 
@@ -174,12 +174,12 @@ if (isset($_GET['supertypes']))
 {
   if (sanitizeInput($_GET['supertypes']) == "All")
   {
-    echo "selected";
+    echo "selected ";
   }
 }
 else
 {
-  echo "selected";
+  echo "selected ";
 } ?>
 <?php echo 'value="All">All</option>'; ?>
 
@@ -214,12 +214,12 @@ if (isset($_GET['subtypes']))
 {
   if (sanitizeInput($_GET['subtypes']) == "All")
   {
-    echo "selected";
+    echo "selected ";
   }
 }
 else
 {
-  echo "selected";
+  echo "selected ";
 } ?>
 <?php echo 'value="All">All</option>'; ?>
 
@@ -241,6 +241,60 @@ foreach ($types as $type)
       . ' value="' . $type['name'] . '">' . $type['name'] . '</option>';
 
 }
+
+echo '</select>';
+?>
+
+<?php
+
+echo 'Format: <select name="format">';
+echo '<option ';
+
+if (isset($_GET['format']))
+{
+  if (sanitizeInput($_GET['format']) == "All")
+  {
+    echo "selected ";
+  }
+}
+else
+{
+  echo "selected ";
+} 
+echo 'value="All">All</option>';
+
+echo '<option ';
+
+if (isset($_GET['format']))
+{
+  if (sanitizeInput($_GET['format']) == "Standard")
+  {
+    echo "selected ";
+  }
+}
+echo 'value="Standard">Standard</option>';
+
+echo '<option ';
+
+if (isset($_GET['format']))
+{
+  if (sanitizeInput($_GET['format']) == "Expanded")
+  {
+    echo "selected ";
+  }
+}
+echo 'value="Expanded">Expanded</option>';
+
+echo '<option ';
+
+if (isset($_GET['format']))
+{
+  if (sanitizeInput($_GET['format']) == "Unlimited")
+  {
+    echo "selected ";
+  }
+}
+echo 'value="Unlimited">Unlimited</option>';
 
 echo '</select>';
 ?>
