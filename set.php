@@ -12,8 +12,10 @@ require_once 'include.php';
     <div class="container-wide">
         <div class="panel panel-full">
             <div style="text-align: center;">
-                <?php if (isset($_GET['ID'])) {
-                    if (set_exists(sanitizeInput($_GET['ID']))) {
+                <?php if (isset($_GET['ID']))
+                {
+                    if (set_exists(sanitizeInput($_GET['ID'])))
+                    {
 
                         global $pdo;
                         // Retrieve the set
@@ -40,28 +42,53 @@ require_once 'include.php';
 
                         ?>
 
+                        <?php
+                        echo '<div class="legality-button-group">';
+                        echo '<button class="legality-button1" disabled>Standard</button>';
+                        if ($set['standard_legality'] == "Legal")
+                        {
+                            echo '<button class="legality-button2" disabled>Legal</button>';
+                        }
+                        else
+                        {
+                            echo '<button class="legality-button3" disabled>Not Legal</button>';
+                        }
+
+                        echo '</div>&nbsp;';
+
+                        echo '<div class="legality-button-group">';
+                        echo '<button class="legality-button1" disabled>Expanded</button>';
+                        if ($set['expanded_legality'] == "Legal")
+                        {
+                            echo '<button class="legality-button2" disabled>Legal</button>';
+                        }
+                        else
+                        {
+                            echo '<button class="legality-button3" disabled>Not Legal</button>';
+                        }
+                        echo '</div>&nbsp;';
+
+                        echo '<div class="legality-button-group">';
+                        echo '<button class="legality-button1" disabled>Unlimited</button>';
+                        if ($set['unlimited_legality'] == "Legal")
+                        {
+                            echo '<button class="legality-button2" disabled>Legal</button>';
+                        }
+                        else
+                        {
+                            echo '<button class="legality-button3" disabled>Not Legal</button>';
+                        }
+                        echo '</div>';
+                        ?>
+
+                        <br>
+
                         <b>Series:</b>
                         <?php echo $set['series']; ?>
                         <br>
 
-                        <!-- <b>Printed Total:</b>
-                        <?php //echo $set['printed_total']; ?>
-                        <br> -->
-
                         <b>Total Cards:</b>
                         <?php echo $set['total']; ?>
-                        <br>
-
-                        <b>Standard:</b>
-                        <?php echo $set['standard_legality']; ?>
-                        &nbsp;
-
-                        <b>Expanded:</b>
-                        <?php echo $set['expanded_legality']; ?>
-                        &nbsp;
-
-                        <b>Unlimited:</b>
-                        <?php echo $set['unlimited_legality']; ?>
                         <br>
 
                         <b>PTCGL Set Code:</b>
@@ -89,16 +116,21 @@ require_once 'include.php';
 
                         $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        foreach ($cards as $card) {
+                        foreach ($cards as $card)
+                        {
                             echo "<a href='card.php" . "?ID=" . $card['id'] . "'>" . '<img width="250" height="350" src=' . $card['small_image'] . "" . " alt=" . '"' . $card['name'] . '"' . ">" . "</a>";
 
                         }
 
 
-                    } else {
+                    }
+                    else
+                    {
                         echo "Set does not exist!";
                     }
-                } else {
+                }
+                else
+                {
                     echo "No set specified!";
                 }
                 ?>
