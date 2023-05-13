@@ -144,6 +144,56 @@ function ptcglDeckListToJson($decklist)
     return json_encode($json_data, JSON_PRETTY_PRINT);
 }
 
+function ptcglDeckListJsonLegalCheck($decklist_JSON)
+{
+
+    $legalityArrary = array(
+        'standard_legality' => 'Legal',
+        'expanded_legality' => 'Legal',
+        'unlimited_legality' => 'Legal'
+    );
+
+    $deck_list_decoded = json_decode($decklist_JSON);
+
+    foreach ($deck_list_decoded->cards as $card)
+    {
+
+        if (card_exists_by_ptcgl($card->set_code, $card->set_number))
+        {
+
+            global $pdo;
+
+            $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE PTCGL_set_id = :set_id AND PTCGL_set_number = :set_number");
+            $stmt->bindParam(":set_id", $card->set_code);
+            $stmt->bindParam(":set_number", $card->set_number);
+            $stmt->execute();
+
+            $result = $stmt->fetch();
+
+            if ($result['standard_legality'] != "Legal")
+            {
+                $legalityArrary['standard_legality'] = 'Not Legal';
+            }
+
+            if ($result['expanded_legality'] != "Legal")
+            {
+                $legalityArrary['expanded_legality'] = 'Not Legal';
+            }
+
+            if ($result['unlimited_legality'] != "Legal")
+            {
+                $legalityArrary['unlimited_legality'] = 'Not Legal';
+            }
+
+        }
+
+    }
+
+
+    return $legalityArrary;
+
+}
+
 function updateDeckListNames($deck_input)
 {
     $deck_list = json_decode($deck_input['cards']);
