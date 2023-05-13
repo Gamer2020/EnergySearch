@@ -55,4 +55,14 @@ function limitStringLength($string, $maxLength)
     return $limitedString;
 }
 
+function get_user_ip() {
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $user_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        $user_ip = $_SERVER['REMOTE_ADDR'];
+    }
+
+    return $user_ip;
+}
+
 ?>
