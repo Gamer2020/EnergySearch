@@ -46,31 +46,43 @@
   ?>
 
   <?php
-  // $types = Pokemon::Type()->all();
-  
-  // echo 'Type: <select name="type">';
-  
-  // echo '<option'; ?>
-  <?php //if (isset($_GET['type'])) {
-  //        if (sanitize_text_field($_GET['type']) == "All") {
-  //            echo "selected";
-  //        }
-  //    } else {
-  //        echo "selected";
-  //    } ?>
-  <?php //echo 'value="All">All</option>';
-  
-  //     foreach ($types as $type) {
-  
-  //         echo '<option ' .
-  //             ((isset($_GET['type'])) ?
-  //                 ((sanitize_text_field($_GET['type']) == $type) ? 'selected' : '')
-  //                 : '')
-  //             . ' value="' . $type . '">' . $type . '</option>';
-  
-  //     }
-  
-  //     echo '</select>';
+
+  echo 'Type: <select name="type">';
+  echo '<option ';
+
+  if (isset($_GET['type']))
+  {
+    if (sanitizeInput($_GET['type']) == "All")
+    {
+      echo "selected";
+    }
+  }
+  else
+  {
+    echo "selected";
+  } ?>
+  <?php echo 'value="All">All</option>'; ?>
+
+  <?php
+
+  global $pdo;
+
+  $stmt = $pdo->prepare("SELECT * FROM es_card_types");
+  $stmt->execute();
+  $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  foreach ($types as $type)
+  {
+
+    echo '<option ' .
+        ((isset($_GET['type'])) ?
+            ((sanitizeInput($_GET['type']) == $type['name']) ? 'selected' : '')
+            : '')
+        . ' value="' . $type['name'] . '">' . $type['name'] . '</option>';
+
+  }
+
+  echo '</select>';
   ?>
 
   <?php

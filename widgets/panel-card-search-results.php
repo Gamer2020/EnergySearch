@@ -7,13 +7,21 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     // Define the search parameters
     $cardname = isset($_GET['cardname']) && !empty($_GET['cardname']) ? sanitizeInput($_GET['cardname']) : null;
     $setid = isset($_GET['setid']) && !empty($_GET['setid']) ? sanitizeInput($_GET['setid']) : null;
+    $type = isset($_GET['type']) && !empty($_GET['type']) ? sanitizeInput($_GET['type']) : null;
 
+    // To add more parameters, follow the pattern above, replacing 'setid' with the parameter name.
+
+    // Below handles values that are ALL meaning we don't search for it.
     if ($setid === "All")
     {
         $setid = null;
     }
 
-    // To add more parameters, follow the pattern above, replacing 'setid' with the parameter name.
+    if ($type === "All")
+    {
+        $type = null;
+    }
+
 
     $page = isset($_GET['page']) && !empty($_GET['page']) ? (int)$_GET['page'] : 1;
     $limit = 40;
@@ -32,6 +40,11 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
         $sql .= " AND set_id = :setid";
     }
 
+    if ($type !== null)
+    {
+        $sql .= " AND types LIKE :type";
+    }
+
     // To add more conditions, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and field name respectively.
 
     $sql .= " LIMIT :limit OFFSET :offset";
@@ -45,6 +58,11 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     if ($setid !== null)
     {
         $stmt->bindValue(':setid', $setid, PDO::PARAM_STR);
+    }
+
+    if ($type !== null)
+    {
+        $stmt->bindValue(':type', '%' . $type . '%', PDO::PARAM_STR);
     }
 
     // To bind more parameters, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and variable respectively.
@@ -80,6 +98,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     // $base_url .= isset($parameter) && !empty($parameter) ? "&parameter=" . urlencode($parameter) : "";
     $base_url .= isset($cardname) && !empty($cardname) ? "&cardname=" . urlencode(strtolower($cardname)) : "";
     $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
+    $base_url .= isset($type) && !empty($type) ? "&set_id=" . urlencode($type) : "";
 
     // If there's a previous page
     if ($has_previous_page)
@@ -126,6 +145,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     // $base_url .= isset($parameter) && !empty($parameter) ? "&parameter=" . urlencode($parameter) : "";
     $base_url .= isset($cardname) && !empty($cardname) ? "&cardname=" . urlencode(strtolower($cardname)) : "";
     $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
+    $base_url .= isset($type) && !empty($type) ? "&set_id=" . urlencode($type) : "";
 
     // If there's a previous page
     if ($has_previous_page)
