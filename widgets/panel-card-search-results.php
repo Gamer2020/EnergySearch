@@ -8,6 +8,10 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     $cardname = isset($_GET['cardname']) && !empty($_GET['cardname']) ? sanitizeInput($_GET['cardname']) : null;
     $setid = isset($_GET['setid']) && !empty($_GET['setid']) ? sanitizeInput($_GET['setid']) : null;
     $type = isset($_GET['type']) && !empty($_GET['type']) ? sanitizeInput($_GET['type']) : null;
+    $weakness = isset($_GET['weakness']) && !empty($_GET['weakness']) ? sanitizeInput($_GET['weakness']) : null;
+    $resistance = isset($_GET['resistance']) && !empty($_GET['resistance']) ? sanitizeInput($_GET['resistance']) : null;
+    $supertypes = isset($_GET['supertypes']) && !empty($_GET['supertypes']) ? sanitizeInput($_GET['supertypes']) : null;
+    $subtypes = isset($_GET['subtypes']) && !empty($_GET['subtypes']) ? sanitizeInput($_GET['subtypes']) : null;
 
     // To add more parameters, follow the pattern above, replacing 'setid' with the parameter name.
 
@@ -22,6 +26,25 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
         $type = null;
     }
 
+    if ($weakness === "All")
+    {
+        $weakness = null;
+    }
+
+    if ($resistance === "All")
+    {
+        $resistance = null;
+    }
+
+    if ($supertypes === "All")
+    {
+        $supertypes = null;
+    }
+
+    if ($subtypes === "All")
+    {
+        $subtypes = null;
+    }
 
     $page = isset($_GET['page']) && !empty($_GET['page']) ? (int)$_GET['page'] : 1;
     $limit = 40;
@@ -45,6 +68,26 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
         $sql .= " AND types LIKE :type";
     }
 
+    if ($weakness !== null)
+    {
+        $sql .= " AND weakness LIKE :weakness";
+    }
+
+    if ($resistance !== null)
+    {
+        $sql .= " AND resistance LIKE :resistance";
+    }
+
+    if ($supertypes !== null)
+    {
+        $sql .= " AND supertype = :supertypes";
+    }
+
+    if ($subtypes !== null)
+    {
+        $sql .= " AND subtypes LIKE :subtypes";
+    }
+
     // To add more conditions, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and field name respectively.
 
     $sql .= " LIMIT :limit OFFSET :offset";
@@ -63,6 +106,26 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     if ($type !== null)
     {
         $stmt->bindValue(':type', '%' . $type . '%', PDO::PARAM_STR);
+    }
+
+    if ($weakness !== null)
+    {
+        $stmt->bindValue(':weakness', '%' . $weakness . '%', PDO::PARAM_STR);
+    }
+
+    if ($resistance !== null)
+    {
+        $stmt->bindValue(':resistance', '%' . $resistance . '%', PDO::PARAM_STR);
+    }
+
+    if ($supertypes !== null)
+    {
+        $stmt->bindValue(':supertypes', $supertypes, PDO::PARAM_STR);
+    }
+
+    if ($subtypes !== null)
+    {
+        $stmt->bindValue(':subtypes', '%' . $subtypes . '%', PDO::PARAM_STR);
     }
 
     // To bind more parameters, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and variable respectively.
@@ -99,6 +162,10 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     $base_url .= isset($cardname) && !empty($cardname) ? "&cardname=" . urlencode(strtolower($cardname)) : "";
     $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
     $base_url .= isset($type) && !empty($type) ? "&set_id=" . urlencode($type) : "";
+    $base_url .= isset($weakness) && !empty($weakness) ? "&set_id=" . urlencode($weakness) : "";
+    $base_url .= isset($resistance) && !empty($resistance) ? "&set_id=" . urlencode($resistance) : "";
+    $base_url .= isset($supertypes) && !empty($supertypes) ? "&set_id=" . urlencode($supertypes) : "";
+    $base_url .= isset($subtypes) && !empty($subtypes) ? "&set_id=" . urlencode($subtypes) : "";
 
     // If there's a previous page
     if ($has_previous_page)
@@ -146,6 +213,10 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     $base_url .= isset($cardname) && !empty($cardname) ? "&cardname=" . urlencode(strtolower($cardname)) : "";
     $base_url .= isset($set_id) && !empty($set_id) ? "&set_id=" . urlencode($set_id) : "";
     $base_url .= isset($type) && !empty($type) ? "&set_id=" . urlencode($type) : "";
+    $base_url .= isset($weakness) && !empty($weakness) ? "&set_id=" . urlencode($weakness) : "";
+    $base_url .= isset($resistance) && !empty($resistance) ? "&set_id=" . urlencode($resistance) : "";
+    $base_url .= isset($supertypes) && !empty($supertypes) ? "&set_id=" . urlencode($supertypes) : "";
+    $base_url .= isset($subtypes) && !empty($subtypes) ? "&set_id=" . urlencode($subtypes) : "";
 
     // If there's a previous page
     if ($has_previous_page)
