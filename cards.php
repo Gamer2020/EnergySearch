@@ -10,9 +10,12 @@ require_once 'include.php';
 <body>
     <?php include "navbar.php" ?>
     <?php
-    if ((isset($_GET['search']) && ($_GET['search'] == "search"))) {
+    if ((isset($_GET['search']) && ($_GET['search'] == "search")))
+    {
         echo '<div class="container-wide">';
-    } else {
+    }
+    else
+    {
         echo '<div class="container">';
     }
     ?>
@@ -26,16 +29,14 @@ require_once 'include.php';
 
     </div>
     <?php
-    if ((isset($_GET['search']) && ($_GET['search'] == "search"))) {
-    } else {
+    if ((isset($_GET['search']) && ($_GET['search'] == "search")))
+    {
+    }
+    else
+    {
 
         echo '<aside>';
-        echo '<h2>Future Use</h2>';
-        echo '<ul>';
-        echo '<li>line 1</li>';
-        echo '<li>line 2</li>';
-        echo '<li>line 3</li>';
-        echo '</ul>';
+        include "sidebar/sidebar-generic.php";
         echo '</aside>';
 
     }
