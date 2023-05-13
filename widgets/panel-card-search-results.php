@@ -182,6 +182,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     $base_url .= isset($resistance) && !empty($resistance) ? "&resistance=" . urlencode($resistance) : "";
     $base_url .= isset($supertypes) && !empty($supertypes) ? "&supertypes=" . urlencode($supertypes) : "";
     $base_url .= isset($subtypes) && !empty($subtypes) ? "&subtypes=" . urlencode($subtypes) : "";
+    $base_url .= isset($format) && !empty($format) ? "&format=" . urlencode($format) : "";
 
     // If there's a previous page
     if ($has_previous_page)
@@ -233,6 +234,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     $base_url .= isset($resistance) && !empty($resistance) ? "&resistance=" . urlencode($resistance) : "";
     $base_url .= isset($supertypes) && !empty($supertypes) ? "&supertypes=" . urlencode($supertypes) : "";
     $base_url .= isset($subtypes) && !empty($subtypes) ? "&subtypes=" . urlencode($subtypes) : "";
+    $base_url .= isset($format) && !empty($format) ? "&format=" . urlencode($format) : "";
 
     // If there's a previous page
     if ($has_previous_page)
