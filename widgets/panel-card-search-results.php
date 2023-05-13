@@ -12,6 +12,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     $resistance = isset($_GET['resistance']) && !empty($_GET['resistance']) ? sanitizeInput($_GET['resistance']) : null;
     $supertypes = isset($_GET['supertypes']) && !empty($_GET['supertypes']) ? sanitizeInput($_GET['supertypes']) : null;
     $subtypes = isset($_GET['subtypes']) && !empty($_GET['subtypes']) ? sanitizeInput($_GET['subtypes']) : null;
+    $format = isset($_GET['format']) && !empty($_GET['format']) ? sanitizeInput($_GET['format']) : null;
 
     // To add more parameters, follow the pattern above, replacing 'setid' with the parameter name.
 
@@ -86,6 +87,21 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     if ($subtypes !== null)
     {
         $sql .= " AND subtypes LIKE :subtypes";
+    }
+
+    if ($format === "Standard")
+    {
+        $sql .= " AND standard_legality = 'Legal'";
+    }
+
+    if ($format === "Expanded")
+    {
+        $sql .= " AND expanded_legality = 'Legal'";
+    }
+
+    if ($format === "Unlimited")
+    {
+        $sql .= " AND unlimited_legality = 'Legal'";
     }
 
     // To add more conditions, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and field name respectively.
