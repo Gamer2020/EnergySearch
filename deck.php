@@ -112,12 +112,7 @@ require_once 'include.php';
             ?>
         </div>
         <aside>
-            <h2>Future Use</h2>
-            <ul>
-                <li>line 1</li>
-                <li>line 2</li>
-                <li>line 3</li>
-            </ul>
+        <?php include "sidebar/sidebar-deck.php"; ?>
         </aside>
     </div>
     <?php include "footer.php" ?>
