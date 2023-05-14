@@ -1,9 +1,10 @@
-<h3>Formats</h3>
-
 <?php if (isset($_GET['ID']))
 {
     if (card_exists(sanitizeInput($_GET['ID'])))
     {
+
+        echo "<h3>Formats</h3>";
+
         global $pdo;
         $id = sanitizeInput($_GET['ID']);
         card_add_view($id);
