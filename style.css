@@ -370,3 +370,18 @@ body.dark-mode {
     border-radius: 5px;
     padding: 10px;
 }
+
+.voted {
+    background-color: green;
+    color: white;
+}
+
+.not-voted {
+    background-color: grey;
+    color: white;
+}
+
+#vote-count {
+    margin-top: 20px;
+    font-size: 18px;
+}

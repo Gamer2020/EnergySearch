@@ -48,9 +48,12 @@ function get_set_number_by_card_name($card_name)
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if ($result) {
+  if ($result)
+  {
     return $result['set_number'];
-  } else {
+  }
+  else
+  {
     return null;
   }
 }
@@ -65,9 +68,12 @@ function get_set_id_by_card_name($card_name)
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if ($result) {
+  if ($result)
+  {
     return $result['set_id'];
-  } else {
+  }
+  else
+  {
     return null;
   }
 }
@@ -83,6 +89,34 @@ function get_card_name_by_set_number($set_id, $set_number)
 
   $result = $stmt->fetch();
   return $result['name'];
+}
+
+function get_card_votes_by_id($id)
+{
+  global $pdo;
+
+  $stmt = $pdo->prepare("SELECT upvotes FROM es_cards WHERE id = :id");
+  $stmt->bindParam(":id", $id);
+  $stmt->execute();
+
+  $result = $stmt->fetch();
+  return $result['upvotes'];
+}
+
+function check_card_voted_by_id($id)
+{
+  global $pdo;
+
+  $ip_address = get_user_ip();
+
+  $stmt = $pdo->prepare("SELECT COUNT(*) FROM es_card_upvotes WHERE card_id = :id AND ip_address = :ip");
+  $stmt->bindParam(":id", $id);
+  $stmt->bindParam(":ip", $ip_address);
+  $stmt->execute();
+
+  $count = $stmt->fetchColumn();
+
+  return $count > 0;
 }
 
 function get_card_name_by_ptcgl($set_id, $set_number)
@@ -145,9 +179,12 @@ function get_card_id_by_ptcgl_set_num($ptcgl_set_id, $ptcgl_set_number)
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if ($result) {
+  if ($result)
+  {
     return $result['id'];
-  } else {
+  }
+  else
+  {
     return null;
   }
 }
@@ -156,7 +193,8 @@ function get_card_id_by_ptcgl_set_num($ptcgl_set_id, $ptcgl_set_number)
 function ptcgl_code_override($PTCGO_Value, $SET_Value)
 {
 
-  if ($PTCGO_Value == "") {
+  if ($PTCGO_Value == "")
+  {
 
     $valueList = array(
       array("input" => "sv1", "matched" => "SVI"),
@@ -165,39 +203,55 @@ function ptcgl_code_override($PTCGO_Value, $SET_Value)
       array("input" => "sma", "matched" => "HIF")
     );
 
-    foreach ($valueList as $match) {
-      if ($SET_Value == $match['input']) {
+    foreach ($valueList as $match)
+    {
+      if ($SET_Value == $match['input'])
+      {
         return $match['matched'];
       }
     }
 
     return "INVALID";
 
-  } elseif ($SET_Value == "swsh12pt5gg") {
+  }
+  elseif ($SET_Value == "swsh12pt5gg")
+  {
 
     return "CRZ-GG";
 
-  } elseif ($SET_Value == "swsh12tg") {
+  }
+  elseif ($SET_Value == "swsh12tg")
+  {
 
     return "SIT-GG";
 
-  } elseif ($SET_Value == "swsh11tg") {
+  }
+  elseif ($SET_Value == "swsh11tg")
+  {
 
     return "LOR-TG";
 
-  } elseif ($SET_Value == "swsh10tg") {
+  }
+  elseif ($SET_Value == "swsh10tg")
+  {
 
     return "ASR-GG";
 
-  } elseif ($SET_Value == "swsh9tg") {
+  }
+  elseif ($SET_Value == "swsh9tg")
+  {
 
     return "BRS-GG";
 
-  } elseif ($SET_Value == "cel25c") {
+  }
+  elseif ($SET_Value == "cel25c")
+  {
 
     return "CEL-CC";
 
-  } else {
+  }
+  else
+  {
 
     return $PTCGO_Value;
   }
@@ -265,7 +319,8 @@ function removeNonSpeciesFromNameString($string)
   $wordsToRemove = array_map('strtolower', $wordsToRemove);
 
   // Remove words from string
-  foreach ($wordsToRemove as $word) {
+  foreach ($wordsToRemove as $word)
+  {
     $string = str_replace($word, '', $string);
   }
 
