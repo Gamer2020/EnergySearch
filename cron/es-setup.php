@@ -37,6 +37,9 @@ echo "DONE!<br>";
 echo "Installing Site Vars table...";
 require_once('update/es-create-site-vars.php');
 echo "DONE!<br>";
+echo "Installing upvotes tables...";
+require_once('setup/es-create-upvotes.php');
+echo "DONE!<br>";
 
 
 ?>
