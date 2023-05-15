@@ -372,16 +372,60 @@ body.dark-mode {
 }
 
 .voted {
-    background-color: green;
     color: white;
+    background-color: #111;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 80px;
+    border: none;
+    color: #fff;
+    padding: 4px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0;
+    cursor: grab;
+    margin-top: 16px;
 }
 
 .not-voted {
-    background-color: grey;
     color: white;
+    background-color: #195e3f;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 80px;
+    border: none;
+    color: #fff;
+    padding: 4px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0;
+    cursor: grab;
+    margin-top: 16px;
 }
 
 #vote-count {
-    margin-top: 20px;
-    font-size: 18px;
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+#vote-container {
+    display: flex;
+    align-items: center;
+}
+
+#vote-count,
+#vote-btn {
+    margin-right: 10px;
 }
