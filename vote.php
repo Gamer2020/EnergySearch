@@ -18,16 +18,18 @@ if (isset($request['CardId']))
         // Use these variables in your vote tracking logic
         if ($action === 'vote')
         {
-            if (check_card_voted_by_id(sanitizeInput($_GET['ID'])) == false)
+            if (check_card_voted_by_id($cardId) == false)
             {
-                // Add vote logic here
+                addCardVote($cardId, get_user_ip());
+                card_add_vote($cardId);
             }
         }
         else if ($action === 'remove')
         {
-            if (check_card_voted_by_id(sanitizeInput($_GET['ID'])))
+            if (check_card_voted_by_id($cardId))
             {
-                // Remove vote logic here
+                removeCardVote($cardId, get_user_ip());
+                card_remove_vote($cardId);
             }
         }
 

@@ -119,6 +119,38 @@ function check_card_voted_by_id($id)
   return $count > 0;
 }
 
+function card_add_vote($card_id)
+{
+  global $pdo;
+
+  // Update the views column
+  $sql = "UPDATE es_cards SET upvotes = upvotes + 1 WHERE id = ?";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$card_id]);
+
+  // Update the monthly_views column
+  $sql = "UPDATE es_cards SET monthly_upvotes = monthly_upvotes + 1 WHERE id = ?";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$card_id]);
+
+}
+
+function card_remove_vote($card_id)
+{
+  global $pdo;
+
+  // Update the views column
+  $sql = "UPDATE es_cards SET upvotes = upvotes - 1 WHERE id = ?";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$card_id]);
+
+  // Update the monthly_views column
+  $sql = "UPDATE es_cards SET monthly_upvotes = monthly_upvotes - 1 WHERE id = ?";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$card_id]);
+
+}
+
 function get_card_name_by_ptcgl($set_id, $set_number)
 {
   global $pdo;
@@ -189,6 +221,45 @@ function get_card_id_by_ptcgl_set_num($ptcgl_set_id, $ptcgl_set_number)
   }
 }
 
+function addCardVote($cardId, $ipAddress)
+{
+  global $pdo;
+
+  $sql = "INSERT INTO es_card_upvotes (card_id, ip_address) VALUES (:cardId, :ipAddress)";
+
+  try
+  {
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':cardId', $cardId, PDO::PARAM_STR);
+    $stmt->bindParam(':ipAddress', $ipAddress, PDO::PARAM_STR);
+    $stmt->execute();
+  }
+  catch (PDOException $e)
+  {
+    // Handle the exception or log the error
+    echo "Error: " . $e->getMessage();
+  }
+}
+
+function removeCardVote($cardId, $ipAddress)
+{
+  global $pdo;
+
+  $sql = "DELETE FROM es_card_upvotes WHERE card_id = :cardId AND ip_address = :ipAddress";
+
+  try
+  {
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':cardId', $cardId, PDO::PARAM_STR);
+    $stmt->bindParam(':ipAddress', $ipAddress, PDO::PARAM_STR);
+    $stmt->execute();
+  }
+  catch (PDOException $e)
+  {
+    // Handle the exception or log the error
+    echo "Error: " . $e->getMessage();
+  }
+}
 
 function ptcgl_code_override($PTCGO_Value, $SET_Value)
 {
