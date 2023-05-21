@@ -24,8 +24,8 @@ require_once 'include.php';
         <!-- <h1>Decks</h1>
             <p>This is a planned feature that has not been implemented yet...</p>
             <br> -->
-        <?php //include "widgets/panel-card-search.php" ?>
-        <?php //include "widgets/panel-card-search-results.php" ?>
+        <?php include "widgets/panel-deck-search.php" ?>
+        <?php include "widgets/panel-deck-search-results.php" ?>
         <?php // Stuff that shows if there is no search.
         if (!(isset($_GET['search']) && ($_GET['search'] == "search")))
         {

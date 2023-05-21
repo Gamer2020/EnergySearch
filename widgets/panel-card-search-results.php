@@ -47,7 +47,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
         $subtypes = null;
     }
 
-    $page = isset($_GET['page']) && !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+    $page = isset($_GET['page']) && !empty($_GET['page']) ? sanitizeInput((int)$_GET['page']) : 1;
     $limit = 40;
     $offset = ($page - 1) * $limit;
 
