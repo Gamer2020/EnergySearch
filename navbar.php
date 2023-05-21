@@ -17,6 +17,7 @@
                 <a href="about.php">About</a>
                 <ul>
                     <li><a href="credits.php">Credits</a></li>
+                    <li><a href="faq.php">Frequently Asked Questions</a></li>
                     <li><a href="changelog.php">Change Log</a></li>
                     <li><a href="tos.php">Terms of Service</a></li>
                 </ul>
