@@ -381,6 +381,10 @@ body.dark-mode {
     right: 20%;
 }
 
+a.deck-card {
+    margin-bottom: 0px;
+}
+
 .voted {
     color: white;
     background-color: #111;

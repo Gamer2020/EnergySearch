@@ -65,7 +65,7 @@ require_once 'include.php';
                         echo '<div id="tab-1">';
                         //echo '<p>Content for Tab 1</p>';
             
-                        echo '<p class="deck-list"><img class="deck-list-right-image" src="' . get_card_image_by_id($deck['featuredcard']) . '" alt="">';
+                        echo '<p class="deck-list"><img id="highlightedCard" class="deck-list-right-image" src="' . get_card_image_by_id($deck['featuredcard']) . '" alt="">';
 
                         foreach ($deck_list->cards as $card)
                         {
@@ -76,7 +76,7 @@ require_once 'include.php';
             
                             if (card_exists_by_ptcgl($card->set_code, $card->set_number))
                             {
-                                echo "<a href='card.php" . "?ID=" . get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number) . "'>" . $card->quantity . " x " . get_card_name_by_ptcgl($card->set_code, $card->set_number) . "</a>" . "<br>";
+                                echo "<a href='card.php" . "?ID=" . get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number) . "' class='deck-card' data-image='" . get_card_image_by_id(get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number)) . "'>" . $card->quantity . " x " . get_card_name_by_ptcgl($card->set_code, $card->set_number) . "</a>" . "<br>";
                             }
                             else
                             {
@@ -86,6 +86,23 @@ require_once 'include.php';
                         }
 
                         echo "</p>";
+                        ?>
+                        <script>
+                            window.onload = function () {
+                                // Get all elements with the class 'deck-card'
+                                var elems = document.getElementsByClassName('deck-card');
+
+                                // Add event listener for each element
+                                for (var i = 0; i < elems.length; i++) {
+                                    elems[i].addEventListener("mouseover", function () {
+                                        document.getElementById("highlightedCard").src = this.getAttribute('data-image');
+                                    });
+                                }
+                            };
+
+                        </script>
+                        <?php
+
 
                         echo '</div>';
 
