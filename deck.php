@@ -65,14 +65,27 @@ require_once 'include.php';
                         echo '<div id="tab-1">';
                         //echo '<p>Content for Tab 1</p>';
             
+                        echo '<p class="deck-list"><img class="deck-list-right-image" src="' . get_card_image_by_id($deck['featuredcard']) . '" alt="">';
 
                         foreach ($deck_list->cards as $card)
                         {
-                            echo "Quantity: " . $card->quantity . "<br>";
-                            echo "Name: " . $card->name . "<br>";
-                            echo "Set code: " . $card->set_code . "<br>";
-                            echo "Set number: " . $card->set_number . "<br><br>";
+                            // echo "Quantity: " . $card->quantity . "<br>";
+                            // echo "Name: " . $card->name . "<br>";
+                            // echo "Set code: " . $card->set_code . "<br>";
+                            // echo "Set number: " . $card->set_number . "<br><br>";
+            
+                            if (card_exists_by_ptcgl($card->set_code, $card->set_number))
+                            {
+                                echo "<a href='card.php" . "?ID=" . get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number) . "'>" . $card->quantity . " x " . get_card_name_by_ptcgl($card->set_code, $card->set_number) . "</a>" . "<br>";
+                            }
+                            else
+                            {
+                                echo $card->quantity . " x " . htmlspecialchars_decode($card->name) . "<br>";
+                            }
+
                         }
+
+                        echo "</p>";
 
                         echo '</div>';
 
@@ -112,7 +125,7 @@ require_once 'include.php';
             ?>
         </div>
         <aside>
-        <?php include "sidebar/sidebar-deck.php"; ?>
+            <?php include "sidebar/sidebar-deck.php"; ?>
         </aside>
     </div>
     <?php include "footer.php" ?>

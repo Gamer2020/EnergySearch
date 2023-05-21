@@ -371,6 +371,16 @@ body.dark-mode {
     padding: 10px;
 }
 
+.deck-list {
+    position: relative;
+    width: 110%;
+}
+
+.deck-list-right-image {
+    position: absolute;
+    right: 20%;
+}
+
 .voted {
     color: white;
     background-color: #111;
