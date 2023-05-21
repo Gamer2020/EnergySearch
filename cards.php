@@ -26,13 +26,16 @@ require_once 'include.php';
             <br> -->
         <?php include "widgets/panel-card-search.php" ?>
         <?php include "widgets/panel-card-search-results.php" ?>
+        <?php // Stuff that shows if there is no search.
+        if (!(isset($_GET['search']) && ($_GET['search'] == "search")))
+        {
+            //Add stuff here.
+        } 
+        ?>
 
     </div>
     <?php
-    if ((isset($_GET['search']) && ($_GET['search'] == "search")))
-    {
-    }
-    else
+    if (!(isset($_GET['search']) && ($_GET['search'] == "search")))
     {
 
         echo '<aside>';
