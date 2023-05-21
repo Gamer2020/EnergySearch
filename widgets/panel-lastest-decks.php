@@ -3,7 +3,7 @@
 
 global $pdo;
 
-$stmt = $pdo->prepare("SELECT * from es_decks where visible = 'YES' ORDER BY id DESC LIMIT 60");
+$stmt = $pdo->prepare("SELECT * from es_decks where visible = 'YES' ORDER BY id DESC LIMIT 5");
 $stmt->execute();
 $row_count = $stmt->rowCount();
 
