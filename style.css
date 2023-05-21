@@ -379,6 +379,8 @@ body.dark-mode {
 .deck-list-right-image {
     position: absolute;
     right: 20%;
+    height: 513px;
+    width: 368px;
 }
 
 a.deck-card {
