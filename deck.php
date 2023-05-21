@@ -28,6 +28,8 @@ require_once 'include.php';
                     $stmt->execute([$id]);
                     $deck = $stmt->fetch(PDO::FETCH_ASSOC);
 
+                    $deck_list = json_decode($deck['cards']);
+
                     try
                     {
 
@@ -55,7 +57,7 @@ require_once 'include.php';
                         // echo "<br>";
                         // echo "<br>";
                         // echo "<br>";
-                        $deck_list = json_decode($deck['cards']);
+            
                         // print_r($deck_list);
             
                         // echo "<br>";
@@ -63,8 +65,7 @@ require_once 'include.php';
                         // echo "<br>";
             
                         echo '<div id="tab-1">';
-                        //echo '<p>Content for Tab 1</p>';
-            
+
                         echo '<p class="deck-list"><img id="highlightedCard" class="deck-list-right-image" src="' . get_card_image_by_id($deck['featuredcard']) . '" alt="">';
 
                         foreach ($deck_list->cards as $card)
@@ -74,9 +75,16 @@ require_once 'include.php';
                             // echo "Set code: " . $card->set_code . "<br>";
                             // echo "Set number: " . $card->set_number . "<br><br>";
             
-                            if (card_exists_by_ptcgl($card->set_code, $card->set_number))
+                            $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE PTCGL_set_id = :ptcgl_set_id AND PTCGL_set_number = :ptcgl_set_number");
+                            $stmt->bindValue(':ptcgl_set_id', $card->set_code);
+                            $stmt->bindValue(':ptcgl_set_number', $card->set_number);
+                            $stmt->execute();
+
+                            $db_card = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                            if ($db_card)
                             {
-                                echo "<a href='card.php" . "?ID=" . get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number) . "' class='deck-card' data-image='" . get_card_image_by_id(get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number)) . "'>" . $card->quantity . " x " . get_card_name_by_ptcgl($card->set_code, $card->set_number) . "</a>" . "<br>";
+                                echo "<a href='card.php" . "?ID=" . $db_card['id'] . "' class='deck-card' data-image='" . $db_card['small_image'] . "'>" . $card->quantity . " x " . $db_card['name'] . "</a>" . "<br>";
                             }
                             else
                             {
