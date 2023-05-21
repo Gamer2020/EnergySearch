@@ -428,16 +428,7 @@ function import_cards()
         $stmt->bindParam(':flavor_text', $cardData['flavorText']);
         $stmt->bindParam(':national_pokedex_numbers', $cardData['nationalPokedexNumbers'][0]);
         $stmt->bindParam(':unlimited_legality', $cardData['legalities']['unlimited']);
-
-        if (isset($cardData['legalities']['standard']))
-        {
-          $stmt->bindParam(':standard_legality', $cardData['legalities']['standard']);
-        }
-        else
-        {
-          $stmt->bindParam(':standard_legality', "Legal");
-        }
-
+        $stmt->bindParam(':standard_legality', $cardData['legalities']['standard']);
         $stmt->bindParam(':expanded_legality', $cardData['legalities']['expanded']);
         $stmt->bindParam(':small_image', $cardData['images']['small']);
         $stmt->bindParam(':large_image', $cardData['images']['large']);
