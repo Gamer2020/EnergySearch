@@ -29,7 +29,7 @@ require_once 'include.php';
         <?php // Stuff that shows if there is no search.
         if (!(isset($_GET['search']) && ($_GET['search'] == "search")))
         {
-            //Add stuff here.
+            include "widgets/panel-lastest-decks.php"; 
         }
         ?>
 
