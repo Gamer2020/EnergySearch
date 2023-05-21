@@ -1,9 +1,9 @@
-<h2>Most Viewed Decks - All time</h2>
+<h2>Most Viewed Decks - This Month</h2>
 <?php
 
 global $pdo;
 
-$stmt = $pdo->prepare("SELECT * from es_decks where visible = 'YES' ORDER BY views DESC LIMIT 5");
+$stmt = $pdo->prepare("SELECT * from es_decks where visible = 'YES' ORDER BY monthly_views DESC LIMIT 5");
 $stmt->execute();
 $row_count = $stmt->rowCount();
 

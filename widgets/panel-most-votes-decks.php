@@ -1,9 +1,9 @@
-<h2>Most Viewed Decks - All time</h2>
+<h2>Most Upvoted Decks - All time</h2>
 <?php
 
 global $pdo;
 
-$stmt = $pdo->prepare("SELECT * from es_decks where visible = 'YES' ORDER BY views DESC LIMIT 5");
+$stmt = $pdo->prepare("SELECT * from es_decks where visible = 'YES' ORDER BY upvotes DESC LIMIT 5");
 $stmt->execute();
 $row_count = $stmt->rowCount();
 

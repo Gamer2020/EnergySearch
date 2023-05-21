@@ -30,7 +30,10 @@ require_once 'include.php';
         if (!(isset($_GET['search']) && ($_GET['search'] == "search")))
         {
             include "widgets/panel-lastest-decks.php";
-            include "widgets/panel-most-viewed-decks.php"
+            include "widgets/panel-most-viewed-decks.php";
+            include "widgets/panel-most-votes-decks.php";
+            include "widgets/panel-most-viewed-month-decks.php";
+            include "widgets/panel-most-votes-month-decks.php";
         }
         ?>
 

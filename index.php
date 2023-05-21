@@ -17,6 +17,9 @@ require_once 'include.php';
             <!-- <br> -->
             <?php include "widgets/panel-lastest-decks.php"; ?>
             <?php include "widgets/panel-most-viewed-decks.php"; ?>
+            <?php include "widgets/panel-most-votes-decks.php"; ?>
+            <?php include "widgets/panel-most-viewed-month-decks.php"; ?>
+            <?php include "widgets/panel-most-votes-month-decks.php"; ?>
 
         </div>
         <aside>
