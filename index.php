@@ -16,6 +16,7 @@ require_once 'include.php';
             <!-- <p>TODO Think of something to put here. Card search maybe?</p> -->
             <!-- <br> -->
             <?php include "widgets/panel-lastest-decks.php"; ?>
+            <?php include "widgets/panel-most-viewed-decks.php"; ?>
 
         </div>
         <aside>
