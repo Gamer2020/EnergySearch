@@ -29,8 +29,11 @@ require_once 'include.php';
         <?php // Stuff that shows if there is no search.
         if (!(isset($_GET['search']) && ($_GET['search'] == "search")))
         {
-            //Add stuff here.
-        } 
+            include "widgets/panel-most-viewed-cards.php";
+            include "widgets/panel-most-votes-cards.php";
+            include "widgets/panel-most-viewed-month-cards.php";
+            include "widgets/panel-most-votes-month-cards.php";
+        }
         ?>
 
     </div>
