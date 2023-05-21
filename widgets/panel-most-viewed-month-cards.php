@@ -8,12 +8,15 @@ $stmt->execute();
 $row_count = $stmt->rowCount();
 
 $RowNumVar = 0;
-if ($row_count > 0) {
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+if ($row_count > 0)
+{
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+    {
         echo '<span id="Card" style="float: left; width: 205px; margin-right: 20px;">';
 
         echo "<a href='card.php?ID=" . $row['id'] . "'>" . '<img width="205" height="127" src=img/crop_card.php?ID=' . $row['id'] . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
-        echo "<a href='card.php?ID=" . $row['id'] . "'>" . limitStringLength(htmlspecialchars_decode($row['name']),60) . "</a>";
+        echo "<a href='card.php?ID=" . $row['id'] . "'>" . limitStringLength(htmlspecialchars_decode($row['name']), 60) . "</a>";
+        echo "<br>Views this month: " . ($row['monthly_views']);
         //echo " Format: " . strip_tags($row['Format']) . "<br>";
         //echo " Votes: " . strip_tags($row['UpVotes']) . "<br>";
         //echo '<hr></hr><br>';
@@ -22,7 +25,8 @@ if ($row_count > 0) {
 
         $RowNumVar = $RowNumVar + 1;
 
-        if ($RowNumVar == 5) {
+        if ($RowNumVar == 5)
+        {
 
             echo "<br style='clear: left;' /><br style='clear: left;' />";
 
@@ -30,7 +34,9 @@ if ($row_count > 0) {
         }
 
     }
-} else {
+}
+else
+{
     echo "No decks found...";
 }
 ?>
