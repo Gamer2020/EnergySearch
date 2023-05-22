@@ -130,7 +130,43 @@ require_once 'include.php';
                         echo "});";
                         echo "</script>";
 
-                        //catch exception
+                        if ($deck['source_type'] == "YOUTUBE")
+                        {
+
+                            // print_r($deck['source_identifier']);
+                            // print_r($deck['source_info']);
+                            // echo '<br>';
+            
+                            $video_info = json_decode($deck['source_info']);
+
+                            echo '<table>';
+                            echo '<tbody>';
+                            echo '<tr>';
+                            echo '<th>Source Type</th>';
+                            echo '<td><a href="https://youtube.com" target="_blank">YouTube</a></td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Source Info</th>';
+                            echo '<td>This deck is collected from a YouTube video. For more information on the deck, please watch the YouTube video. If you like their content, please consider subscribing to the channel that uploaded the video to support the channel.</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<tr>';
+                            echo '<th>Video</th>';
+                            echo '<td><a href="' . $deck['source_identifier'] . '" target="_blank">' . $deck['source_identifier'] . '</a></td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Channel</th>';
+                            echo '<td><a href="' . $video_info->channel_url . '" target="_blank">' . $video_info->channel_name . '</a></td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Published</th>';
+                            echo '<td>' . (new DateTime($video_info->publish_date))->format('M d, Y') . '</td>';
+                            echo '</tr>';
+                            echo '</tbody>';
+                            echo '</table>';
+
+                        }
+
                     }
                     catch (Exception $e)
                     {
