@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
 
     $stmt = $pdo->prepare("
-        INSERT INTO es_decks (deck_name, cards, featuredcard, unlimited_legality, standard_legality, expanded_legality, visible, source_type, source_info, source_identifier)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO es_decks (deck_name, cards, featuredcard, format_legality, visible, source_type, source_info, source_identifier)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $data = sanitizeArray($data);
@@ -57,9 +57,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     $deckLegalityArrary = ptcglDeckListJsonLegalCheck($card_list);
 
-    $data['standard_legality'] = $deckLegalityArrary['standard_legality'];
-    $data['expanded_legality'] = $deckLegalityArrary['expanded_legality'];
-    $data['unlimited_legality'] = $deckLegalityArrary['unlimited_legality'];
+    // $data['standard_legality'] = $deckLegalityArrary['standard_legality'];
+    // $data['expanded_legality'] = $deckLegalityArrary['expanded_legality'];
+    // $data['unlimited_legality'] = $deckLegalityArrary['unlimited_legality'];
+
+    if ($deckLegalityArrary['standard_legality'] == "Legal")
+    {
+        $data['format_legality'] = "standard";
+    }
+    else
+    {
+        if ($deckLegalityArrary['expanded_legality'] == "Legal")
+        {
+            $data['format_legality'] = "expanded";
+        }
+        else
+        {
+            $data['format_legality'] = "unlimited";
+        }
+    }
 
     // Determine featured card
     $deck_featured_card = $data['featuredcard'];
@@ -109,9 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $data['deck_name'],
         $card_list,
         $deck_featured_card ?? NULL,
-        $data['unlimited_legality'] ?? NULL,
-        $data['standard_legality'] ?? NULL,
-        $data['expanded_legality'] ?? NULL,
+        $data['format_legality'] ?? "unlimited",
         $data['visible'],
         $data['source_type'],
         json_encode($data['source_info']),

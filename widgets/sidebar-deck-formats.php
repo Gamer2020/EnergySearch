@@ -12,43 +12,57 @@
         $deck = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-
-        echo '<div class="legality-button-group">';
-        echo '<button class="legality-button1" disabled>Standard</button>';
-        if ($deck['standard_legality'] == "Legal")
+        if ($deck['format_legality'] == "standard")
         {
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Standard</button>';
             echo '<button class="legality-button2" disabled>Legal</button>';
-        }
-        else
-        {
-            echo '<button class="legality-button3" disabled>Not Legal</button>';
-        }
+            echo '</div>';
 
-        echo '</div>';
-
-        echo '<div class="legality-button-group">';
-        echo '<button class="legality-button1" disabled>Expanded</button>';
-        if ($deck['expanded_legality'] == "Legal")
-        {
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Expanded</button>';
             echo '<button class="legality-button2" disabled>Legal</button>';
-        }
-        else
-        {
-            echo '<button class="legality-button3" disabled>Not Legal</button>';
-        }
-        echo '</div>';
+            echo '</div>';
 
-        echo '<div class="legality-button-group">';
-        echo '<button class="legality-button1" disabled>Unlimited</button>';
-        if ($deck['unlimited_legality'] == "Legal")
-        {
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Unlimited</button>';
             echo '<button class="legality-button2" disabled>Legal</button>';
+            echo '</div>';
         }
-        else
+        else if ($deck['format_legality'] == "expanded")
         {
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Standard</button>';
             echo '<button class="legality-button3" disabled>Not Legal</button>';
+            echo '</div>';
+
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Expanded</button>';
+            echo '<button class="legality-button2" disabled>Legal</button>';
+            echo '</div>';
+
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Unlimited</button>';
+            echo '<button class="legality-button2" disabled>Legal</button>';
+            echo '</div>';
         }
-        echo '</div>';
+        else if ($deck['format_legality'] == "unlimited")
+        {
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Standard</button>';
+            echo '<button class="legality-button3" disabled>Not Legal</button>';
+            echo '</div>';
+
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Expanded</button>';
+            echo '<button class="legality-button3" disabled>Not Legal</button>';
+            echo '</div>';
+
+            echo '<div class="legality-button-group">';
+            echo '<button class="legality-button1" disabled>Unlimited</button>';
+            echo '<button class="legality-button2" disabled>Legal</button>';
+            echo '</div>';
+        }
     }
 }
 ?>
