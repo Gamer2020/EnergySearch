@@ -7,7 +7,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     // Define the search parameters
     $deckname = isset($_GET['deckname']) && !empty($_GET['deckname']) ? sanitizeInput($_GET['deckname']) : null;
     $containscard = isset($_GET['containscard']) && !empty($_GET['containscard']) ? sanitizeInput($_GET['containscard']) : null;
-    //$format = isset($_GET['format']) && !empty($_GET['format']) ? sanitizeInput($_GET['format']) : null;
+    $format = isset($_GET['format']) && !empty($_GET['format']) ? sanitizeInput($_GET['format']) : null;
 
     // To add more parameters, follow the pattern above, replacing 'setid' with the parameter name.
 
@@ -31,49 +31,20 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
         $sql .= " AND cards LIKE :containscard";
     }
 
-    // if ($format === "Standard")
-    // {
-    //     $sql .= " AND standard_legality = 'Legal'";
-    // }
-
-    // if ($format === "Expanded")
-    // {
-    //     $sql .= " AND expanded_legality = 'Legal'";
-    // }
-
-    // if ($format === "Unlimited")
-    // {
-    //     $sql .= " AND unlimited_legality = 'Legal'";
-    // }
-
-    if (isset($_GET['standardfilter']))
+    if ($format === "Standard")
     {
         $sql .= " AND standard_legality = 'Legal'";
     }
-    else
-    {
-        $sql .= " AND standard_legality = 'Not Legal'";
-    }
 
-    if (isset($_GET['expandedfilter']))
+    if ($format === "Expanded")
     {
         $sql .= " AND expanded_legality = 'Legal'";
     }
-    else
-    {
-        $sql .= " AND expanded_legality = 'Not Legal'";
-    }
 
-
-    if (isset($_GET['unlimitedfilter']))
+    if ($format === "Unlimited")
     {
         $sql .= " AND unlimited_legality = 'Legal'";
     }
-    else
-    {
-        $sql .= " AND unlimited_legality = 'Not Legal'";
-    }
-
 
     // To add more conditions, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and field name respectively.
 
@@ -123,10 +94,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     // $base_url .= isset($parameter) && !empty($parameter) ? "&parameter=" . urlencode($parameter) : "";
     $base_url .= isset($deckname) && !empty($deckname) ? "&deckname=" . urlencode(strtolower($deckname)) : "";
     $base_url .= isset($containscard) && !empty($containscard) ? "&containscard=" . urlencode(strtolower($containscard)) : "";
-    //$base_url .= isset($format) && !empty($format) ? "&format=" . urlencode($format) : "";
-    $base_url .= isset($_GET['standardfilter']) ? "&standardfilter=1" : "";
-    $base_url .= isset($_GET['expandedfilter']) ? "&expandedfilter=1" : "";
-    $base_url .= isset($_GET['unlimitedfilter']) ? "&unlimitedfilter=1" : "";
+    $base_url .= isset($format) && !empty($format) ? "&format=" . urlencode($format) : "";
 
     // If there's a previous page
     if ($has_previous_page)
@@ -199,11 +167,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
     // $base_url .= isset($parameter) && !empty($parameter) ? "&parameter=" . urlencode($parameter) : "";
     $base_url .= isset($deckname) && !empty($deckname) ? "&deckname=" . urlencode(strtolower($deckname)) : "";
     $base_url .= isset($containscard) && !empty($containscard) ? "&containscard=" . urlencode(strtolower($containscard)) : "";
-    //$base_url .= isset($format) && !empty($format) ? "&format=" . urlencode($format) : "";
-    $base_url .= isset($_GET['standardfilter']) ? "&standardfilter=1" : "";
-    $base_url .= isset($_GET['expandedfilter']) ? "&expandedfilter=1" : "";
-    $base_url .= isset($_GET['unlimitedfilter']) ? "&unlimitedfilter=1" : "";
-
+    $base_url .= isset($format) && !empty($format) ? "&format=" . urlencode($format) : "";
     // If there's a previous page
     if ($has_previous_page)
     {

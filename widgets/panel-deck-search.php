@@ -8,96 +8,56 @@
 
   <?php
 
-  echo '<label for="standardfilter">';
-  if (isset($_GET['standardfilter']) || (!isset($_GET['search'])))
+  echo 'Format: <select name="format">';
+  echo '<option ';
+
+  if (isset($_GET['format']))
   {
-    echo '<input type="checkbox" id="standardfilter" name="standardfilter" value="1" checked>';
+    if (sanitizeInput($_GET['format']) == "All")
+    {
+      echo "selected ";
+    }
   }
   else
   {
-    echo '<input type="checkbox" id="standardfilter" name="standardfilter" value="1">';
+    echo "selected ";
   }
-  echo 'Standard Legal';
-  echo '</label>&nbsp';
+  echo 'value="All">All</option>';
 
-  echo '<label for="expandedfilter">';
-  if (isset($_GET['expandedfilter']) || (!isset($_GET['search'])))
+  echo '<option ';
+
+  if (isset($_GET['format']))
   {
-    echo '<input type="checkbox" id="expandedfilter" name="expandedfilter" value="1" checked>';
+    if (sanitizeInput($_GET['format']) == "Standard")
+    {
+      echo "selected ";
+    }
   }
-  else
+  echo 'value="Standard">Standard</option>';
+
+  echo '<option ';
+
+  if (isset($_GET['format']))
   {
-    echo '<input type="checkbox" id="expandedfilter" name="expandedfilter" value="1">';
+    if (sanitizeInput($_GET['format']) == "Expanded")
+    {
+      echo "selected ";
+    }
   }
-  echo 'Expanded Legal';
-  echo '</label>&nbsp';
+  echo 'value="Expanded">Expanded</option>';
 
-  echo '<label for="unlimitedfilter">';
-  if (isset($_GET['unlimitedfilter']) || (!isset($_GET['search'])))
+  echo '<option ';
+
+  if (isset($_GET['format']))
   {
-    echo '<input type="checkbox" id="unlimitedfilter" name="unlimitedfilter" value="1" checked>';
+    if (sanitizeInput($_GET['format']) == "Unlimited")
+    {
+      echo "selected ";
+    }
   }
-  else
-  {
-    echo '<input type="checkbox" id="unlimitedfilter" name="unlimitedfilter" value="1">';
-  }
-  echo 'Unlimited Legal';
-  echo '</label>&nbsp';
+  echo 'value="Unlimited">Unlimited</option>';
 
-
-  // echo 'Format: <select name="format">';
-  // echo '<option ';
-  
-  // if (isset($_GET['format']))
-  // {
-  //   if (sanitizeInput($_GET['format']) == "All")
-  //   {
-  //     echo "selected ";
-  //   }
-  // }
-  // else
-  // {
-  //   echo "selected ";
-  // }
-  // echo 'value="All">All</option>';
-  
-  // echo '<option ';
-  
-  // if (isset($_GET['format']))
-  // {
-  //   if (sanitizeInput($_GET['format']) == "Standard")
-  //   {
-  //     echo "selected ";
-  //   }
-  // }
-  // echo 'value="Standard">Standard</option>';
-  
-  // echo '<option ';
-  
-  // if (isset($_GET['format']))
-  // {
-  //   if (sanitizeInput($_GET['format']) == "Expanded")
-  //   {
-  //     echo "selected ";
-  //   }
-  // }
-  // echo 'value="Expanded">Expanded</option>';
-  
-  // echo '<option ';
-  
-  // if (isset($_GET['format']))
-  // {
-  //   if (sanitizeInput($_GET['format']) == "Unlimited")
-  //   {
-  //     echo "selected ";
-  //   }
-  // }
-  // echo 'value="Unlimited">Unlimited</option>';
-  
-  // echo '</select>';
-  
-
-
+  echo '</select>';
   ?>
 
   <input type="submit" name="search" value="search"></input>
