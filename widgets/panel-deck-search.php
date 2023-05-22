@@ -8,56 +8,96 @@
 
   <?php
 
-  echo 'Format: <select name="format">';
-  echo '<option ';
-
-  if (isset($_GET['format']))
+  echo '<label for="standardfilter">';
+  if (isset($_GET['standardfilter']) || (!isset($_GET['search'])))
   {
-    if (sanitizeInput($_GET['format']) == "All")
-    {
-      echo "selected ";
-    }
+    echo '<input type="checkbox" id="standardfilter" name="standardfilter" value="1" checked>';
   }
   else
   {
-    echo "selected ";
+    echo '<input type="checkbox" id="standardfilter" name="standardfilter" value="1">';
   }
-  echo 'value="All">All</option>';
+  echo 'Standard Legal';
+  echo '</label>&nbsp';
 
-  echo '<option ';
-
-  if (isset($_GET['format']))
+  echo '<label for="expandedfilter">';
+  if (isset($_GET['expandedfilter']) || (!isset($_GET['search'])))
   {
-    if (sanitizeInput($_GET['format']) == "Standard")
-    {
-      echo "selected ";
-    }
+    echo '<input type="checkbox" id="expandedfilter" name="expandedfilter" value="1" checked>';
   }
-  echo 'value="Standard">Standard</option>';
-
-  echo '<option ';
-
-  if (isset($_GET['format']))
+  else
   {
-    if (sanitizeInput($_GET['format']) == "Expanded")
-    {
-      echo "selected ";
-    }
+    echo '<input type="checkbox" id="expandedfilter" name="expandedfilter" value="1">';
   }
-  echo 'value="Expanded">Expanded</option>';
+  echo 'Expanded Legal';
+  echo '</label>&nbsp';
 
-  echo '<option ';
-
-  if (isset($_GET['format']))
+  echo '<label for="unlimitedfilter">';
+  if (isset($_GET['unlimitedfilter']) || (!isset($_GET['search'])))
   {
-    if (sanitizeInput($_GET['format']) == "Unlimited")
-    {
-      echo "selected ";
-    }
+    echo '<input type="checkbox" id="unlimitedfilter" name="unlimitedfilter" value="1" checked>';
   }
-  echo 'value="Unlimited">Unlimited</option>';
+  else
+  {
+    echo '<input type="checkbox" id="unlimitedfilter" name="unlimitedfilter" value="1">';
+  }
+  echo 'Unlimited Legal';
+  echo '</label>&nbsp';
 
-  echo '</select>';
+
+  // echo 'Format: <select name="format">';
+  // echo '<option ';
+  
+  // if (isset($_GET['format']))
+  // {
+  //   if (sanitizeInput($_GET['format']) == "All")
+  //   {
+  //     echo "selected ";
+  //   }
+  // }
+  // else
+  // {
+  //   echo "selected ";
+  // }
+  // echo 'value="All">All</option>';
+  
+  // echo '<option ';
+  
+  // if (isset($_GET['format']))
+  // {
+  //   if (sanitizeInput($_GET['format']) == "Standard")
+  //   {
+  //     echo "selected ";
+  //   }
+  // }
+  // echo 'value="Standard">Standard</option>';
+  
+  // echo '<option ';
+  
+  // if (isset($_GET['format']))
+  // {
+  //   if (sanitizeInput($_GET['format']) == "Expanded")
+  //   {
+  //     echo "selected ";
+  //   }
+  // }
+  // echo 'value="Expanded">Expanded</option>';
+  
+  // echo '<option ';
+  
+  // if (isset($_GET['format']))
+  // {
+  //   if (sanitizeInput($_GET['format']) == "Unlimited")
+  //   {
+  //     echo "selected ";
+  //   }
+  // }
+  // echo 'value="Unlimited">Unlimited</option>';
+  
+  // echo '</select>';
+  
+
+
   ?>
 
   <input type="submit" name="search" value="search"></input>
