@@ -15,7 +15,7 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
 
 
     $page = isset($_GET['page']) && !empty($_GET['page']) ? sanitizeInput((int)$_GET['page']) : 1;
-    $limit = 40;
+    $limit = 36;
     $offset = ($page - 1) * $limit;
 
     // Prepare the SQL statement with optional conditions and pagination
@@ -128,12 +128,17 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
         echo '<span id="Deck" style="float: left; width: 205px; margin-right: 20px;">';
 
         echo "<a href='deck.php?ID=" . $deck['id'] . "'>" . '<img width="205" height="127" src=img/crop_card.php?ID=' . $deck['featuredcard'] . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
-        echo "<a href='deck.php?ID=" . $deck['id'] . "'>" . limitStringLength(htmlspecialchars_decode($deck['deck_name']), 60) . "</a>";
+        echo "<a href='deck.php?ID=" . $deck['id'] . "'>" . limitStringLength(htmlspecialchars_decode($deck['deck_name']), 60) . "</a><br>";
+        if ($deck['source_type'] == "YOUTUBE")
+        {
+            $video_info = json_decode($deck['source_info']);
+            echo 'By: <a href="' . $video_info->channel_url . '" target="_blank">' . $video_info->channel_name . '</a>';
+        }
         echo '</span>';
 
         $RowNumVar = $RowNumVar + 1;
 
-        if ($RowNumVar == 5)
+        if ($RowNumVar == 6)
         {
 
             echo "<br style='clear: left;' /><br style='clear: left;' />";

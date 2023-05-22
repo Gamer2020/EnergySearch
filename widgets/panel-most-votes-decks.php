@@ -15,7 +15,12 @@ if ($row_count > 0)
         echo '<span id="Deck" style="float: left; width: 205px; margin-right: 20px;">';
 
         echo "<a href='deck.php?ID=" . $row['id'] . "'>" . '<img width="205" height="127" src=img/crop_card.php?ID=' . $row['featuredcard'] . " alt=" . '"' . "FeaturedCard" . '"' . "></a><br>";
-        echo "<a href='deck.php?ID=" . $row['id'] . "'>" . limitStringLength(htmlspecialchars_decode($row['deck_name']), 60) . "</a>";
+        echo "<a href='deck.php?ID=" . $row['id'] . "'>" . limitStringLength(htmlspecialchars_decode($row['deck_name']), 60) . "</a><br>";
+        if ($row['source_type'] == "YOUTUBE")
+        {
+            $video_info = json_decode($row['source_info']);
+            echo 'By: <a href="' . $video_info->channel_url . '" target="_blank">' . $video_info->channel_name . '</a>';
+        }
         echo "<br>Upvotes: " . ($row['upvotes']);
         //echo " Format: " . strip_tags($row['Format']) . "<br>";
         //echo " Votes: " . strip_tags($row['UpVotes']) . "<br>";
