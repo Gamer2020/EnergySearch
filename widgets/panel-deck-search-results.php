@@ -33,17 +33,17 @@ if (isset($_GET['search']) && ($_GET['search'] == "search"))
 
     if ($format === "Standard")
     {
-        $sql .= " AND standard_legality = 'Legal'";
+        $sql .= " AND format_legality = 'standard'";
     }
 
     if ($format === "Expanded")
     {
-        $sql .= " AND expanded_legality = 'Legal'";
+        $sql .= " AND format_legality = 'expanded'";
     }
 
     if ($format === "Unlimited")
     {
-        $sql .= " AND unlimited_legality = 'Legal'";
+        $sql .= " AND format_legality = 'unlimited'";
     }
 
     // To add more conditions, follow the pattern above, replacing ':setid' and 'setid' with the parameter placeholder and field name respectively.
