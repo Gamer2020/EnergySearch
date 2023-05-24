@@ -427,9 +427,27 @@ function import_cards()
         $stmt->bindParam(':rarity', $cardData['rarity']);
         $stmt->bindParam(':flavor_text', $cardData['flavorText']);
         $stmt->bindParam(':national_pokedex_numbers', $cardData['nationalPokedexNumbers'][0]);
-        $stmt->bindParam(':unlimited_legality', $cardData['legalities']['unlimited']);
-        $stmt->bindParam(':standard_legality', $cardData['legalities']['standard']);
+
+        $legal_override_ids = [
+          "bw9-122",
+          "sm3-163",
+          "sm8-209",
+          "bwp-BW95"
+        ];
+
+        if (in_array($cardData['id'], $legal_override_ids))
+        {
+          $legal_text_var = "Legal";
+          $stmt->bindParam(':standard_legality', $legal_text_var);
+        }
+        else
+        {
+          $stmt->bindParam(':standard_legality', $cardData['legalities']['standard']);
+        }
+
         $stmt->bindParam(':expanded_legality', $cardData['legalities']['expanded']);
+        $stmt->bindParam(':unlimited_legality', $cardData['legalities']['unlimited']);
+
         $stmt->bindParam(':small_image', $cardData['images']['small']);
         $stmt->bindParam(':large_image', $cardData['images']['large']);
         $ancientTraitvar = arrayToStringWithSpaces($cardData['ancientTrait']);
