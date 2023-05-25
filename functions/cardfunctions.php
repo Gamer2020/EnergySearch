@@ -91,6 +91,46 @@ function get_card_name_by_set_number($set_id, $set_number)
   return $result['name'];
 }
 
+function get_PTCGL_set_by_card_name($card_name)
+{
+  global $pdo;
+
+  $stmt = $pdo->prepare("SELECT PTCGL_set_id FROM es_cards WHERE LOWER(name) LIKE LOWER(:card_name)");
+  $stmt->bindValue(':card_name', '%' . $card_name . '%', PDO::PARAM_STR);
+  $stmt->execute();
+
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($result)
+  {
+    return $result['PTCGL_set_id'];
+  }
+  else
+  {
+    return null;
+  }
+}
+
+function get_PTCGL_num_by_card_name($card_name)
+{
+  global $pdo;
+
+  $stmt = $pdo->prepare("SELECT PTCGL_set_number FROM es_cards WHERE LOWER(name) LIKE LOWER(:card_name)");
+  $stmt->bindValue(':card_name', '%' . $card_name . '%', PDO::PARAM_STR);
+  $stmt->execute();
+
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($result)
+  {
+    return $result['PTCGL_set_number'];
+  }
+  else
+  {
+    return null;
+  }
+}
+
 function get_card_votes_by_id($id)
 {
   global $pdo;

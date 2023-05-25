@@ -33,101 +33,101 @@ function deck_is_visible($deck_id)
 
 function get_deck_votes_by_id($id)
 {
-  global $pdo;
+    global $pdo;
 
-  $stmt = $pdo->prepare("SELECT upvotes FROM es_decks WHERE id = :id");
-  $stmt->bindParam(":id", $id);
-  $stmt->execute();
+    $stmt = $pdo->prepare("SELECT upvotes FROM es_decks WHERE id = :id");
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
 
-  $result = $stmt->fetch();
-  return $result['upvotes'];
+    $result = $stmt->fetch();
+    return $result['upvotes'];
 }
 
 function check_deck_voted_by_id($id)
 {
-  global $pdo;
+    global $pdo;
 
-  $ip_address = get_user_ip();
+    $ip_address = get_user_ip();
 
-  $stmt = $pdo->prepare("SELECT COUNT(*) FROM es_deck_upvotes WHERE deck_id = :id AND ip_address = :ip");
-  $stmt->bindParam(":id", $id);
-  $stmt->bindParam(":ip", $ip_address);
-  $stmt->execute();
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM es_deck_upvotes WHERE deck_id = :id AND ip_address = :ip");
+    $stmt->bindParam(":id", $id);
+    $stmt->bindParam(":ip", $ip_address);
+    $stmt->execute();
 
-  $count = $stmt->fetchColumn();
+    $count = $stmt->fetchColumn();
 
-  return $count > 0;
+    return $count > 0;
 }
 
 function addDeckVote($deckId, $ipAddress)
 {
-  global $pdo;
+    global $pdo;
 
-  $sql = "INSERT INTO es_deck_upvotes (deck_id, ip_address) VALUES (:deckId, :ipAddress)";
+    $sql = "INSERT INTO es_deck_upvotes (deck_id, ip_address) VALUES (:deckId, :ipAddress)";
 
-  try
-  {
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':deckId', $deckId, PDO::PARAM_STR);
-    $stmt->bindParam(':ipAddress', $ipAddress, PDO::PARAM_STR);
-    $stmt->execute();
-  }
-  catch (PDOException $e)
-  {
-    // Handle the exception or log the error
-    echo "Error: " . $e->getMessage();
-  }
+    try
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':deckId', $deckId, PDO::PARAM_STR);
+        $stmt->bindParam(':ipAddress', $ipAddress, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+    catch (PDOException $e)
+    {
+        // Handle the exception or log the error
+        echo "Error: " . $e->getMessage();
+    }
 }
 
 function removeDeckVote($deckId, $ipAddress)
 {
-  global $pdo;
+    global $pdo;
 
-  $sql = "DELETE FROM es_deck_upvotes WHERE deck_id = :deckId AND ip_address = :ipAddress";
+    $sql = "DELETE FROM es_deck_upvotes WHERE deck_id = :deckId AND ip_address = :ipAddress";
 
-  try
-  {
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':deckId', $deckId, PDO::PARAM_STR);
-    $stmt->bindParam(':ipAddress', $ipAddress, PDO::PARAM_STR);
-    $stmt->execute();
-  }
-  catch (PDOException $e)
-  {
-    // Handle the exception or log the error
-    echo "Error: " . $e->getMessage();
-  }
+    try
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':deckId', $deckId, PDO::PARAM_STR);
+        $stmt->bindParam(':ipAddress', $ipAddress, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+    catch (PDOException $e)
+    {
+        // Handle the exception or log the error
+        echo "Error: " . $e->getMessage();
+    }
 }
 
 function deck_add_vote($deck_id)
 {
-  global $pdo;
+    global $pdo;
 
-  // Update the views column
-  $sql = "UPDATE es_decks SET upvotes = upvotes + 1 WHERE id = ?";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute([$deck_id]);
+    // Update the views column
+    $sql = "UPDATE es_decks SET upvotes = upvotes + 1 WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$deck_id]);
 
-  // Update the monthly_views column
-  $sql = "UPDATE es_decks SET monthly_upvotes = monthly_upvotes + 1 WHERE id = ?";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute([$deck_id]);
+    // Update the monthly_views column
+    $sql = "UPDATE es_decks SET monthly_upvotes = monthly_upvotes + 1 WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$deck_id]);
 
 }
 
 function deck_remove_vote($deck_id)
 {
-  global $pdo;
+    global $pdo;
 
-  // Update the views column
-  $sql = "UPDATE es_decks SET upvotes = upvotes - 1 WHERE id = ?";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute([$deck_id]);
+    // Update the views column
+    $sql = "UPDATE es_decks SET upvotes = upvotes - 1 WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$deck_id]);
 
-  // Update the monthly_views column
-  $sql = "UPDATE es_decks SET monthly_upvotes = monthly_upvotes - 1 WHERE id = ?";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute([$deck_id]);
+    // Update the monthly_views column
+    $sql = "UPDATE es_decks SET monthly_upvotes = monthly_upvotes - 1 WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$deck_id]);
 
 }
 
@@ -206,22 +206,39 @@ function ptcglDeckListToJson($decklist)
 
 
             $set_number = array_pop($parts);
-            while (!is_numeric($set_number) && !empty($parts))
+
+            $max_iterations = 10; // set a limit for iterations
+            $iterations = 0;
+
+            while (!is_numeric($set_number) && !empty($parts) && $iterations < $max_iterations)
             {
                 array_unshift($parts, $set_number);
                 $set_number = array_pop($parts);
+                $iterations++;
             }
 
-            $set_code = array_pop($parts);
-            $card_name = implode(' ', $parts);
 
-            // if (empty($set_code)) {
-            //     $set_code = get_ptcgo_code_by_set_id(get_set_id_by_card_name($card_name));
-            // }
+            if (!is_numeric($set_number))
+            {
+                //continue;
 
-            // if (empty($set_number)) {
-            //     $set_number = get_set_number_by_card_name($card_name);
-            // }
+                $card_name = $set_number;
+                $set_code = get_PTCGL_set_by_card_name($card_name);
+                $set_number = get_PTCGL_num_by_card_name($card_name);
+
+            }else{
+                $set_code = array_pop($parts);
+                $card_name = implode(' ', $parts);
+            }
+
+
+            if (empty($set_code)) {
+                continue;
+            }
+
+            if (empty($set_number)) {
+                continue;
+            }
 
             if (card_exists_by_ptcgl(strtoupper($set_code), $set_number))
             {
