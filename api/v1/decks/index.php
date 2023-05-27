@@ -53,6 +53,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         exit();
     }
 
+    $totalCards = 0;
+    foreach ($deck_list_decoded->cards as $card)
+    {
+        $totalCards += intval($card->quantity);
+    }
+
+    if ($totalCards != 60)
+    {
+        http_response_code(500);
+        echo json_encode(['error' => 'Failed to create deck']);
+        exit();
+    }
+
     // Update deck legality
 
     $deckLegalityArrary = ptcglDeckListJsonLegalCheck($card_list);
