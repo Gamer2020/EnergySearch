@@ -143,6 +143,18 @@ function get_card_votes_by_id($id)
   return $result['upvotes'];
 }
 
+function get_card_views_by_id($id)
+{
+  global $pdo;
+
+  $stmt = $pdo->prepare("SELECT views FROM es_cards WHERE id = :id");
+  $stmt->bindParam(":id", $id);
+  $stmt->execute();
+
+  $result = $stmt->fetch();
+  return $result['views'];
+}
+
 function check_card_voted_by_id($id)
 {
   global $pdo;
