@@ -66,10 +66,18 @@ require_once 'include.php';
             
                         echo '<div id="tab-1">';
 
+                        echo '<button id="CopyButtonPTCGL" onclick="copyToClipboard()">Copy PTCGL List</button>';
+
+                        echo '<br>';
+
                         echo '<p class="deck-list"><img id="highlightedCard" class="deck-list-right-image" src="' . get_card_image_by_id($deck['featuredcard']) . '" alt="">';
+
+                        $deckListPTCGLText = "";
 
                         foreach ($deck_list->cards as $card)
                         {
+                            $deckListPTCGLText .= $card->quantity . " " . $card->name . " " . $card->set_code . " " . $card->set_number . "\\n";
+
                             // echo "Quantity: " . $card->quantity . "<br>";
                             // echo "Name: " . $card->name . "<br>";
                             // echo "Set code: " . $card->set_code . "<br>";
@@ -108,6 +116,28 @@ require_once 'include.php';
                                 }
                             };
 
+                        </script>
+                        <input type="text" value="<?php echo htmlspecialchars($deckListPTCGLText, ENT_QUOTES, 'UTF-8'); ?>"
+                            id="PTCGLDeckList" style="display: none;">
+
+                        <script>
+                            async function copyToClipboard() {
+                                /* Get the text field */
+                                var copyText = document.getElementById("PTCGLDeckList");
+
+                                /* Replace string literal '\n' with actual newline */
+                                var decodedText = copyText.value.replace(/\\n/g, "\n");
+
+                                try {
+                                    /* Copy the text inside the text field */
+                                    await navigator.clipboard.writeText(decodedText);
+
+                                    /* Alert the copied text */
+                                    // alert("Copied the text: " + copyText.value);
+                                } catch (err) {
+                                    console.error('Failed to copy text: ', err);
+                                }
+                            }
                         </script>
                         <?php
 
