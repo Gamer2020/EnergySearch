@@ -43,6 +43,18 @@ function get_deck_votes_by_id($id)
     return $result['upvotes'];
 }
 
+function get_deck_views_by_id($id)
+{
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT views FROM es_decks WHERE id = :id");
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+
+    $result = $stmt->fetch();
+    return $result['views'];
+}
+
 function check_deck_voted_by_id($id)
 {
     global $pdo;
