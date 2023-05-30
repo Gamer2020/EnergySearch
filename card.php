@@ -58,7 +58,7 @@ require_once 'include.php';
 
                         echo '<td> <b>Set:</b>';
 
-                        echo '</td><td>' . get_set_name_from_id($card['set_id']);
+                        echo '</td><td>' . '<a href=set.php?ID=' . $card['set_id'] . '>' . get_set_name_from_id($card['set_id']) . '</a>';
 
                         echo '</td></tr>';
 
