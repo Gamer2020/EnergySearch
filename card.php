@@ -248,50 +248,48 @@ require_once 'include.php';
 
                         echo '</tbody></table>';
 
-                        // $cardPrev = "";
-                        // $cardNext = "";
-            
-                        // $response = Pokemon::Card($options)->where([
-                        //     'setCode' => $card['setCode'],
-                        //     'number' => ($card['number'] - 1)
-                        // ])->all();
-                        // foreach ($response as $model) {
-                        //     $cardPrev = $model->toArray();
-                        // }
-            
-                        // $response = Pokemon::Card($options)->where([
-                        //     'setCode' => $card['setCode'],
-                        //     'number' => ($card['number'] + 1)
-                        // ])->all();
-                        // foreach ($response as $model) {
-                        //     $cardNext = $model->toArray();
-                        // }
-            
-                        // echo '<table>';
-                        // echo '<tr>';
-            
-                        // if (!empty($cardPrev)) {
-                        //     echo '<th>Previous card in set</th>';
-                        // }
-            
-                        // if (!empty($cardNext)) {
-                        //     echo '<th>Next card in set</th>';
-                        // }
-            
-                        // echo '</tr>';
-                        // echo '<tr>';
-            
-                        // if (!empty($cardPrev)) {
-                        //     echo "<td>" . '<div style="text-align:center"><a href="' . get_permalink($es_cardpage_options['page_id']) . "?ID=" . $cardPrev['id'] . '">' . '<img width="250" height="350" src=' . $cardPrev['imageUrl'] . "" . ">" . "</a></div>" . "</td>";
-                        // }
-            
-                        // if (!empty($cardNext)) {
-                        //     echo "<td>" . '<div style="text-align:center"><a href="' . get_permalink($es_cardpage_options['page_id']) . "?ID=" . $cardNext['id'] . '">' . '<img width="250" height="350" src=' . $cardNext['imageUrl'] . "" . ">" . "</a></div>" . "</td>";
-                        // }
-            
-                        // echo '</tr>';
-                        // echo '</table>';
-            
+                        // Fetch all cards from the current set and order them by set_number
+                        $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE set_id = ? ORDER BY CAST(REGEXP_REPLACE(set_number, '[^0-9]', '') AS UNSIGNED) ASC");
+                        $stmt->execute([$card['set_id']]);
+                        $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        // Find the current card within the ordered list
+                        $currentIndex = array_search($card, $cards);
+
+                        // Fetch the previous and next cards
+                        $prevCard = $cards[$currentIndex - 1] ?? null;
+                        $nextCard = $cards[$currentIndex + 1] ?? null;
+
+                        echo '<table>';
+                        echo '<tr>';
+
+                        if (!is_null($prevCard))
+                        {
+                            echo '<th>Previous card in set</th>';
+                        }
+
+                        if (!is_null($nextCard))
+                        {
+                            echo '<th>Next card in set</th>';
+                        }
+
+                        echo '</tr>';
+                        echo '<tr>';
+
+                        if (!is_null($prevCard))
+                        {
+                            echo "<td>" . '<div style="text-align:center"><a href="' . $_SERVER['PHP_SELF'] . "?ID=" . $prevCard['id'] . '">' . '<img width="250" height="350" src=' . $prevCard['small_image'] . "" . ">" . "</a></div>" . "</td>";
+                        }
+
+                        if (!is_null($nextCard))
+                        {
+                            echo "<td>" . '<div style="text-align:center"><a href="' . $_SERVER['PHP_SELF'] . "?ID=" . $nextCard['id'] . '">' . '<img width="250" height="350" src=' . $nextCard['small_image'] . "" . ">" . "</a></div>" . "</td>";
+                        }
+
+                        echo '</tr>';
+                        echo '</table>';
+
+
                         //catch exception
                     }
                     catch (Exception $e)
