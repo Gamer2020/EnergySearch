@@ -297,6 +297,8 @@ require_once 'include.php';
                         echo 'Message: ' . $e->getMessage();
                     }
 
+                    // include "widgets/panel-card-decks-by-number.php";
+                    // echo "<br style='clear: left;' /><br style='clear: left;' />";
                     include "widgets/panel-card-decks-by-name.php";
 
                 }
