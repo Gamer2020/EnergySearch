@@ -3,4 +3,4 @@
 config.php
 cron/config.php
 cron/examples.php
-.htcaccess
+.htaccess
