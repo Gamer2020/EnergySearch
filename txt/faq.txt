@@ -19,10 +19,10 @@
 <p><i>This is something I am considering. I would like to minimize load times and have no cookies or anything similar on the website. In my experiance most people these days use ad blockers so there wouldn't be much revenue from that anyway.</i></p>
 <br><h3>What sources are used for decks?</h3>
 <br>
-<p><i>Currently YouTube channels are learned with more things planned in the future.</i></p>
+<p><i>Currently YouTube channels are learned currently and more things planned in the future.</i></p>
 <br><h3>I know of a good youtube channel but it's decks aren't on the site?</h3>
 <br>
-<p><i>Submit a ticket for it to be added. Currently new channels have to be added manually. This process is slow as YouTube has API limits. More work for auto-discovery is planned.</i></p>
+<p><i>New channels are added automatically but process is slow as YouTube has API limits. You can submit a ticket and I can make sure it is in the queue.</i></p>
 <br><h3>A deck list for a Youtube video isn't learned properly? A channel that is learned by the site is missing videos? I copied a list but it failed to import.</h3>
 <br>
 <p><i>For the best success, YouTube creators should just copy and paste the list exported from PTCGO/PTCGL. Some creators make edits to the lists for whatever reason and sometimes there are issues with deck lists because of this. Some measures to help with this are inplemented into the deck learning proccess but it is hard to account for every little thing.</i></p>
