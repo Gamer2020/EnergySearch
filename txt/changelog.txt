@@ -1,4 +1,8 @@
 <h1>Change Log</h1>
+	<h2>Version 0.1.1</h2>
+	<ul style="margin-left: 20px;">
+		<li>Fix to make internal cron scripts run properly on webhosts.There are scripts that update cards on the website.</li>
+	</ul>
 	<h2>Version 0.1.0</h2>
 	<ul style="margin-left: 20px;">
 		<li>Initial release of Energy Search! This release is considered a beta. Basic functionality exists, but it is far from finished.</li>
