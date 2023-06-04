@@ -1,4 +1,8 @@
 <h1>Change Log</h1>
+	<h2>Version 0.1.2</h2>
+	<ul style="margin-left: 20px;">
+		<li>Fix to make deck viewing on mobile a little better.</li>
+	</ul>
 	<h2>Version 0.1.1</h2>
 	<ul style="margin-left: 20px;">
 		<li>Fix to make internal cron scripts run properly on webhosts.There are scripts that update cards on the website.</li>
