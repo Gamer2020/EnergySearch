@@ -442,7 +442,8 @@ function import_cards()
           "bw5-93",
           "sm1-161",
           "sm2-122",
-          "sm35-68"
+          "sm35-68",
+          "bw9-103"
         ];
 
         if (in_array($cardData['id'], $legal_override_ids))

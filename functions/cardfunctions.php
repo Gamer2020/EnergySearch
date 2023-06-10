@@ -321,6 +321,7 @@ function ptcgl_code_override($PTCGO_Value, $SET_Value)
 
     $valueList = array(
       array("input" => "sv1", "matched" => "SVI"),
+      array("input" => "sv2", "matched" => "PAL"),
       array("input" => "svp", "matched" => "PR-SV"),
       array("input" => "swsh12tg", "matched" => "CRZ-GG"),
       array("input" => "sma", "matched" => "HIF")
