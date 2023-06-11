@@ -5,7 +5,7 @@
 	</ul>
 	<h2>Version 0.1.3</h2>
 	<ul style="margin-left: 20px;">
-		<li>Adds Paldea Evolved PTCGL code. Override added for bw9-103 now being stadard legal.</li>
+		<li>Adds Paldea Evolved PTCGL code. Override added for bw9-103 now being standard legal.</li>
 	</ul>
 	<h2>Version 0.1.2</h2>
 	<ul style="margin-left: 20px;">
