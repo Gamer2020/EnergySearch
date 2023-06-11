@@ -38,7 +38,7 @@ require_once 'include.php';
                         echo '<div id="deckviewer">';
                         echo '<ul>';
                         echo '<li><a href="#tab-1">Deck List</a></li>';
-                        echo '<li><a href="#tab-2">Future Use</a></li>';
+                        echo '<li><a href="#tab-2">Stats</a></li>';
                         echo '<li><a href="#tab-3">Future Use</a></li>';
                         echo '</ul>';
 
@@ -74,6 +74,21 @@ require_once 'include.php';
 
                         $deckListPTCGLText = "";
 
+                        // Opening hand vars
+            
+                        $decklistcount = sizeof($deck_list->cards);
+                        $energycount = "0";
+                        $trainercount = "0";
+                        $Pokecount = "0";
+                        $Basiccount = "0";
+
+                        $OHCALCdecklisttext = "";
+                        $OHCALCenergytext = "";
+                        $OHCALCtrainertext = "";
+                        $OHCALCPokeText = "";
+
+                        // Generate Deck.
+            
                         foreach ($deck_list->cards as $card)
                         {
                             $deckListPTCGLText .= $card->quantity . " " . $card->name . " " . $card->set_code . " " . $card->set_number . "\\n";
@@ -93,6 +108,15 @@ require_once 'include.php';
                             if ($db_card)
                             {
                                 echo "<a href='card.php" . "?ID=" . $db_card['id'] . "' class='deck-card' data-image='" . $db_card['small_image'] . "'>" . $card->quantity . " x " . $db_card['name'] . "</a>" . "<br>";
+
+                                if ((strpos($db_card['subtypes'], 'Basic') !== false) && $db_card['supertype'] === 'Pokémon')
+                                {
+
+                                    $Basiccount = $Basiccount + $card->quantity;
+
+                                }
+
+
                             }
                             else
                             {
@@ -144,9 +168,28 @@ require_once 'include.php';
 
                         echo '</div>';
 
+
+
                         echo '<div id="tab-2">';
-                        echo '<p>This is a planned feature that has not been implemented yet...</p>';
+                        echo "<p>";
+
+                        echo "Number of Pokemon: " . $Pokecount . "<br>";
+                        echo "Number of Basic Pokemon: " . $Basiccount . "<br>";
+                        // echo "Odds of having a basic Pokemon: " . CalcCardInOpeningHand($Basiccount, $decklistcount, 7) . "<br>";
+                        echo "Number of Trainer cards: " . $trainercount . "<br>";
+                        echo "Number of Energy cards: " . $energycount . "<br>";
+                        // echo "Odds of starting with an Energy: " . CalcCardInOpeningHand($energycount, $decklistcount, 6) . "<br>";
+                        echo "<br>";
+
+
+                        echo "Odds of a card being in your opening hand:<br><br>";
+                        // echo $OHCALCdecklisttext;
+            
+                        echo "</p>";
                         echo '</div>';
+
+
+
                         echo '<div id="tab-3">';
                         echo '<p>This is a planned feature that has not been implemented yet...</p>';
                         echo '</div>';
