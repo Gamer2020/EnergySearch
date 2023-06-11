@@ -108,7 +108,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
                 $deck_featured_card = get_card_id_by_ptcgl_set_num($card->set_code, $card->set_number);
 
-                $firstinstanceflag = 0;
+                if (!empty($deck_featured_card))
+                {
+                    $firstinstanceflag = 0;
+                }
 
             }
 
