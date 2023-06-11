@@ -238,17 +238,21 @@ function ptcglDeckListToJson($decklist)
                 $set_code = get_PTCGL_set_by_card_name($card_name);
                 $set_number = get_PTCGL_num_by_card_name($card_name);
 
-            }else{
+            }
+            else
+            {
                 $set_code = array_pop($parts);
                 $card_name = implode(' ', $parts);
             }
 
 
-            if (empty($set_code)) {
+            if (empty($set_code))
+            {
                 continue;
             }
 
-            if (empty($set_number)) {
+            if (empty($set_number))
+            {
                 continue;
             }
 
@@ -343,6 +347,29 @@ function updateDeckListNames($deck_input)
     }
 
 
+}
+
+function CalcCardInOpeningHand($T, $D, $H)
+{
+
+    //$T=1;
+    //$D=60;
+    //$H=7;
+
+    $Top = 1;
+    $Bottom = 1;
+
+    for ($x = 1; $x <= $H; $x++)
+    {
+
+        $Top = $Top * (($D + 1 - $x) - $T);
+        $Bottom = $Bottom * ($D + 1 - $x);
+
+    }
+
+    $result = 1 - ($Top / $Bottom);
+
+    return round((float)$result * 100, 2) . '%';
 }
 
 

@@ -74,18 +74,15 @@ require_once 'include.php';
 
                         $deckListPTCGLText = "";
 
-                        // Opening hand vars
+                        // Stats vars
             
-                        $decklistcount = sizeof($deck_list->cards);
+                        $decklistcount = "60";
                         $energycount = "0";
                         $trainercount = "0";
                         $Pokecount = "0";
                         $Basiccount = "0";
 
                         $OHCALCdecklisttext = "";
-                        $OHCALCenergytext = "";
-                        $OHCALCtrainertext = "";
-                        $OHCALCPokeText = "";
 
                         // Generate Deck.
             
@@ -116,11 +113,35 @@ require_once 'include.php';
 
                                 }
 
+                                if ($db_card['supertype'] === 'Pokémon')
+                                {
+
+                                    $Pokecount = $Pokecount + $card->quantity;
+
+                                }
+
+                                if ($db_card['supertype'] === 'Trainer')
+                                {
+
+                                    $trainercount = $trainercount + $card->quantity;
+
+                                }
+
+                                if ($db_card['supertype'] === 'Energy')
+                                {
+
+                                    $energycount = $energycount + $card->quantity;
+
+                                }
+
+                                $OHCALCdecklisttext = $OHCALCdecklisttext . "<a href='card.php" . "?ID=" . $db_card['id'] . "'>" . $db_card['name'] . " " . CalcCardInOpeningHand($card->quantity, $decklistcount, 7) . "</a>" . "</br>";
+
 
                             }
                             else
                             {
                                 echo $card->quantity . " x " . htmlspecialchars_decode($card->name) . "<br>";
+                                $OHCALCdecklisttext = $OHCALCdecklisttext . htmlspecialchars_decode($card->name) . " " . CalcCardInOpeningHand($card->quantity, $decklistcount, 7) . "</br>";
                             }
 
                         }
@@ -167,16 +188,16 @@ require_once 'include.php';
 
                         echo "Number of Pokemon: " . $Pokecount . "<br>";
                         echo "Number of Basic Pokemon: " . $Basiccount . "<br>";
-                        // echo "Odds of having a basic Pokemon: " . CalcCardInOpeningHand($Basiccount, $decklistcount, 7) . "<br>";
+                        echo "Odds of having a Basic Pokemon: " . CalcCardInOpeningHand($Basiccount, $decklistcount, 7) . "<br>";
                         echo "Number of Trainer cards: " . $trainercount . "<br>";
                         echo "Number of Energy cards: " . $energycount . "<br>";
-                        // echo "Odds of starting with an Energy: " . CalcCardInOpeningHand($energycount, $decklistcount, 6) . "<br>";
+                        echo "Odds of starting with an Energy: " . CalcCardInOpeningHand($energycount, $decklistcount, 6) . "<br>";
                         echo "<br>";
 
 
                         echo "Odds of a card being in your opening hand:<br><br>";
-                        // echo $OHCALCdecklisttext;
-            
+                        echo $OHCALCdecklisttext;
+
                         echo "</p>";
                         echo '</div>';
 
