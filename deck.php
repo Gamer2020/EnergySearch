@@ -129,10 +129,8 @@ require_once 'include.php';
                         ?>
                         <script>
                             window.onload = function () {
-                                // Get all elements with the class 'deck-card'
                                 var elems = document.getElementsByClassName('deck-card');
 
-                                // Add event listener for each element
                                 for (var i = 0; i < elems.length; i++) {
                                     elems[i].addEventListener("mouseover", function () {
                                         document.getElementById("highlightedCard").src = this.getAttribute('data-image');
@@ -146,18 +144,12 @@ require_once 'include.php';
 
                         <script>
                             async function copyToClipboard() {
-                                /* Get the text field */
                                 var copyText = document.getElementById("PTCGLDeckList");
 
-                                /* Replace string literal '\n' with actual newline */
                                 var decodedText = copyText.value.replace(/\\n/g, "\n");
 
                                 try {
-                                    /* Copy the text inside the text field */
                                     await navigator.clipboard.writeText(decodedText);
-
-                                    /* Alert the copied text */
-                                    // alert("Copied the text: " + copyText.value);
                                 } catch (err) {
                                     console.error('Failed to copy text: ', err);
                                 }
