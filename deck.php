@@ -39,7 +39,7 @@ require_once 'include.php';
                         echo '<ul>';
                         echo '<li><a href="#tab-1">Deck List</a></li>';
                         echo '<li><a href="#tab-2">Stats</a></li>';
-                        echo '<li><a href="#tab-3">Future Use</a></li>';
+                        echo '<li><a href="#tab-3">Hand Simulator</a></li>';
                         echo '</ul>';
 
 
@@ -73,6 +73,7 @@ require_once 'include.php';
                         echo '<p class="deck-list"><img id="highlightedCard" class="deck-list-right-image" src="' . get_card_image_by_id($deck['featuredcard']) . '" alt="">';
 
                         $deckListPTCGLText = "";
+                        $cardIDList = "";
 
                         // Stats vars
             
@@ -135,6 +136,8 @@ require_once 'include.php';
                                 }
 
                                 $OHCALCdecklisttext = $OHCALCdecklisttext . "<a href='card.php" . "?ID=" . $db_card['id'] . "'>" . $db_card['name'] . " " . CalcCardInOpeningHand($card->quantity, $decklistcount, 7) . "</a>" . "</br>";
+
+                                $cardIDList = $cardIDList . $db_card['id'] . ",";
 
 
                             }
@@ -204,9 +207,38 @@ require_once 'include.php';
 
 
                         echo '<div id="tab-3">';
-                        echo '<p>This is a planned feature that has not been implemented yet...</p>';
+                        echo "<p>Please note that cards in the deck list that don't get mapped to a card will not show up below.</p>";
+
+                        $cardIDList = removeTrailingComma($cardIDList);
+
+                        echo '<input  id="HandSimButton" type="button" value="Draw hand!" onclick="' .
+
+                        "var str = '" . $cardIDList . "';
+                        var xmlhttp;
+                            if (window.XMLHttpRequest){
+                                xmlhttp=new XMLHttpRequest();
+                                }else
+                                {
+                                    xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+                                    }
+                                    xmlhttp.onreadystatechange=function()
+                                    {
+                                        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                                        {document.getElementById('HandSim').innerHTML=xmlhttp.responseText;}}
+                xmlhttp.open('GET','tools/HandSimulator.php?T=' + Math.random() + '&Deck='+str,true); xmlhttp.send();"
+
+                        . '"><br><br>';
+
+                        echo '<span id="HandSim">';
+
+                        echo '</span>';
+
                         echo '</div>';
 
+                        // echo '<div id="tab-4">';
+                        // echo '<p>This is a planned feature that has not been implemented yet...</p>';
+                        // echo '</div>';
+            
                         echo "</div>";
                         echo "</div>";
 
