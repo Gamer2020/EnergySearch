@@ -38,8 +38,8 @@ require_once 'include.php';
                         echo '<div id="deckviewer">';
                         echo '<ul>';
                         echo '<li><a href="#tab-1">Deck List</a></li>';
-                        echo '<li><a href="#tab-2">Future Use</a></li>';
-                        echo '<li><a href="#tab-3">Future Use</a></li>';
+                        echo '<li><a href="#tab-2">Stats</a></li>';
+                        echo '<li><a href="#tab-3">Hand Simulator</a></li>';
                         echo '</ul>';
 
 
@@ -73,7 +73,20 @@ require_once 'include.php';
                         echo '<p class="deck-list"><img id="highlightedCard" class="deck-list-right-image" src="' . get_card_image_by_id($deck['featuredcard']) . '" alt="">';
 
                         $deckListPTCGLText = "";
+                        $cardIDList = "";
 
+                        // Stats vars
+            
+                        $decklistcount = "60";
+                        $energycount = "0";
+                        $trainercount = "0";
+                        $Pokecount = "0";
+                        $Basiccount = "0";
+
+                        $OHCALCdecklisttext = "";
+
+                        // Generate Deck.
+            
                         foreach ($deck_list->cards as $card)
                         {
                             $deckListPTCGLText .= $card->quantity . " " . $card->name . " " . $card->set_code . " " . $card->set_number . "\\n";
@@ -93,10 +106,45 @@ require_once 'include.php';
                             if ($db_card)
                             {
                                 echo "<a href='card.php" . "?ID=" . $db_card['id'] . "' class='deck-card' data-image='" . $db_card['small_image'] . "'>" . $card->quantity . " x " . $db_card['name'] . "</a>" . "<br>";
+
+                                if ((strpos($db_card['subtypes'], 'Basic') !== false) && $db_card['supertype'] === 'Pokémon')
+                                {
+
+                                    $Basiccount = $Basiccount + $card->quantity;
+
+                                }
+
+                                if ($db_card['supertype'] === 'Pokémon')
+                                {
+
+                                    $Pokecount = $Pokecount + $card->quantity;
+
+                                }
+
+                                if ($db_card['supertype'] === 'Trainer')
+                                {
+
+                                    $trainercount = $trainercount + $card->quantity;
+
+                                }
+
+                                if ($db_card['supertype'] === 'Energy')
+                                {
+
+                                    $energycount = $energycount + $card->quantity;
+
+                                }
+
+                                $OHCALCdecklisttext = $OHCALCdecklisttext . "<a href='card.php" . "?ID=" . $db_card['id'] . "'>" . $db_card['name'] . " " . CalcCardInOpeningHand($card->quantity, $decklistcount, 7) . "</a>" . "</br>";
+
+                                $cardIDList = $cardIDList . $db_card['id'] . ",";
+
+
                             }
                             else
                             {
                                 echo $card->quantity . " x " . htmlspecialchars_decode($card->name) . "<br>";
+                                $OHCALCdecklisttext = $OHCALCdecklisttext . htmlspecialchars_decode($card->name) . " " . CalcCardInOpeningHand($card->quantity, $decklistcount, 7) . "</br>";
                             }
 
                         }
@@ -105,10 +153,8 @@ require_once 'include.php';
                         ?>
                         <script>
                             window.onload = function () {
-                                // Get all elements with the class 'deck-card'
                                 var elems = document.getElementsByClassName('deck-card');
 
-                                // Add event listener for each element
                                 for (var i = 0; i < elems.length; i++) {
                                     elems[i].addEventListener("mouseover", function () {
                                         document.getElementById("highlightedCard").src = this.getAttribute('data-image');
@@ -122,18 +168,12 @@ require_once 'include.php';
 
                         <script>
                             async function copyToClipboard() {
-                                /* Get the text field */
                                 var copyText = document.getElementById("PTCGLDeckList");
 
-                                /* Replace string literal '\n' with actual newline */
                                 var decodedText = copyText.value.replace(/\\n/g, "\n");
 
                                 try {
-                                    /* Copy the text inside the text field */
                                     await navigator.clipboard.writeText(decodedText);
-
-                                    /* Alert the copied text */
-                                    // alert("Copied the text: " + copyText.value);
                                 } catch (err) {
                                     console.error('Failed to copy text: ', err);
                                 }
@@ -144,13 +184,61 @@ require_once 'include.php';
 
                         echo '</div>';
 
+
+
                         echo '<div id="tab-2">';
-                        echo '<p>This is a planned feature that has not been implemented yet...</p>';
-                        echo '</div>';
-                        echo '<div id="tab-3">';
-                        echo '<p>This is a planned feature that has not been implemented yet...</p>';
+                        echo "<p>";
+
+                        echo "Number of Pokemon: " . $Pokecount . "<br>";
+                        echo "Number of Basic Pokemon: " . $Basiccount . "<br>";
+                        echo "Odds of having a Basic Pokemon: " . CalcCardInOpeningHand($Basiccount, $decklistcount, 7) . "<br>";
+                        echo "Number of Trainer cards: " . $trainercount . "<br>";
+                        echo "Number of Energy cards: " . $energycount . "<br>";
+                        echo "Odds of starting with an Energy: " . CalcCardInOpeningHand($energycount, $decklistcount, 6) . "<br>";
+                        echo "<br>";
+
+
+                        echo "Odds of a card being in your opening hand:<br><br>";
+                        echo $OHCALCdecklisttext;
+
+                        echo "</p>";
                         echo '</div>';
 
+
+
+                        echo '<div id="tab-3">';
+                        echo "<p>Please note that cards in the deck list that don't get mapped to a card will not show up below.</p>";
+
+                        $cardIDList = removeTrailingComma($cardIDList);
+
+                        echo '<input  id="HandSimButton" type="button" value="Draw hand!" onclick="' .
+
+                        "var str = '" . $cardIDList . "';
+                        var xmlhttp;
+                            if (window.XMLHttpRequest){
+                                xmlhttp=new XMLHttpRequest();
+                                }else
+                                {
+                                    xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+                                    }
+                                    xmlhttp.onreadystatechange=function()
+                                    {
+                                        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                                        {document.getElementById('HandSim').innerHTML=xmlhttp.responseText;}}
+                xmlhttp.open('GET','tools/HandSimulator.php?T=' + Math.random() + '&Deck='+str,true); xmlhttp.send();"
+
+                        . '"><br><br>';
+
+                        echo '<span id="HandSim">';
+
+                        echo '</span>';
+
+                        echo '</div>';
+
+                        // echo '<div id="tab-4">';
+                        // echo '<p>This is a planned feature that has not been implemented yet...</p>';
+                        // echo '</div>';
+            
                         echo "</div>";
                         echo "</div>";
 

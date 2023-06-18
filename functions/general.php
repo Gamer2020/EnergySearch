@@ -23,11 +23,13 @@ function sanitizeInput($input)
 
 function sanitizeArray($array)
 {
-    if (!is_array($array)) {
+    if (!is_array($array))
+    {
         return sanitizeInput($array);
     }
 
-    foreach ($array as $key => &$value) {
+    foreach ($array as $key => &$value)
+    {
         $value = sanitizeArray($value);
     }
 
@@ -47,22 +49,41 @@ function containsStringIgnoreCase($haystack, $needle)
 
 function limitStringLength($string, $maxLength)
 {
-    if (strlen($string) > $maxLength) {
+    if (strlen($string) > $maxLength)
+    {
         $limitedString = substr($string, 0, $maxLength) . "...";
-    } else {
+    }
+    else
+    {
         $limitedString = $string;
     }
     return $limitedString;
 }
 
-function get_user_ip() {
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+function get_user_ip()
+{
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+    {
         $user_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } else {
+    }
+    else
+    {
         $user_ip = $_SERVER['REMOTE_ADDR'];
     }
 
     return $user_ip;
+}
+
+function removeTrailingComma($string)
+{
+    // Check if last character is comma
+    if (substr($string, -1) == ',')
+    {
+        // Remove last character
+        $string = substr_replace($string, "", -1);
+    }
+
+    return $string;
 }
 
 ?>

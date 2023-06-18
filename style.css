@@ -528,3 +528,20 @@ a.deck-card {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
+
+#HandSimButton {
+    background-color: #195e3f;
+    border: none;
+    color: #fff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}

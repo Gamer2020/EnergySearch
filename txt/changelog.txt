@@ -1,7 +1,11 @@
 <h1>Change Log</h1>
+	<h2>Version 0.2.0</h2>
+	<ul style="margin-left: 20px;">
+		<li>Adds deck stats tab. Fixes some card legalities. Adds card and deck names to title of webpage. Hand Simulator added.</li>
+	</ul>
 	<h2>Version 0.1.4</h2>
 	<ul style="margin-left: 20px;">
-		<li>Imporves auto setting featured card for decks.</li>
+		<li>Improves auto setting featured card for decks.</li>
 	</ul>
 	<h2>Version 0.1.3</h2>
 	<ul style="margin-left: 20px;">
@@ -13,7 +17,7 @@
 	</ul>
 	<h2>Version 0.1.1</h2>
 	<ul style="margin-left: 20px;">
-		<li>Fix to make internal cron scripts run properly on webhosts.There are scripts that update cards on the website.</li>
+		<li>Fix to make internal cron scripts run properly on webhosts. These are scripts that update cards on the website.</li>
 	</ul>
 	<h2>Version 0.1.0</h2>
 	<ul style="margin-left: 20px;">
