@@ -15,15 +15,8 @@ require_once 'include.php';
             <!-- <h1>Energy Search</h1> -->
             <!-- <p>TODO Think of something to put here. Card search maybe?</p> -->
             <!-- <br> -->
-            <?php include "widgets/panel-lastest-decks.php"; ?>
-            <?php include "widgets/panel-most-viewed-decks.php"; ?>
-            <?php include "widgets/panel-most-votes-decks.php"; ?>
-            <?php include "widgets/panel-most-viewed-cards.php"; ?>
-            <?php include "widgets/panel-most-votes-cards.php"; ?>
-            <?php include "widgets/panel-most-viewed-month-decks.php"; ?>
-            <?php include "widgets/panel-most-votes-month-decks.php"; ?>
-            <?php include "widgets/panel-most-viewed-month-cards.php"; ?>
-            <?php include "widgets/panel-most-votes-month-cards.php"; ?>
+            <?php include "widgets/panel-lastest-decks-standard.php"; ?>
+            <?php include "widgets/panel-lastest-decks-expanded.php"; ?>
 
         </div>
         <aside>
