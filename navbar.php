@@ -7,12 +7,7 @@
             <li><a href="index.php">Home</a></li>
             <li><a href="cards.php">Cards</a></li>
             <li><a href="sets.php">Sets</a></li>
-            <li>
-                <a href="decks.php">Decks</a>
-                <ul>
-                    <li><a href="submit.php">Submit Deck</a></li>
-                </ul>
-            </li>
+            <li><a href="decks.php">Decks</a></li>
             <li>
                 <a href="about.php">About</a>
                 <ul>

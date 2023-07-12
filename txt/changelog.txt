@@ -1,4 +1,8 @@
 <h1>Change Log</h1>
+	<h2>Version 0.2.1</h2>
+	<ul style="margin-left: 20px;">
+		<li>Hopepage changed to just show latest standard and expanded decks.</li>
+	</ul>
 	<h2>Version 0.2.0</h2>
 	<ul style="margin-left: 20px;">
 		<li>Adds deck stats tab. Fixes some card legalities. Adds card and deck names to title of webpage. Hand Simulator added.</li>
