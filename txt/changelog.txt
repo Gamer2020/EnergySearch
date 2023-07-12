@@ -1,7 +1,7 @@
 <h1>Change Log</h1>
 	<h2>Version 0.2.1</h2>
 	<ul style="margin-left: 20px;">
-		<li>Hopepage changed to just show latest standard and expanded decks.</li>
+		<li>Homepage changed to just show latest standard and expanded decks.</li>
 	</ul>
 	<h2>Version 0.2.0</h2>
 	<ul style="margin-left: 20px;">
