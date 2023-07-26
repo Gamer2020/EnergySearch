@@ -97,7 +97,16 @@ require_once 'include.php';
                             // echo "Set number: " . $card->set_number . "<br><br>";
             
                             $stmt = $pdo->prepare("SELECT * FROM es_cards WHERE PTCGL_set_id = :ptcgl_set_id AND PTCGL_set_number = :ptcgl_set_number");
-                            $stmt->bindValue(':ptcgl_set_id', $card->set_code);
+                            $sve_setcode = "SVE";
+
+                            if ($card->set_code == "ENERGY")
+                            {
+                                $stmt->bindValue(':ptcgl_set_id', $sve_setcode);
+                            }
+                            else
+                            {
+                                $stmt->bindValue(':ptcgl_set_id', $card->set_code);
+                            }
                             $stmt->bindValue(':ptcgl_set_number', $card->set_number);
                             $stmt->execute();
 
