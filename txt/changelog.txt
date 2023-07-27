@@ -1,4 +1,8 @@
 <h1>Change Log</h1>
+	<h2>Version 0.2.2</h2>
+	<ul style="margin-left: 20px;">
+		<li>Fixed bug that is doubling views. Fix SVE PTCGL code. Fix sm1-135 legality.</li>
+	</ul>
 	<h2>Version 0.2.1</h2>
 	<ul style="margin-left: 20px;">
 		<li>Homepage changed to just show latest standard and expanded decks.</li>
