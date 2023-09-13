@@ -1,7 +1,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="ph2_WrP2jC6bQMRkj0S3W3nrZ96p66wiuOLuEJWY22k" />
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <?php
 
