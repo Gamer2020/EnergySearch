@@ -70,7 +70,7 @@ function create_cards_table()
             tcg_player_data TEXT DEFAULT NULL,
             card_market_data TEXT DEFAULT NULL,
             PTCGL_set_id VARCHAR(50) DEFAULT NULL, 
-            PTCGL_set_number INT DEFAULT 0,
+            PTCGL_set_number TEXT DEFAULT NULL,
             views INT DEFAULT 0,
             monthly_views INT DEFAULT 0,
             upvotes INT DEFAULT 0,
