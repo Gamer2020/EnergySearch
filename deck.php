@@ -40,6 +40,7 @@ require_once 'include.php';
                         echo '<li><a href="#tab-1">Deck List</a></li>';
                         echo '<li><a href="#tab-2">Stats</a></li>';
                         echo '<li><a href="#tab-3">Hand Simulator</a></li>';
+                        echo '<li><a href="#tab-4">List</a></li>';
                         echo '</ul>';
 
 
@@ -245,7 +246,11 @@ require_once 'include.php';
 
                         echo '</div>';
 
-                        // echo '<div id="tab-4">';
+                        echo '<div id="tab-4">';
+                        echo '<textarea name="DeckListText" style="width:90%; height:300px;" readonly>' . htmlspecialchars(str_replace('\n', "\n", $deckListPTCGLText)) . '</textarea>';
+                        echo '</div>';
+
+                        // echo '<div id="tab-5">';
                         // echo '<p>This is a planned feature that has not been implemented yet...</p>';
                         // echo '</div>';
             
