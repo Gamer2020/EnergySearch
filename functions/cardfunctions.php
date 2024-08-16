@@ -326,7 +326,13 @@ function ptcgl_code_override($PTCGO_Value, $SET_Value)
       array("input" => "swsh12tg", "matched" => "CRZ-GG"),
       array("input" => "sma", "matched" => "HIF"),
       array("input" => "sve", "matched" => "SVE"),
-      array("input" => "sv3", "matched" => "OBF")
+      array("input" => "sv3", "matched" => "OBF"),
+      array("input" => "sv3pt5", "matched" => "MEW"),
+      array("input" => "sv4", "matched" => "PAR"),
+      array("input" => "sv4pt5", "matched" => "PAF"),
+      array("input" => "sv5", "matched" => "TEF"),
+      array("input" => "sv6", "matched" => "TWM"),
+      array("input" => "sv6pt5", "matched" => "SFA")
     );
 
     foreach ($valueList as $match)
